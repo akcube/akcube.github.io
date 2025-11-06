@@ -61,8 +61,8 @@
   {{- with $height }}<meta itemprop="height" content="{{ . }}" />{{ end }}
 
   {{- /* Display caption if title is provided */ -}}
-  {{- with $title }}
-    <figcaption class="image-caption" itemprop="caption">{{ . }}</figcaption>
+  {{- if $title }}
+    <figcaption class="image-caption" itemprop="caption">{{ $title }}</figcaption>
   {{- else if $alt }}
     <figcaption class="image-caption sr-only" itemprop="caption">{{ $alt }}</figcaption>
   {{- end }}
