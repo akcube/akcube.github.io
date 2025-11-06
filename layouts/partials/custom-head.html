@@ -1,0 +1,15 @@
+{{- /* Custom CSS for images and carousel */ -}}
+{{- $customCSS := resources.Get "css/custom-images.css" -}}
+{{- if $customCSS -}}
+  {{- $customCSSProcessed := $customCSS | minify | fingerprint -}}
+  <link rel="stylesheet" href="{{ $customCSSProcessed.RelPermalink }}" integrity="{{ $customCSSProcessed.Data.Integrity }}" crossorigin="anonymous">
+{{- end -}}
+
+{{- /* Process any additional custom CSS from config */ -}}
+{{- range .Site.Params.customCSS -}}
+  {{- $resource := resources.Get . -}}
+  {{- if $resource -}}
+    {{- $processed := $resource | minify | fingerprint -}}
+    <link rel="stylesheet" href="{{ $processed.RelPermalink }}" integrity="{{ $processed.Data.Integrity }}" crossorigin="anonymous">
+  {{- end -}}
+{{- end -}}

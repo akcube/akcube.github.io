@@ -1,0 +1,69 @@
+{{- /*
+  Custom Image Render Hook
+  Automatically applies to all markdown images ![alt](src)
+  Provides: SEO optimization, lazy loading, responsive sizing, lightbox support
+*/ -}}
+
+{{- $src := .Destination -}}
+{{- $alt := .Text -}}
+{{- $title := .Title -}}
+
+{{- /* Try to get image resource for dimension extraction */ -}}
+{{- $imgResource := "" -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+
+{{- /* Check if it's a local image resource */ -}}
+{{- if not (hasPrefix $src "http") -}}
+  {{- $imgPath := strings.TrimPrefix "/" $src -}}
+  {{- $imgResource = resources.Get $imgPath -}}
+  {{- if $imgResource -}}
+    {{- $width = $imgResource.Width -}}
+    {{- $height = $imgResource.Height -}}
+  {{- else -}}
+    {{- /* Try to find in static folder */ -}}
+    {{- $staticPath := printf "static%s" $src -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Generate a unique ID for lightbox functionality */ -}}
+{{- $imageId := printf "img-%s" (md5 $src) -}}
+
+{{- /* Wrap image in a figure element for better semantics */ -}}
+<figure class="image-wrapper" itemscope itemtype="https://schema.org/ImageObject">
+  <img
+    id="{{ $imageId }}"
+    src="{{ $src | safeURL }}"
+    alt="{{ $alt | default "Image" }}"
+    {{- with $title }} title="{{ . }}"{{ end }}
+    {{- with $width }} width="{{ . }}"{{ end }}
+    {{- with $height }} height="{{ . }}"{{ end }}
+    loading="lazy"
+    decoding="async"
+    itemprop="contentUrl"
+    class="content-image zoomable"
+    {{- /* Add data attribute for lightbox */ -}}
+    data-lightbox="true"
+    {{- /* ARIA attributes for accessibility */ -}}
+    {{- if not $alt }}
+      role="presentation"
+      aria-hidden="true"
+    {{- end }}
+  />
+
+  {{- /* Schema.org structured data for SEO */ -}}
+  <meta itemprop="url" content="{{ $src | absURL }}" />
+  {{- with $alt }}
+    <meta itemprop="name" content="{{ . }}" />
+    <meta itemprop="description" content="{{ . }}" />
+  {{- end }}
+  {{- with $width }}<meta itemprop="width" content="{{ . }}" />{{ end }}
+  {{- with $height }}<meta itemprop="height" content="{{ . }}" />{{ end }}
+
+  {{- /* Display caption if title is provided */ -}}
+  {{- with $title }}
+    <figcaption class="image-caption" itemprop="caption">{{ . }}</figcaption>
+  {{- else if $alt }}
+    <figcaption class="image-caption sr-only" itemprop="caption">{{ $alt }}</figcaption>
+  {{- end }}
+</figure>

@@ -1,0 +1,79 @@
+{{- /*
+  Image Carousel Shortcode
+
+  Usage in markdown:
+  {{< carousel >}}
+  ![Alt text 1](/images/image1.png "Optional title 1")
+  ![Alt text 2](/images/image2.png "Optional title 2")
+  ![Alt text 3](/images/image3.png)
+  {{< /carousel >}}
+
+  Or with parameters:
+  {{< carousel autoplay="true" interval="5000" >}}
+  ...images...
+  {{< /carousel >}}
+*/ -}}
+
+{{- $inner := .Inner | markdownify -}}
+{{- $autoplay := .Get "autoplay" | default "false" -}}
+{{- $interval := .Get "interval" | default "5000" -}}
+{{- $showIndicators := .Get "indicators" | default "true" -}}
+{{- $showCounter := .Get "counter" | default "true" -}}
+
+{{- /* Generate unique ID for this carousel */ -}}
+{{- $carouselId := printf "carousel-%d" (now.UnixMilli) -}}
+
+{{- /* Parse images from inner content */ -}}
+{{- /* We'll use regex to extract img tags from the markdownified content */ -}}
+
+<div class="image-carousel" id="{{ $carouselId }}"
+     data-autoplay="{{ $autoplay }}"
+     data-interval="{{ $interval }}"
+     itemscope itemtype="https://schema.org/ImageGallery">
+
+  <div class="carousel-container">
+    {{- /* Navigation buttons */ -}}
+    <button class="carousel-nav carousel-prev"
+            aria-label="Previous image"
+            data-carousel="{{ $carouselId }}">
+      <span aria-hidden="true">‹</span>
+      <span class="sr-only">Previous image</span>
+    </button>
+
+    <button class="carousel-nav carousel-next"
+            aria-label="Next image"
+            data-carousel="{{ $carouselId }}">
+      <span aria-hidden="true">›</span>
+      <span class="sr-only">Next image</span>
+    </button>
+
+    {{- /* Slides container */ -}}
+    <div class="carousel-slides" role="region" aria-label="Image carousel">
+      {{- /* The inner content will be processed and wrapped in slides */ -}}
+      {{ $inner }}
+    </div>
+  </div>
+
+  {{- /* Indicators (dots) */ -}}
+  {{- if eq $showIndicators "true" -}}
+  <div class="carousel-indicators" role="tablist" aria-label="Slide indicators">
+    {{- /* These will be generated dynamically by JavaScript based on image count */ -}}
+  </div>
+  {{- end -}}
+
+  {{- /* Counter */ -}}
+  {{- if eq $showCounter "true" -}}
+  <div class="carousel-counter" aria-live="polite" aria-atomic="true">
+    <span class="current-slide">1</span> / <span class="total-slides">1</span>
+  </div>
+  {{- end -}}
+</div>
+
+{{- /* Initialize carousel via JavaScript */ -}}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof initCarousel === 'function') {
+      initCarousel('{{ $carouselId }}');
+    }
+  });
+</script>

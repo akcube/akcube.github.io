@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.LanguageCode | default "en-us" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {{- /* Standard Hugo head elements */ -}}
+  {{- block "head" . }}
+    <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+    <meta name="description" content="{{ .Description | default .Site.Params.description }}">
+    {{- if .Keywords }}
+    <meta name="keywords" content="{{ delimit .Keywords ", " }}">
+    {{- else if .Site.Params.keywords }}
+    <meta name="keywords" content="{{ delimit .Site.Params.keywords ", " }}">
+    {{- end }}
+
+    {{- /* Open Graph / Social Media */ -}}
+    <meta property="og:title" content="{{ .Title }}">
+    <meta property="og:description" content="{{ .Description | default .Site.Params.description }}">
+    <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
+    <meta property="og:url" content="{{ .Permalink }}">
+
+    {{- /* Twitter Card */ -}}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ .Title }}">
+    <meta name="twitter:description" content="{{ .Description | default .Site.Params.description }}">
+
+    {{- /* RSS */ -}}
+    {{ with .OutputFormats.Get "rss" -}}
+      {{ printf `<link rel=%q type=%q href=%q title=%q>` .Rel .MediaType.Type .Permalink site.Title | safeHTML }}
+    {{ end }}
+
+    {{- /* Canonical URL */ -}}
+    <link rel="canonical" href="{{ .Permalink }}">
+  {{- end }}
+
+  {{- /* Include theme's head partial if it exists */ -}}
+  {{- if templates.Exists "partials/head.html" }}
+    {{- partial "head.html" . }}
+  {{- end }}
+
+  {{- /* Our custom head partial with CSS */ -}}
+  {{- partial "custom-head.html" . }}
+</head>
+
+<body>
+  {{- /* Include theme's header if it exists */ -}}
+  {{- if templates.Exists "partials/header.html" }}
+    {{- partial "header.html" . }}
+  {{- end }}
+
+  <main>
+    {{- block "main" . }}{{ end }}
+  </main>
+
+  {{- /* Include theme's footer if it exists */ -}}
+  {{- if templates.Exists "partials/footer.html" }}
+    {{- partial "footer.html" . }}
+  {{- end }}
+
+  {{- /* Our custom footer partial with JS */ -}}
+  {{- partial "custom-footer.html" . }}
+
+  {{- /* Google Analytics */ -}}
+  {{- if .Site.Services.GoogleAnalytics.ID }}
+    {{- template "_internal/google_analytics.html" . }}
+  {{- end }}
+</body>
+</html>

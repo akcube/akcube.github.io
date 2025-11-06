@@ -1,0 +1,478 @@
+/* ============================================
+   Custom Image Styling & Carousel
+   Optimized for SEO, Performance, and UX
+   ============================================ */
+
+/* ============================================
+   1. Responsive Image Defaults
+   ============================================ */
+
+/* All content images should be responsive */
+article img,
+.content img,
+.blog-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.5rem auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for images */
+article img:hover,
+.content img:hover,
+.blog-content img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+  cursor: zoom-in;
+}
+
+/* Image wrapper for better control */
+.image-wrapper {
+  position: relative;
+  margin: 2rem auto;
+  text-align: center;
+  max-width: 100%;
+}
+
+.image-wrapper img {
+  margin: 0 auto;
+}
+
+/* Image captions */
+.image-caption {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  font-style: italic;
+  text-align: center;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  article img,
+  .content img,
+  .blog-content img {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  }
+
+  article img:hover,
+  .content img:hover,
+  .blog-content img:hover {
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+  }
+
+  .image-caption {
+    color: #aaa;
+  }
+}
+
+/* ============================================
+   2. Image Carousel / Gallery
+   ============================================ */
+
+.image-carousel {
+  position: relative;
+  max-width: 100%;
+  margin: 2rem auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-container {
+  position: relative;
+  width: 100%;
+  background: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  .carousel-container {
+    background: #1a1a1a;
+  }
+}
+
+/* Carousel slides */
+.carousel-slides {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+  align-items: center;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.carousel-slide img {
+  max-width: 100%;
+  max-height: 600px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  margin: 0;
+  box-shadow: none;
+  border-radius: 4px;
+}
+
+/* Navigation arrows */
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10;
+  user-select: none;
+}
+
+.carousel-nav:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.carousel-prev {
+  left: 1rem;
+}
+
+.carousel-next {
+  right: 1rem;
+}
+
+/* Hide arrows on mobile */
+@media (max-width: 768px) {
+  .carousel-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .carousel-prev {
+    left: 0.5rem;
+  }
+
+  .carousel-next {
+    right: 0.5rem;
+  }
+}
+
+/* Carousel indicators */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .carousel-indicators {
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+.carousel-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  padding: 0;
+}
+
+.carousel-indicator:hover {
+  background: #999;
+  transform: scale(1.2);
+}
+
+.carousel-indicator.active {
+  background: #333;
+  transform: scale(1.3);
+}
+
+@media (prefers-color-scheme: dark) {
+  .carousel-indicator {
+    background: #555;
+  }
+
+  .carousel-indicator:hover {
+    background: #888;
+  }
+
+  .carousel-indicator.active {
+    background: #fff;
+  }
+}
+
+/* Carousel counter */
+.carousel-counter {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  .carousel-counter {
+    color: #aaa;
+    background: rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* ============================================
+   3. Lightbox Modal
+   ============================================ */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 9999;
+  justify-content: center;
+  align-items: center;
+  cursor: zoom-out;
+}
+
+.lightbox.active {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+  line-height: 1;
+  padding: 0;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+  .lightbox-close {
+    top: 1rem;
+    right: 1rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+  }
+}
+
+/* ============================================
+   4. Lazy Loading Animation
+   ============================================ */
+
+img[loading="lazy"] {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+img[loading="lazy"].loaded {
+  opacity: 1;
+}
+
+/* Skeleton loader for images */
+.image-loading {
+  background: linear-gradient(
+    90deg,
+    #f0f0f0 25%,
+    #e0e0e0 50%,
+    #f0f0f0 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 8px;
+  min-height: 200px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .image-loading {
+    background: linear-gradient(
+      90deg,
+      #2a2a2a 25%,
+      #1a1a1a 50%,
+      #2a2a2a 75%
+    );
+    background-size: 200% 100%;
+  }
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* ============================================
+   5. Responsive Breakpoints
+   ============================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  article img,
+  .content img,
+  .blog-content img {
+    margin: 1rem auto;
+  }
+
+  .carousel-slide {
+    padding: 1.5rem;
+  }
+
+  .carousel-slide img {
+    max-height: 500px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  article img,
+  .content img,
+  .blog-content img {
+    border-radius: 4px;
+    margin: 0.75rem auto;
+  }
+
+  .carousel-slide {
+    padding: 1rem;
+  }
+
+  .carousel-slide img {
+    max-height: 400px;
+  }
+
+  .image-carousel {
+    margin: 1rem auto;
+    border-radius: 8px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .carousel-slide img {
+    max-height: 300px;
+  }
+
+  .carousel-indicator {
+    width: 10px;
+    height: 10px;
+  }
+}
+
+/* ============================================
+   6. Print Styles
+   ============================================ */
+
+@media print {
+  .carousel-nav,
+  .carousel-indicators,
+  .lightbox {
+    display: none !important;
+  }
+
+  .carousel-slides {
+    display: block !important;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    page-break-inside: avoid;
+  }
+
+  article img,
+  .content img {
+    box-shadow: none;
+    max-width: 100%;
+    page-break-inside: avoid;
+  }
+}
+
+/* ============================================
+   7. Accessibility
+   ============================================ */
+
+/* Focus styles for keyboard navigation */
+.carousel-nav:focus,
+.carousel-indicator:focus,
+.lightbox-close:focus {
+  outline: 3px solid #4a9eff;
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  article img,
+  .content img,
+  .carousel-slides,
+  .carousel-nav,
+  .carousel-indicator,
+  img[loading="lazy"] {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Screen reader only text */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

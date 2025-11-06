@@ -1,0 +1,29 @@
+{{- define "main" }}
+<article class="blog-content">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{- if .Date }}
+    <time datetime="{{ .Date.Format "2006-01-02" }}">
+      {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+    </time>
+    {{- end }}
+  </header>
+
+  {{- /* Main content with automatic image optimization */ -}}
+  <div class="content">
+    {{ .Content }}
+  </div>
+
+  {{- /* Tags/Topics */ -}}
+  {{- if .Params.topics }}
+  <footer class="article-footer">
+    <div class="topics">
+      <strong>Topics:</strong>
+      {{- range .Params.topics }}
+        <span class="topic">{{ . }}</span>
+      {{- end }}
+    </div>
+  </footer>
+  {{- end }}
+</article>
+{{- end }}

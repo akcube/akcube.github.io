@@ -1,0 +1,15 @@
+{{- /* Custom JS for image handling and carousel */ -}}
+{{- $customJS := resources.Get "js/image-handler.js" -}}
+{{- if $customJS -}}
+  {{- $customJSProcessed := $customJS | minify | fingerprint -}}
+  <script defer src="{{ $customJSProcessed.RelPermalink }}" integrity="{{ $customJSProcessed.Data.Integrity }}" crossorigin="anonymous"></script>
+{{- end -}}
+
+{{- /* Process any additional custom JS from config */ -}}
+{{- range .Site.Params.customJS -}}
+  {{- $resource := resources.Get . -}}
+  {{- if $resource -}}
+    {{- $processed := $resource | minify | fingerprint -}}
+    <script defer src="{{ $processed.RelPermalink }}" integrity="{{ $processed.Data.Integrity }}" crossorigin="anonymous"></script>
+  {{- end -}}
+{{- end -}}
