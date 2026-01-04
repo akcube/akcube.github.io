@@ -1,12 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2024-10-25 20:20:51+0530
-doc: 2024-10-25 20:20:24+0530
-title: '"In Search Of An Understandable Consensus Algorithm (Extended Version)" -
-  Raft'
-topics:
-- Paper-Reading
-- Distributed-Systems
+doc: 2025-04-04 11:28:38+0530
+tags:
+- domain-cs-systems-distributed-systems
+title: '"In Search of an Understandable Consensus Algorithm (Extended Version)" -
+  RAFT'
 ---
 # Abstract
 These notes are taken from my reading of the original paper, [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf) by [Diego Ongaro](https://scholar.google.com/citations?user=oBe2P2EAAAAJ&hl=en) and [John Ousterhout](https://scholar.google.com/citations?user=nDH-AqwAAAAJ&hl=en), a video lecture by Diego on YouTube: [Designing for Understandability: The Raft Consensus Algorithm](https://www.youtube.com/watch?v=vYp4LYbnnW8) and another by [Core Dump](https://www.youtube.com/@core_dump): [Understand RAFT without breaking your brain](https://www.youtube.com/@core_dump).  
@@ -16,8 +15,7 @@ These notes are taken from my reading of the original paper, [In Search of an Un
 
 So if you've read that, you'll realize that Raft was preceded by Paxos, the first popular consensus algorithm. A natural question to ask is why I'm reading / covering RAFT before Paxos. I'm doing this primarily trusting this tiny "study" conducted by Diego and John. People were roughly taught Paxos & Raft in differing orders and then made to take a "comparably equal" in difficulty quiz. You'll notice that Raft is comparably easier (according to the participants) to implement / explain & the test results do seem to show higher "understanding" of RAFT. Regardless, you'll also notice that people who were taught Paxos, and then Raft, did statistically significantly worse in both tests :) I personally am inclined to believe this could be because of an artifact / bias in the testing process but it is interesting. Anyways, on to Raft.
 
-![Pasted image 20240904182856](/images/pasted-image-20240904182856.png)
-
+![pasted-image-20240904182856](/images/pasted-image-20240904182856.webp)
 
 # Designing Algorithms for Understandability
 In the field of algorithms research, the two primary most common and important criteria used for evaluation are correctness and efficiency. In fact, that's more or less what I wrote about a year back in [How to Analyze Algorithms? Proving a Lower Bound for Comparison Based Sorting](/blog/how-to-analyze-algorithms-proving-a-lower-bound-for-comparison-based-sorting) as well. However, Diego claims that a crucial yet frequently overlooked aspect of evaluation is the algorithm's *understandability*. Most people interested in / researching algorithms (including me) often tend to chalk up how "intelligent" or "great" an algorithm is based on how difficult & complex it is. Complex algorithms are harder to understand, and we attribute more 'respect' to them, but an algorithm that is a lot more 'understandable' is often considered "inferior." 
@@ -74,8 +72,7 @@ Servers in Raft operate in one of three states:
 - **Follower**: Passive servers that wait for instructions from the leader. If a client contacts a follower, the follower redirects it to the leader.
 - **Candidate**: A server that becomes active when it times out and tries to become a leader.
 #### Terms
-![Pasted image 20240923005022](/images/pasted-image-20240923005022.png)
-
+![pasted-image-20240923005022](/images/pasted-image-20240923005022.webp)
 
 Terms are time intervals of arbitrary length. A term begins with an *election*. Elections occur until a candidate is chosen as leader. There is at most one leader for a given term.
 
@@ -126,28 +123,24 @@ The visualization tool on the [Raft Website](https://raft.github.io/) does an in
 
 1. Let's assume all the servers are on second term and S3 is the leader. Normal operation would look like this:
 	   
-	![Pasted image 20240923014316](/images/pasted-image-20240923014316.png)
-
+	![pasted-image-20240923014316](/images/pasted-image-20240923014316.webp)
 	
 	The circles around each server show what stage of the timeout they are at. The orange circles represent the parallel heartbeat RPC communication between leader S3 and the rest of the servers. Now let's say we crash S3. 
 	
 2. Without the heartbeat. The other servers eventually timeout.
 	   
-	![Pasted image 20240923014440](/images/pasted-image-20240923014440.png)
-
+	![pasted-image-20240923014440](/images/pasted-image-20240923014440.webp)
 	
 	We can clearly see that S2 is the closest to timing out here. Therefore, with high probability, S2 times out first and manages to increase its term and send the Request Vote RPC first to the majority of the other servers. These servers then see that S2 has a higher term and since it is the first Request Vote RPC they have received for this term, vote for S2. S2 receives the majority of the votes and becomes a leader. It then starts issuing heartbeats to the other servers and acts like a normal leader.
 	
-	![Pasted image 20240923014708](/images/pasted-image-20240923014708.png)
-
+	![pasted-image-20240923014708](/images/pasted-image-20240923014708.webp)
 
 ### Log Replication
 In short, the leader receives client commands, appends them to its log, and replicates them to follower logs. Once a command is safely replicated, it is executed by all servers. The RAFT log can be used to simulate a consistent state across any set of finite state machines. You can think of each entry $e_{t_i}$ in the log as an input which triggers a transaction from the server state $s_i$ to some state $s_j$ based on the log entry at time $t_i$. Inductively, as long as the servers all started with the same initial state and as long as all the log entries before time $t_i$ match between all the servers, all the servers at time $t_i$ would be on the exact same FSM state.
 
 Logs are organized as shown below:
 
-![Pasted image 20240923031234](/images/pasted-image-20240923031234.png)
-
+![pasted-image-20240923031234](/images/pasted-image-20240923031234.webp)
 - [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf)
 #### Short Description of Log Replication
 Note that log entries have two values associated with them, an `index` and a `term`. These two metadata integers are sufficient for RAFT to replicate logs correctly. As mentioned previously, all client interactions are modeled as "append write transition entry" to the master node. When the leader node gets a new log entry from a client, it performs something similar to a 2-phase commit. Upon receiving the entry, it immediately broadcasts a Append Entry RPC to all the other nodes in the cluster. These nodes respond back to the leader once they have appended their logs. Once the leader observes that a majority of the nodes in the cluster have appended the log, it applies the log entry operation to its own FSM and issues a **commit** to all the other followers. On receiving a commit, the follower nodes also apply the log entry operation to their own FSM. 
@@ -170,8 +163,7 @@ Let's try to intuitively prove that the above construction works. Let's note a c
 - **If two log entries have the same term number & index, then the prefixes of both the logs until that entry are equivalent** -> This can be proven by a recursive argument. We are given two logs $L_1$ and $L_2$. Let's say the entry at index $i$ for both $L_1$ and $L_2$ has term $t_i$. From the previous statement these entries are equivalent. Let us suppose that the leader for the term $t_i$ was $S$. Note that entry $i$ would've only been appended by $S$ to some log $L$ if the $(i-1)^{th}$ entry of $L$ was equivalent to the $(i-1)^{th}$ entry of $S$. Therefore, if the $i^{th}$ entry of $L_1$ and $L_2$ match, we know that their $(i-1)^{th}$ entries must also be equivalent. This follows inductively until the base state where the previous state was an empty state.
 - **The leader will never have a log that does not match the logs committed by the majority:** This is slightly harder to see. But if this is not true, the servers can all end up with matching logs but mismatched FSM state. What do I mean by this? Consider this example from the paper:
 	
-	![Pasted image 20240923103722](/images/pasted-image-20240923103722.png)
-
+	![pasted-image-20240923103722](/images/pasted-image-20240923103722.webp)
 	- [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf)
 	
 	Let's suppose the leader crashes and $(f)$ becomes the leader again. Only this time, it is able to send messages to the rest of the servers. Also let us assume that the leaders for terms 4, 5 & 6 were able to *commit* their entries since they had majority entry append success. In this scenario, the leader, $(a), (c) \ \& \ (d)$ have committed the entries in terms 4, 5 & 6. Therefore, they have also applied these operations to their FSM state. Now, if $(f)$ becomes the leader, it will begin to force the follower nodes to copy its own log. This means the leader, $(a), (c) \ \& \ (d)$ will pop off committed logs and apply logs from terms 2 & 3 on top of the operations from 4, 5 & 6 thus causing the servers to have inconsistent state with each other. 
@@ -188,6 +180,8 @@ Let's try to intuitively prove that the above construction works. Let's note a c
 - **The FSM's are consistent:** This follows from the above where we reasoned why it is OK for the leader of any term to not have to delete any entry from it's log. This means that "writes" flow in only one direction, from leader to follower. Remember that an entry is safe to apply to a node's state machine only when it is committed. Commits also only flow from leader to follower. Since the leader never removed entries from it's log & since it always contains all the logs committed by the majority in previous terms, it will never issue a log to a follower which causes a follower to have to "remove" a committed log. Therefore, for each node in the RAFT system, commits are append only and never have to be rolled back. This means that if an entry was committed by a node at any position (term, index) in it's log, then every other server will also consequently commit the same operation at that position in the log. The FSM will be consistent. 
   
   This last property is why consensus algorithms are so powerful in distributed systems. It allows a set of machines to act as a single unit (resiliency).
+  
+When you walk through all of these scenarios, it really highlights how the specific design choices – the strong leader, the term logic, and especially the voting restriction based on log completeness – combine to make the safety properties feel intuitive rather than magically asserted. While not a formal proof, building this kind of step-by-step intuition first makes approaching the formal guarantees (like Leader Completeness and State Machine Safety) much less daunting. **It's a direct payoff of their 'design for understandability' goal**. 
 #### Formal Properties
 Let's formally state the properties we proved above into terms used by the paper.
 
@@ -197,13 +191,13 @@ Let's formally state the properties we proved above into terms used by the paper
 - **The leader will never have a log that does not match the logs committed by the majority -> Leader Completeness**
 - **The FSM's are consistent -> State Machine Safety**
   
-![Pasted image 20240923095248](/images/pasted-image-20240923095248.png)
-
+![pasted-image-20240923095248](/images/pasted-image-20240923095248.webp)
 - [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf)
 ### Follower & Candidate Crashes
 > Until this point we have focused on leader failures. Follower and candidate crashes are much simpler to handle than leader crashes, and they are both handled in the same way. If a follower or candidate crashes, then future RequestVote and AppendEntries RPCs sent to it will fail. Raft handles these failures by retrying indefinitely; if the crashed server restarts, then the RPC will complete successfully. If a server crashes after completing an RPC but before responding, then it will receive the same RPC again after it restarts. Raft RPCs are idempotent, so this causes no harm. For example, if a follower receives an AppendEntries request that includes log entries already present in its log, it ignores those entries in the new request. 
 > - [In Search of an Understandable Consensus Algorithm (Extended Version)](https://raft.github.io/raft.pdf)
 ## Cluster Membership Changes
 TBD
-
+# Conclusion (Personal Thoughts)
+RAFT is a great "academic" face of how simplicity is often the most powerful solution. In general, I empirically notice that the more complex, convoluted and difficult to understand something is in academia, the more 'respect' it's given. In software engineering, the opposite is usually true. The biggest impact you can have as a SWE is often via the simplest solutions. This is also why there's a lot of disdain between the two roles, but RAFT is a great example of proving that sometimes (especially in complex fields like distributed systems), making an algorithm understandable is just as crucial as making it correct and efficient. Researchers can reason about it's behavior more easily and build even more research on top of this easier. You're enabling future researchers to build even higher. One great example of this is [TiDB - Architecture](/blog/tidb-architecture) being built using RAFT for consistency. 
 

@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-18 05:06:28+0530
-doc: 2024-05-29 06:32:15+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Master's Theorem, Strassen's Matrix Multiplication & KTH-Order Statistics
-topics:
-- Algorithm-Analysis
 ---
 # Master's Theorem
 
@@ -18,8 +18,7 @@ $$ T(n) = \begin{cases} O(n^d) \ if \ d\gt log_ba \\ O(n^dlogn) \ if \ d = log_b
 
 ## A visual depiction of the proof
 
-![masters-theorem-tree](/images/masters-theorem-tree.png)
-
+![masters-theorem-tree](/images/masters-theorem-tree.webp)
 
 ## Proof of Master's Theorem
 
@@ -148,13 +147,11 @@ They say a picture is worth a thousand words, and I think you will find the belo
 
 Now that our elements are now ordered both vertically and horizontally, let us try to place bounds on the division that picking the median of medians grants us.
 
-![median-of-medians-1](/images/median-of-medians-1.png)
-
+![median-of-medians-1](/images/median-of-medians-1.webp)
 
 Notice that in the above picture, because $c_3$ is the median of medians, it **must** be greater than $a_3$ and $b_3$. More formally, $x_3\in \sigma_{\frac{n}{10}} \geq x_3\in \sigma_{i<\frac{n}{10}}$. Further, because $x_3\in\sigma_i$ is greater than or equal to all $x_1, x_2 \in \sigma_i$, our median-of-medians is greater than or equal to every $x_{i\leq3}\in\sigma_{i\leq\frac{n}{10}}$. Or to put it more simply, it must be greater than equal to everything on this picture that is painted in pink.
 
-![median-of-medians-2](/images/median-of-medians-2.png)
-
+![median-of-medians-2](/images/median-of-medians-2.webp)
 
 A similar statement can be made about everything it is lesser than or equal to. Everything painted blue in the above diagram must be greater than or equal to our median-of-medians.
 

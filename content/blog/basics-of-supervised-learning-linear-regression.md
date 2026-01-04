@@ -1,12 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2025-08-19 18:27:21+0530
-doc: 2025-08-19 18:22:05+05:30
-title: Basics Of Supervised Learning - Linear Regression
-topics:
-- Machine-Learning
-- Probability-And-Statistics
-- Math
+doc: 2025-08-19 18:22:05+0530
+tags:
+- domain-cs-ai-ml-machine-learning
+- domain-math-probability-statistics
+title: Basics of Supervised Learning - Linear Regression
 ---
 # Preface 
 Before I get started... most of what follows is inspired by, and adapted from, [notes I originally wrote back in high school (2019)](https://github.com/akcube/notes/tree/main/machine-learning-andrew-ng), now refreshed and digitized. These notes were first put together while following the now very famous [Machine Learning specialization](https://www.coursera.org/specializations/machine-learning-introduction) by Andrew Ng on Coursera, albeit a very old version. I would also highly recommend going over [3Blue1Brown](https://www.youtube.com/@3blue1brown)'s lecture series on [Neural Networks](https://www.youtube.com/playlist?list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi), they're a delight to visual learners trying to understand back propagation better. I suppose I don't really need to pitch Grant's work much :') but it's genuinely amazing. 
@@ -25,8 +24,7 @@ This is publicly recognized as the most well-known birthplace of AI. In 1956, Jo
 ## The Perceptron
 Following this conference, in 1957, Frank Rosenblatt built the world's first perceptron. It was a (in today's terms) single-layer neural network, which performed **binary** classification based on weighted inputs and a threshold. You can think of the first perceptron as something as simple as the following function: 
 
-![Pasted image 20250817021443](/images/pasted-image-20250817021443.png)
-
+![pasted-image-20250817021443](/images/pasted-image-20250817021443.webp)
 
 Each input above ($x_i$) is assigned a weight ($w_i$). The perceptron calculates the weighted sum $\sum x_i \cdot w_i$. The red circle there is an "activation function." For example, a simple binary classification function can be the following:
 
@@ -50,18 +48,15 @@ Now that we know the history & motivation for "what" we're trying to compute, le
 ## A Toy Problem
 For example, let's say we believe that housing prices are linearly dependent on the size of the plot. If we plot some data points of house sales, we may end up with a chart that looks as follows:
 
-![Pasted image 20250817032023](/images/pasted-image-20250817032023.png)
-
+![pasted-image-20250817032023](/images/pasted-image-20250817032023.webp)
 
 Looking at the above data, it's reasonable to assume that housing prices are expected to linearly increase with increase in plot size. But if I wanted to know the best "expected" house price for a plot of size exactly $x_i$, how could I answer that question?
 
-![Pasted image 20250817032013](/images/pasted-image-20250817032013.png)
-
+![pasted-image-20250817032013](/images/pasted-image-20250817032013.webp)
 
 There's no pre-existing data point with the exact value for plot size $x_i$, so I can't regurgitate a known data point. Even if there was, it might be an outlier. I could find the best nearby $x_i$ and try to make a prediction, but what if I asked for a *very large* plot size? One which I did not have "nearby" pre-existing data points for? Like we mentioned previously, we could observe that the price $y$ appears to be linearly increasing with price $x$. We could then try to compute the "best-fit" linear equation to model this relationship. Let's suppose we knew this "best-fit" line, given by some $f(x) = mx + c$. 
 
-![Pasted image 20250817032005](/images/pasted-image-20250817032005.png)
-
+![pasted-image-20250817032005](/images/pasted-image-20250817032005.webp)
 
 We could then easily compute the best expected price for any given $x_i$. Awesome, but how do we compute this best fit line from our data? What does "best fit" even mean anyway? 
 
@@ -90,13 +85,11 @@ In the above example, we have $n = 1$. So our hypothesis function $H_\theta(x)$ 
 ### The Cost Function
 To learn the optimal parameters $\theta$, we need a way to measure how well our model is performing. Going back to the last question we raised when discussing the toy problem, "*What does "best fit" even mean anyway?*" In our toy problem, if we draw a couple of random lines onto the graph of data points, 
 
-![Pasted image 20250817031949](/images/pasted-image-20250817031949.png)
-
+![pasted-image-20250817031949](/images/pasted-image-20250817031949.webp)
 
 It's easy to visually observe and claim that the orange line better "fits" the data than the green line. But how can we quantify this notion of "fit"? To solve this problem, we need to come up with a **cost function**. A cost function takes the training data points, and a predicted line of best fit as input, and outputs a quantifiable value for how "close" the line's predicted values are to the actual training data points. Well one simple idea could be to simply compute the predicted value $y^{(i)}$ for each training data point $x^{(i)}$ using $H_\theta(x^{(i)})$ and compute the difference between the two values (well, the sum of the absolute values of the differences to be specific). 
 
-![Pasted image 20250817032413](/images/pasted-image-20250817032413.png)
-
+![pasted-image-20250817032413](/images/pasted-image-20250817032413.webp)
 
 The cost function $J(\theta)$ would then be:
 
@@ -121,31 +114,27 @@ Finding the best set of parameters $\theta$ now just means finding the best valu
 
 Consider the function $y = (x-3)^2 + 2$. We can find *a* minimum by differentiating it and setting $\frac{dy}{dx} = 0$. This gives us $\frac{dy}{dx} = \frac{d(x^2 - 6x + 9 + 2)}{dx} = 2x - 6 = 0 \implies x = 3$. At $x = 3$, $y = 2$. By double differentiating it, we get $\frac{d^2y}{dx^2} = 2 \gt 0$ which means it's a minimum. Since this curve is concave-up shaped, it has just one minimum and hence it is the *global* minimum. 
 
-![Pasted image 20250818072726](/images/pasted-image-20250818072726.png)
-
+![pasted-image-20250818072726](/images/pasted-image-20250818072726.webp)
 
 However, this same approach isn't very feasible for more complicated functions. Sometimes solving for all possible values of $\frac{dy}{dx} = 0$ is difficult (or impossible). Checking the double derivative for complex functions might often be inconclusive and we may need to check higher order functions or use numerical methods. When we're dealing with multiple variables and higher dimensional functions, the computations can get extremely complex and difficult to compute. So instead, people rely on iterative numerical optimization algorithms. 
 
 **Gradient Descent** is one such iterative optimization algorithm used to find the minimum of a function. We start with some random initial values for $\theta$ and repeatedly update them by taking small steps in the direction of the steepest descent of the cost function. Consider this more complex function below:
 
-![Pasted image 20250818072742](/images/pasted-image-20250818072742.png)
-
+![pasted-image-20250818072742](/images/pasted-image-20250818072742.webp)
 
 Given any point $w_0$, we can find out the answer to *"Which direction should I move in to reduce the value of the function?"* by computing the derivative (slope) of the function at that point $w_0$. If the slope is positive, we should move left to reduce the value of the function. If it's negative, we should move right. If we do this repeatedly, we'll eventually approach & reach some **local minimum** of the function. The visualization that really helps sell this idea is that of a ball rolling down the 2D hills (curves generated by the function). If we generate *enough* random initial points (or balls) and perform this procedure, we should eventually hit a very good local minimum. 
 
-> ![Pasted image 20250817171326](/images/pasted-image-20250817171326.png)
-
+> ![pasted-image-20250817171326](/images/pasted-image-20250817171326.webp)
 > 
-> ![Pasted image 20250817171344](/images/pasted-image-20250817171344.png)
-
+> ![pasted-image-20250817171344](/images/pasted-image-20250817171344.webp)
 > 
 > - Pictures credit 3b1b: [Gradient descent, how neural networks learn | Deep Learning Chapter 2](https://www.youtube.com/@3blue1brown)
 
+Also note that this is a general explanation of gradient descent for potentially non-convex functions. In the case of linear regression on the MSE function (which is **always** convex), we are pretty much always guaranteed to hit the global minimum since the function is intuitively shaped like a curve with one minimum area at the "center."
 #### Gradient of A Function
 This idea extends to $n$ dimensional spaces as well. 
 
-> ![Pasted image 20250817171511](/images/pasted-image-20250817171511.png)
-
+> ![pasted-image-20250817171511](/images/pasted-image-20250817171511.webp)
 > - Pictures credit 3b1b: [Gradient descent, how neural networks learn | Deep Learning Chapter 2](https://www.youtube.com/@3blue1brown)
 
 Let's formalize how we compute this gradient descent step for a multi-variate scalar function. Here are some terms to know:
@@ -214,32 +203,25 @@ Remember that $\theta$, $x^{(i)}$ and $y^{(i)}$ are all vectors. Computing each 
 
 First, let's understand the dimensionality of our input & parameter vectors. Each of our training data points is a vector $x^{(i)}$ of dimensions $1 \times m$. We can encapsulate all of our training data inputs into a single matrix $X$ of dimensions $n \times m$. Here, each row of our matrix $X$ represents one of the training inputs. Each training input consists of $m$ features. For each training input $x^{(i)}$, we also have the training example's correct output $y^{(i)}$ which is a vector of dimensions $n \times 1$. Note that whether it's a row or column vector is just a choice that'll help simplify the future expressions. Similarly we can represent our vector of hyper-parameters $\theta$ as a $m \times 1$ column vector (Thanks to [Claude](https://claude.ai/) yet again for awesome visualizations...).
 
-![Pasted image 20250818054022](/images/pasted-image-20250818054022.png)
-
+![pasted-image-20250818054022](/images/pasted-image-20250818054022.webp)
 
 1. Our hypothesis function $H_\theta$ can be simply written as $H_\theta(x) = x \times \theta$. This would in essence, compute the $1 \times 1$ predicted output for a single input vector $x$. We can similarly model the computation for the entire training data matrix $X$ in one operation as well. 
    
-   ![Pasted image 20250818050535](/images/pasted-image-20250818050535.png)
-
+   ![pasted-image-20250818050535](/images/pasted-image-20250818050535.webp)
    
-   ![Pasted image 20250818054135](/images/pasted-image-20250818054135.png)
-
+   ![pasted-image-20250818054135](/images/pasted-image-20250818054135.webp)
    
 2. The cost function $J(\theta)$ can be written as $J(\theta) = \frac{\sum(H_\theta(x) - y)^2}{2n}$. $H_\theta(X)$ can be computed by multiplying the matrix $X$ with $\theta$ to give us the $n \times 1$ vector. After this, computing the numerator is a simple vector subtraction operation. We can then compute the square vector by computing $x^T \times x$. When $x$ is a row vector, it gives the sum of squares of the components of $x$. This is also known as the *squared Euclidean norm* of $x$. 
    
-   ![Pasted image 20250818052049](/images/pasted-image-20250818052049.png)
-
+   ![pasted-image-20250818052049](/images/pasted-image-20250818052049.webp)
    
-   ![Pasted image 20250818054207](/images/pasted-image-20250818054207.png)
-
+   ![pasted-image-20250818054207](/images/pasted-image-20250818054207.webp)
    
 3. The gradient, $\nabla J(\theta)$ is then written as $\nabla J(\theta) = \frac{1}{n} \cdot (X^T \times (X \times \theta - y))$.  
    
-   ![Pasted image 20250818052139](/images/pasted-image-20250818052139.png)
-
+   ![pasted-image-20250818052139](/images/pasted-image-20250818052139.webp)
    
-   ![Pasted image 20250818054242](/images/pasted-image-20250818054242.png)
-
+   ![pasted-image-20250818054242](/images/pasted-image-20250818054242.webp)
 
 ## A `PyTorch` Implementation
 I'm also attempting to learn `PyTorch` for the first time here, so I'll be leaving some snippets here which I used to test and verify these implementations using `PyTorch`. To start off, let's import the necessary libraries and set the `seed` for them to `42`, just to make sure all experiments / findings from here are completely reproducible. 
@@ -271,8 +253,7 @@ plot_xy(X, y, REAL_WEIGHT, REAL_BIAS)
 
 The plot generated is as follows:
 
-![Pasted image 20250818090357](/images/pasted-image-20250818090357.png)
-
+![pasted-image-20250818090357](/images/pasted-image-20250818090357.webp)
 
 So far so good. We now need to create our model parameters, the model itself and pick the loss function and optimizer we want to use to learn our parameters. To do this in `PyTorch` we do the following:
 
@@ -326,8 +307,7 @@ Learned parameters: weight=2.5059, bias=1.0178
 
 Plotting the loss (cost function) for our model over each epoch gives us the output we'd expect:
 
-![Pasted image 20250818100406](/images/pasted-image-20250818100406.png)
-
+![pasted-image-20250818100406](/images/pasted-image-20250818100406.webp)
 
 As we can see, a 100 epochs don't seem to be enough to minimize the loss. We seem to have hit the minimum somewhere under the 200th epoch. 
 
@@ -398,8 +378,7 @@ I believe it's also worthwhile to go over what some of these `PyTorch` functions
 	
 	We get the following `graph.png`: 
 	
-	![Pasted image 20250818174715](/images/pasted-image-20250818174715.png)
-
+	![pasted-image-20250818174715](/images/pasted-image-20250818174715.webp)
 	
 	So when you call `loss.backward()`, it actually goes backward through this graph and computes the gradient of `y_pred` with respect to weight and bias and stores these gradients in the `.grad` attribute of each parameter. These are then picked up by the optimizer when we run `optimizer.step()`. There's more details to this, but maybe in a future blog :) 
 
@@ -448,18 +427,15 @@ plot_param_evolution(data, REAL_WEIGHT, REAL_BIAS)
 
 Here's what we get. For very small learning rate and just 100 epochs, both $\alpha = 0.001$ and $\alpha = 0.01$, the weights and bias fail to converge to the "real" values. We need the much higher rate $0.1$ to converge quickly. 
 
-![Pasted image 20250818100912](/images/pasted-image-20250818100912.png)
-
+![pasted-image-20250818100912](/images/pasted-image-20250818100912.webp)
 
 If we increased the number of epochs to 1000 however,
 
-![Pasted image 20250818101238](/images/pasted-image-20250818101238.png)
-
+![pasted-image-20250818101238](/images/pasted-image-20250818101238.webp)
 
 You'll notice that $\alpha = 0.01$ is sufficient, but $\alpha = 0.001$ still fails to converge! Looking at the evolution further, you'll notice that 
 
-![Pasted image 20250818101615](/images/pasted-image-20250818101615.png)
-
+![pasted-image-20250818101615](/images/pasted-image-20250818101615.webp)
 
 The larger learning rate has chosen a slightly worse optimum, but it did reach there a lot faster than $\alpha = 0.01$. That's the tradeoff we make here. 
 

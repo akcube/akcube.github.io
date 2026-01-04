@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-08-07 10:02:06+0530
-doc: 2024-05-29 06:31:19+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-cs-algorithms-complexity
 title: Church-Turing Hypothesis
-topics:
-- Algorithm-Analysis
-- Complexity-Theory
 ---
 # Church-Turing Hypothesis
 

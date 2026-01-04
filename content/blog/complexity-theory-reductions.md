@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-01 18:52:54+0530
-doc: 2024-05-29 07:02:16+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-complexity
 title: Complexity Theory - Reductions
-topics:
-- Complexity-Theory
 ---
 # Reductions
 
@@ -14,8 +14,7 @@ Intuitively, what does this mean?
 
 Let's say we have two problems $f$ and $g$. Let's suppose that problem $g$ has a known solution. Then the following is a reduction from $f \to g$.
 
-![reductions-1](/images/reductions-1.png)
-
+![reductions-1](/images/reductions-1.webp)
 
 The **"Reduction"** is basically finding those two blue boxes, which convert the input and output from that of problem $f$ to equivalent input for problem $g$. Now we can simply compute the solution for problem $g$ and then use the reverse of our reduction algorithm to transform the output to that required by $f$.
 

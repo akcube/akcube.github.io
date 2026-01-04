@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-04-12 04:51:54+0530
-doc: 2024-05-31 12:08:57+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Brent's Theorem & Task Level Parallelism
-topics:
-- High-Performance-Computing
 ---
 Suggestion for digging deeper into HPC ideas: [https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/pages/syllabus/](https://ocw.mit.edu/courses/6-172-performance-engineering-of-software-systems-fall-2018/pages/syllabus/)
 # Modeling task-level parallelism as a DAG (Directed Acyclic Graph)
@@ -13,8 +13,7 @@ One major issue we had with the OMP parallel execution model was the use of an i
 
 Hence $A$ can keep executing until it hits such a dependence barrier. Following this idea, we can always construct a dependency DAG of all the parallel workloads in a problem.
 
-![tlp-1](/images/tlp-1.png)
-
+![tlp-1](/images/tlp-1.webp)
 
 It allows us to come up with the following theoretical formulation of parallelization and speedup.
 
@@ -40,8 +39,7 @@ $$ Avg. \ Parallelism = \frac{W(n)}{D(n)} $$
 
 It is possible to prove that there always exists an alignment of nodes in a DAG such that we can essentially partition the DAG into levels separated by the nodes on the critical path in the DAG.
 
-![tlp-2](/images/tlp-2.png)
-
+![tlp-2](/images/tlp-2.webp)
 
 This is what we’d like to define as “average parallelism.”
 

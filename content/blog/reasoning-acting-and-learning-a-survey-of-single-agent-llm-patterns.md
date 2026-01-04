@@ -1,10 +1,12 @@
 ---
 author: Kishore Kumar
 date: 2025-12-04 07:18:12+0530
-doc: 2025-12-04 06:59:44+05:30
+doc: 2025-12-04 06:59:44+0530
+tags:
+- domain-cs-ai-ml-llms
 title: 'Reasoning, Acting, and Learning : A Survey of Single-Agent LLM Patterns'
-topics: []
 ---
+
 Large Language Models (LLMs) are fundamentally probabilistic engines designed to predict the next token. We've seen them achieve several impressive feats purely by throwing more data and compute at them. However, they still tend to occasionally hallucinate, have certain "model specific tendencies" etc. which are difficult to overcome purely by training. A recent popular example is Gemini 3, who's performance varies by a sizable margin on coding tasks depending on the harness used to prompt it. There's been a good bunch of research done in the space of prompting / agent architectures. 
 
 In this post, I'll attempt to survey the academic literature surrounding single-agent reasoning strategies. From linear prompt engineering techniques like **Chain-of-Thought (CoT)** to more natural successors which are non-linear like **Tree-of-Thoughts (ToT)** and **Graph-of-Thoughts (GoT)**. Finally, we will look at how to ground these "thoughts" in reality using Action loops (**ReAct**) and persistent "learnt" memory (**Reflexion**).
@@ -56,8 +58,7 @@ The answer is, of course, 42. But what's the question again?
 
 A picture is worth a thousand words, so here’s the picture.
 
-![Pasted image 20251204071654](/images/pasted-image-20251204071654.webp)
-
+![pasted-image-20251204071654](/images/pasted-image-20251204071654.webp)
 ### CoT-SC 
 [Self-Consistency Improves Chain of Thought Reasoning in Language Models [Google Research, Brain Team]](https://arxiv.org/pdf/2203.11171)
 
@@ -108,8 +109,7 @@ More formally, the reasoning process can be modeled as *G \= (V, E, c)*, where *
 #### GoT Components and Thought Transformations
 GoT operates through a framework involving 2 key components and types of transformations applied to the graph of thoughts (GRS \- Graph Reasoning State), guided by a predefined plan (GoO \- Graph of Operations). Refer to this picture when reading the below section for clearer understanding.
 
-![Pasted image 20251204061722](/images/pasted-image-20251204061722.webp)
-
+![pasted-image-20251204061722](/images/pasted-image-20251204061722.webp)
 #### Thought Decomposition
 Like in ToT, GoT benefits from breaking the problem down. But additionally, the graph structure allows for more complex decomposition and recombination strategies.
 #### Thought Transformations
@@ -153,8 +153,7 @@ Thinking helps LLMs a great deal in improving reasoning performance and in [expl
 
 In short, ReAct is a prompting technique to interleave ‘reasoning’ and ‘tool calling’ in LLMs. In ReAct, the LLM is prompted to generate verbal reasoning traces for a tool call and for interpreting the observations from the results of the tool call. In hindsight, the paper is pretty ‘obvious’, but it essentially formalized a central template for LLMs to follow: 
 
-![Pasted image 20251204062016](/images/pasted-image-20251204062016.webp)
-
+![pasted-image-20251204062016](/images/pasted-image-20251204062016.webp)
 
 Making this a formal ‘template’ also implies that it’s now easier to ‘teach’ this template to models via **few-shot prompting**. The paper also performs significant testing to empirically prove that ReAct performs better than just using CoT or only doing tool calls without thinking / reasoning.
 ## Reflexion
@@ -162,15 +161,13 @@ Making this a formal ‘template’ also implies that it’s now easier to ‘te
 
 At its core, Reflexion is an optimization technique that uses natural language for policy optimization \- similar to reinforcement learning, but instead of updating weights, it relies on linguistic feedback. Here’s a diagram showing how Reflexion works in three different use cases:
 
-![Pasted image 20251204062105](/images/pasted-image-20251204062105.webp)
-
+![pasted-image-20251204062105](/images/pasted-image-20251204062105.webp)
 ### The Reflection Step
 The *“evaluation”* section is key to Reflexion working well. If we have a way of evaluating the trajectory of a LLM’s progression in solving a task, the **reflection** step articulates why the failure occurred and proposes specific, actionable changes to the plan or strategy for the next attempt. This is then fed back to the LLM to incorporate as feedback and improve its original solution.
 ### Episodic Memory
 Reflexion provides a framework to improve an LLM across multiple *trials* of the same task. Here’s how:
 
-![Pasted image 20251204062151](/images/pasted-image-20251204062151.webp)
-
+![pasted-image-20251204062151](/images/pasted-image-20251204062151.webp)
 #### Short Term Episodic Memory
 The generated verbal ‘reflections’ during the progression of completing one trial of the task is stored in a short-term episodic memory buffer specific to that task solving instance (trial). Then, they are also stored to a ‘longer term’ storage (like a SQL database). 
 #### Long Term Memory

@@ -1,12 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-04-22 11:56:50+0530
-doc: 2024-05-31 12:10:16+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Mega-Project - kBLAS (Writing a Benchmark Library in C & Optimizing L1, L2
   Basic Linear Algebra Subprograms)
-topics:
-- High-Performance-Computing
-- Mega-Projects
 ---
 # Preface
 
@@ -445,20 +444,17 @@ The order of benchmarks being run is $CBLAS \to KBLAS \to BLIS$ (per file).
 
 The following is an example of the file sizes generated for the `scal` benchmarks:
 
-![meg-1](/images/meg-1.png)
-
+![meg-1](/images/meg-1.webp)
 
 To make sure the benchmark actually works and is benchmarking what we actually want it to benchmark, I ran the program with `perf`, (`perf record -g ./<program_name>`). This generates a [`perf.data`](http://perf.data) file which can be used to visualize all the information I want to visualize about the program. `perf report -g 'graph,0.5,caller'`.
 
-![meg-2](/images/meg-2.png)
-
+![meg-2](/images/meg-2.webp)
 
 Time spent executing code **in** main (not a child function) is $\approx0.12\%$ which is pretty good. Most of the time is sadly spent in the `memcpy` function which has to be called to reset the arguments passed to `#scal`. I can’t think of a better way except this, for smaller data sizes the function being benchmarked runs relatively fast and hence is called many times to get an accurate reading. The same is the case for `fill_cache`. It is often executed when we know the contents of `X` are not fully in cache and hence it takes the brunt of the cache misses and has slow execution time. These functions are **not** included in the timed region so it shouldn’t affect benchmark results.
 
 Finally, `bli_sscalv_zen_int10` in `libblis.so.4.0.0` takes about $\approx18\%$ execution time while `kblas` takes around $\approx 9\%$. The time in the `libblis` shared object contains both the time spent running the `cblas` function call **and** the `blis` function call. A simple way to verify this is run `perf` on the benchmark while omitting out one of the calls to either `CBLAS` or `BLIS`, this gives us
 
-![meg-3](/images/meg-3.png)
-
+![meg-3](/images/meg-3.webp)
 
 We now see a much more even distribution. Opening the call graph on the first `perf` report gives a few weird symbols but it does seem to indicate a split between two calls each taking $\approx9\%$ execution time.
 
@@ -579,8 +575,7 @@ The function signature of the `scal` set of functions looks like this: `void #bl
 +----+---------------+------------+
 ```
 
-![meg-4](/images/meg-4.png)
-
+![meg-4](/images/meg-4.webp)
 
 1. The benchmarking workflow I use iteratively increases the size of the files it runs the benchmark on. The first observation we see from using 2 threads is that performance has horribly degraded for small data $(\leq 1MB)$.
 2. However, after the $1MB$ mark, performance is sky high. Then we again see degradation near $64MB$. There’s a big drop near $16MB$. This is exactly the point where we run out of cache memory and have to go all the way to main memory. This drop is expected and there is nothing much that we can do.
@@ -623,8 +618,7 @@ Notice the higher FLOP/s compared to the 2-thread run.
 +----+---------------+------------+
 ```
 
-![meg-5](/images/meg-5.png)
-
+![meg-5](/images/meg-5.webp)
 
 **Can we do something to reduce false sharing when memory being read overflows cache size? The drop comes mainly _after_ we overflow all the cache memory we have.**
 
@@ -708,8 +702,7 @@ Notice the higher FLOP/s compared to the 2-thread run.
 +----+---------------+------------+
 ```
 
-![meg-6](/images/meg-6.png)
-
+![meg-6](/images/meg-6.webp)
 
 Our `sscal` implementation pretty much beats `BLIS` and `CBLAS` and by quite high margins in practically all workloads. It is never under-performing. Either on par with or much better. The massive gain is seen for vectors ranging in the sizes of $1MB$ to $16MB$. Even after we are done with $L3$ however, we are still able to consistently produce at least $\approx1 GFLOPS/s$ more than BLIS and CBLAS.
 
@@ -793,8 +786,7 @@ Because our optimizations rely entirely on the memory sizes we’re working with
 +----+---------------+------------+
 ```
 
-![meg-7](/images/meg-7.png)
-
+![meg-7](/images/meg-7.webp)
 
 Relevant code for `scal` can be found here:
 
@@ -909,8 +901,7 @@ Implementing all of this gives us our final performance results:
 +----+---------------+------------+
 ```
 
-![meg-8](/images/meg-8.png)
-
+![meg-8](/images/meg-8.webp)
 
 **No write-backs**
 
@@ -996,8 +987,7 @@ Something I noticed then is the very high FLOPS/s I got on `dot` compared to `sc
 
 The implementation for `ddot` is not very different. We just have to modify the horizontal add instructions a little bit. This isn’t really ever going to be a hot-spot in our code so I’ve just gone with a simple readable but not ultra-efficient implementation for both float/double versions.
 
-![meg-9](/images/meg-9.png)
-
+![meg-9](/images/meg-9.webp)
 
 **KBLAS - ddot**
 
@@ -1077,8 +1067,7 @@ The implementation for `ddot` is not very different. We just have to modify the 
 +----+---------------+------------+
 ```
 
-![meg-10](/images/meg-10.png)
-
+![meg-10](/images/meg-10.webp)
 
 Relevant code for `dot` can be found here:
 
@@ -1174,8 +1163,7 @@ The `axpy` functions are sort of like a mix of `dot` and `scal`. We’ll need to
 +----+---------------+------------+
 ```
 
-![meg-11](/images/meg-11.png)
-
+![meg-11](/images/meg-11.webp)
 
 Pretty much same implementation for `daxpy`.
 
@@ -1257,8 +1245,7 @@ Pretty much same implementation for `daxpy`.
 +----+---------------+------------+
 ```
 
-![meg-12](/images/meg-12.png)
-
+![meg-12](/images/meg-12.webp)
 
 We’re pretty much able to beat BLIS and CBLAS in all of the level 1 functions we implemented. Pretty satisfactory results.
 
@@ -1270,8 +1257,7 @@ Generalized matrix vector multiply. Given a $m\times n$ matrix $M$ and a $n \tim
 
 1. Let’s say the matrix is stored in ROW order and we are computing $Mv$. The memory is stored contiguously and all our matrix reads will be prefetched by the pre-fetcher. The vector access pattern is also relatively simple to predict. This means we can just do normal reads and do the multiplication like we normally code matrix vector multiplication.
 
-![meg-13](/images/meg-13.png)
-
+![meg-13](/images/meg-13.webp)
 
 1. Consider the case where we have to compute $M^Tv$ or the matrix $M$ is stored in COL order and we have to compute $Mv$. In both these cases our matrix data access pattern looks like the figure on the left. Massive jumps in memory accesses means pre-fetching these addresses is very difficult. We would have to pre-fetch every single time we iterate over the indices in the column and cannot rely on the fetched cache-line to have more than 1 single element. To counter this we can compute the dot product of $v[0]$ with the first row of the matrix. This gives us a partial summation for $A$. Repeatedly computing this summation again means we have race conditions to take care of but this will at least ensure that our data access pattern is cache friendly.
 
@@ -1369,8 +1355,7 @@ The first idea when implemented gives the following results
 +----+----------+---------+
 ```
 
-![meg-14](/images/meg-14.png)
-
+![meg-14](/images/meg-14.webp)
 
 **KBLAS - dgemv**
 
@@ -1451,4 +1436,4 @@ The first idea when implemented gives the following results
 +----+----------+---------+
 ```
 
-![meg-15](/images/meg-15.png)
+![meg-15](/images/meg-15.webp)

@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2025-07-28 04:35:50+0530
-doc: 2024-02-08 06:06:48+05:30
-title: Log-Structured Merge Tree (Lsm Trees)
-topics:
-- Algorithm-Analysis
-- Database-Systems
+doc: 2025-06-17 16:48:06+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-cs-systems-databases
+title: Log-Structured Merge Tree (LSM Trees)
 ---
 Just to preface this, this is not going to be a detailed paper deep dive. Why am I doing this one differently? Mainly because I'm bottlenecked on reading and writing time. I've not posted anything in the recent few months because of an overload of things to read about and not enough time to write blogs / notes in. The original [The Log-Structured Merge-Tree (LSM-Tree)](https://www.cs.umb.edu/~poneil/lsmtree.pdf) paper here by Patrick O'Neil, Edward Cheng, Dieter Gawlick & Elizabeth O'Neil is 32 pages long and I've not had the chance to more-than-skim it. I don't want to bottleneck my blogs, so I'll be starting with a high level set of notes / content I've amassed from watching CMU's [#04 - Database Storage: Log-Structured Merge Trees & Tuples (CMU Intro to Database Systems)](https://www.youtube.com/watch?v=IHtVWGhG0Xg) (Have I mentioned I'm a fan of Andy Pavlo? You should watch his courses now!), some blogs / talks about RocksDB given by folk from Facebook, similar content from folk at PingCap (about it's use in TiKV) & some experience working with TiDB at Databricks.
 
@@ -25,15 +25,13 @@ A LSM tree primarily functions as a key-value store. So the main operations it's
 ### Mem-table
 The "mem-table" is an in-memory data structure that is a sort-of cache layer & the primary receiver of `PUT` operations. It can be any BBST (balanced binary search tree) or any other data structure that supports fast ($O(\log(n)))$ insertions, searches & updates. A hash-map also works. We define a constant "limit" for the size of this data structure. Let's say the limit is $6$. Here's what the mem-table looks like after 3 insertions, 
 
-![Pasted image 20250414050236](/images/pasted-image-20250414050236.png)
-
+![pasted-image-20250414050236](/images/pasted-image-20250414050236.webp)
 
 We just insert the elements as the `PUT` operations arrive into the BBST. If the same key is updated, say I issued a `PUT(key974, val_69)`, the node containing `key974` is updated. No new node would be created. However, once the BBST hits a size of 6, the BBST is converted into an **immutable** SST (Sorted String Table) and stored to disk. 
 
 Here's the mem-table after 6 insertion operations. 
 
-![Pasted image 20250414050457](/images/pasted-image-20250414050457.png)
-
+![pasted-image-20250414050457](/images/pasted-image-20250414050457.webp)
 
 To convert this mem-table to a SST, we do a simple linear-time traversal of this tree to obtain the sorted list of keys:
 
@@ -55,35 +53,29 @@ This structure is called an SST. We now declare this structure **immutable**. Th
 ### SSTs
 The sorted string tables are stored in what is known as "levels" in LSM-tree speak. What each level contains depends on the 'compaction' strategy that the LSM tree uses. For now, let's just focus on what it looks like on disk. The on-disk representation of our previously full mem-table looks as follows:
 
-![Pasted image 20250414051034](/images/pasted-image-20250414051034.png)
-
+![pasted-image-20250414051034](/images/pasted-image-20250414051034.webp)
 
 Once I add 6 more records to our LSM tree, the next SST is constructed and flushed to this "level-0" disk storage. Now, we have SSTable 1 & SSTable 2 in our level-0 storage. 
 
-![Pasted image 20250414051144](/images/pasted-image-20250414051144.png)
-
+![pasted-image-20250414051144](/images/pasted-image-20250414051144.webp)
 
 And that's it. Each time a `PUT` occurs, the new key is added to the mem-table, and the mem-table is periodically flushed to disk as SSTs. Writes are blazing fast because it's just an insertion into an in-memory, tiny BBST. Pretty much constant. However, reads would suffer a lot because the best we can do is go through every single SSTable on disk and binary search on them. That would be pretty bad. 
 
 This is where the idea of 'compaction' / 'deferred writes' comes in and helps change the equation to benefit read performance by allowing asynchronous or deferred write operations. As you can see, the size of Level-0 SSTables are size 5. Let's say we allow Level-1 SSTables to be as big as 8 in size. We can then asynchronously "merge" two SSTables (in linear time, using logic similar to the `merge` function in `merge_sort`) to "compact" 2 level-0 SSTables into a larger level-1 SSTable. For example, if I compacted the above two SSTables, we would get this:
 
-![Pasted image 20250414051622](/images/pasted-image-20250414051622.png)
-
+![pasted-image-20250414051622](/images/pasted-image-20250414051622.webp)
 
 I can insert 12 more new records to let us have 2 new SSTables in level-0 as follows:
 
-![Pasted image 20250414051729](/images/pasted-image-20250414051729.png)
-
+![pasted-image-20250414051729](/images/pasted-image-20250414051729.webp)
 
 Compacting them, gives us:
 
-![Pasted image 20250414051825](/images/pasted-image-20250414051825.png)
-
+![pasted-image-20250414051825](/images/pasted-image-20250414051825.webp)
 
 Pay attention to how the SSTables merged. Notice that in level-1, the SSTables are each responsible for **disjoint, non-overlapping** key ranges. That is, the 2 SSTables in level-0 did not just merge and get shoved into level-1 as new SSTable entries. Corresponding entries in level-1 (both the original level-1 SSTable 1 & 2 entries were deleted, and re-created) were modified and re-written to disk. This is how we choose to compact. Similarly, if we choose to compact the SSTables in level-1, we can combine and push them out to level-2 like so:
 
-![Pasted image 20250414052137](/images/pasted-image-20250414052137.png)
-
+![pasted-image-20250414052137](/images/pasted-image-20250414052137.webp)
 
 **Special note about level-0:** What I said about each SST being responsible for non-overlapping regions is not true for only level-0. This is mostly an implementation detail, but I believe this is how [RocksDB](/blog/rocksdb) implements it. For Level-0 alone, we just flush the mem-table to disk as is. Earlier entries to the left. When merging some SSTables from level-0, we can use the same merging logic the other layers use (level-0 does not need to be governing disjoint key-spaces). I suggest thinking about it yourself, but the idea is just that the SSTables that need to be affected in the $(i+1)^{th}$ level are still constant regardless of which 2 level-0 SSTs I pick to merge. The only caveat is that level-0 SSTables cannot be binary searched on. Any of the search strategies I describe below implicitly assumes that we do a full linear scan on each of the level-0 SSTs. (We can binary search **inside** an SST, but I still need to check every SST in level-0). This is mostly a non-issue since level-0 was the mostly recently written to section of disk, which most likely means that the SSTs are in the cache / buffer-pool & very quick to linear search on. 
 #### MVCC
@@ -109,8 +101,7 @@ This would work, but it's pretty inefficient since we need to aggregate and merg
 
 Instead, we can use a more online / streaming method. Consider the following picture as the current state of our mem-table, and we are trying to stream the results for a `RANGE_SCAN(key640, key694)`. I'm going to assume level-0 is sorted here for simplicity, in practice, level-0 would need some aggregation logic.
 
-![Pasted image 20250414130416](/images/pasted-image-20250414130416.png)
-
+![pasted-image-20250414130416](/images/pasted-image-20250414130416.webp)
 
 The results of our binary search identify the highlighted three keys across each level. `key640` from level-0, `key707` from level-1 & `key692` from level-2. Now, how can we avoid aggregating results for each run and merging them offline? We need to make our queries work online but without much space / time overhead. What properties can we use here? Let's assume each insertion was an unique key first.
 
@@ -122,13 +113,11 @@ The results of our binary search identify the highlighted three keys across each
 
 So back to our diagram, taking the min over the values again, we would see that the next key to be streamed is `key692`:
 
-![Pasted image 20250414131805](/images/pasted-image-20250414131805.png)
-
+![pasted-image-20250414131805](/images/pasted-image-20250414131805.webp)
 
 Let's stream it and move the iterator forward. Taking the min again, we stream `key694`. After that, all the keys are greater than the $R$ of our query range $[L, R]$. So we are done.
 
-![Pasted image 20250414131747](/images/pasted-image-20250414131747.png)
-
+![pasted-image-20250414131747](/images/pasted-image-20250414131747.webp)
 
 Also see [FAST '21 - REMIX: Efficient Range Query for LSM-trees](https://www.youtube.com/watch?v=9F4AzqBp8Ng) for more ideas / follow up reading (or watching).
 ##### What about multi-versioning?
@@ -165,8 +154,7 @@ Another difference is that, in the case of LSM trees, assigning query-level attr
 ### B+ Trees
 B-Trees (& B+ Trees) are great for fast insertion, search & delete operations (in-theory). These are the exact same APIs we want our KV stores to support. In theory, you cannot achieve a better complexity than $\log_d(n) | \text{ where } d \text{ is the branching factor}$ for these operations. Here's a sample B+ Tree:
 
-![Pasted image 20250122180411](/images/pasted-image-20250122180411.png)
-
+![pasted-image-20250122180411](/images/pasted-image-20250122180411.webp)
 - [B+ Tree - Wikipedia](https://en.wikipedia.org/wiki/B%2B_tree)
 
 The leaf nodes of a B+ tree contains the data records. The other nodes in the tree are internal nodes and contain a variable (bounded by the branching factor) number of children nodes. The internal nodes only contain key values and are also sorted by key. They point to some pre-defined range in the key-space. Also, the leaf nodes are linked to one another to allow fast range scans. 

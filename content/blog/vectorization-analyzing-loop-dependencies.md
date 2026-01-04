@@ -1,17 +1,16 @@
 ---
 author: Kishore Kumar
 date: 2022-03-30 21:56:15+0530
-doc: 2024-05-31 06:58:55+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Vectorization & Analyzing Loop Dependencies
-topics:
-- High-Performance-Computing
 ---
 # Vectorization
 
 The basic idea behind vectorization is just SIMD from [Flynn's Taxonomy](/blog/flynn-s-taxonomy). It allows us to perform the same instruction on multiple data element in parallel. This is achieved in hardware because of the existence of extended register files on the CPU. The CPU is modified to contain registers which can be anywhere from 128-512 bits or even larger (GPUs). These 512 bit registers can load 512 bits of data in one instruction and packed add $\frac{512}{32} = 16$ floating point additions in one instruction.
 
-![simd-1](/images/simd-1.png)
-
+![simd-1](/images/simd-1.webp)
 
 A comprehensive list of all the SIMD instructions can be found [here](https://www.intel.com/content/www/us/en/docs/intrinsics-guide/index.html).
 
@@ -193,8 +192,7 @@ for (int i = 0; i < 3; i++)
 
 This loop exhibits loop-carried dependences due to the use of `x[i][j - 1]` and `x[i - 1][j - 1]`, which depend on values from previous iterations. Polyhedral compilation is a technique for analyzing loop dependencies and transforming loops to enable parallelization. The key idea is to represent the iteration space of a loop as a polyhedron and perform transformations on this polyhedron to eliminate dependencies. 
 
-![polyhedral-1](/images/polyhedral-1.png)
-
+![polyhedral-1](/images/polyhedral-1.webp)
 
 The steps involved in polyhedral compilation are:
 

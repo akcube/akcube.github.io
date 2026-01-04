@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2020-12-06 00:50:13+0530
-doc: 2024-05-30 10:20:44+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-math-analysis
 title: Riemann Series Rearrangement
-topics:
-- Real-Analysis
 ---
 # Riemann Series Rearrangement
 
@@ -92,8 +92,7 @@ We run the program like so: `./print_rearrangement 0.535 100 100`\
 
 The program will print what the series looks like for the first 100 groups of positive and negative terms.
 
-![sum_to_0.535](/images/sum_to_0-535.jpg)
-
+![sum_to_0-535](/images/sum_to_0-535.webp)
 
 Further, we can use prog1.cpp and prog2.cpp to generate data points for plotting. prog1.c will generate data points of the partial sums of the alternating harmonic series up to a given number of terms. We can use prog2.c to generate data points of the partial sums for a rearranged alternating harmonic series that converges to some given real number M. 
 
@@ -107,8 +106,7 @@ For the sake of illustration, we have chosen to plot the partial sums as n keeps
 
 Plotting them gives us the below graph.
 
-![partial_sums](/images/partial_sums.jpg)
-
+![partial_sums](/images/partial_sums.webp)
 
 Hopefully, this graph is able to paint more intuition as to why rearranging the terms of an infinite conditionally convergent series changes its sum. By rearranging the terms such that the sequence of its partial sums oscillates around a limit of our choice, we're able to effectively choose the limit we wish the sequence of partial sums to approach. This is due to the fact that the sum of the positive and negative terms individually diverge to infinity. But the series itself converges to some limit, hence the $n^{th}$ term of the series approaches 0. 
 

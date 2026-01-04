@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-02-08 13:42:01+0530
-doc: 2024-05-30 08:14:31+0530
+doc: 2024-02-08 06:06:48+0530
+tags:
+- domain-cs-languages-cpp
 title: '`New` and `Delete`'
-topics:
-- Cpp
 ---
 # `new` & `delete`
 
@@ -91,7 +91,7 @@ delete obj_arr; // Output: Destructor!
 
 You'll notice the last way to call `delete` actually just calls the destructor once. So when de-allocating a pointer to an array of elements in memory it's important to always remember to use `delete[]` instead of `delete` to properly clean this memory. 
 
-## Why `new` & `delete`?
+### Why `new` & `delete`?
 
 One, it's a lot cleaner than the C-style way. Two, it is a paradigm that avoids the uninitialized memory issue we can have when using the C-style `malloc` and `free` functions. `new` and `delete` prevent this from ever happening by **always** calling the constructor and destructor. 
 

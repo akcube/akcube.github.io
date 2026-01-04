@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-28 01:34:16+0530
-doc: 2024-05-29 06:47:59+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: More Greedy Algorithms! Kruskal's & Disjoint Set Union
-topics:
-- Algorithm-Analysis
 ---
 # Greedy Algorithms
 Picking off from [Activity Selection & Huffman Encoding](/blog/activity-selection-huffman-encoding), the _Greedy_ idea is as follows. At every step, our algorithm picks the **locally optimum** choice in the hope that this choice will also be the **global** optimum. The greedy idea is often the easiest to come up with. Picking the local optimum, in some sense, is often a much easier problem to solve than picking the global minimum. Picking the global minimum often requires seeing _ahead_ to figure out if a global optimum can be reached by picking non-locally optimum choices.
@@ -37,8 +37,7 @@ This is where the idea of "Greedy" comes in. However, to facilitate proving the 
 
 In graph theory, we define a cut as a partition that divides a **connected** graph into two disjoint subsets.
 
-![cut-1](/images/cut-1.png)
-
+![cut-1](/images/cut-1.webp)
 
 Notice that in the above graph, the "cut" depicted by the pink line divides our graph into two connected **disjoint** subgraphs. A cut can remove multiple edges, but the end result is two disjoint connected subgraphs.
 
@@ -87,8 +86,7 @@ The DSU is a data structure that allows for queries of two types.
 
 The idea is to maintain a structure that maintains the sets as nodes in a tree where the root is the primary identifier of any set and a merging operation is simply the unification of two trees.
 
-![dsu-1](/images/dsu-1.png)
-
+![dsu-1](/images/dsu-1.webp)
 
 The DSU is initially initialized as an array like so `dsu[i]=i`. `dsu[i]` essentially contains the parent element of set $i$. If $dsu[i]=i$, then $i$ is the root node. Following is the code for the DSU:
 
@@ -164,3 +162,10 @@ Below are links to `C++` implementations of both the fully equipped Disjoint Set
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [Disjoint Set Union - cp-algorithms](https://cp-algorithms.com/data_structures/disjoint_set_union.html)
+
+---
+
+## Related Reading
+
+- [Set Cover & Approximation Algorithms](/blog/set-cover-approximation-algorithms)
+- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)

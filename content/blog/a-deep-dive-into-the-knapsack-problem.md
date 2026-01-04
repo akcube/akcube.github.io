@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-10-15 20:02:29+0530
-doc: 2024-05-30 05:39:28+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-cs-algorithms-complexity
 title: A Deep Dive Into the Knapsack Problem
-topics:
-- Algorithm-Analysis
-- Complexity-Theory
 ---
 After discussing [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn), [Levenshtein Edit Distance](/blog/levenshtein-edit-distance) & [Chain Matrix Multiplication](/blog/chain-matrix-multiplication) we are finally here.
 # The Knapsack Problem
@@ -17,8 +17,7 @@ There are two variations of the above problem as well. The simpler one assumes t
 
 For the sake of illustration, we'll assume we are attempting to solve the Knapsack for the given inputs
 
-![knapsack-1](/images/knapsack-1.png)
-
+![knapsack-1](/images/knapsack-1.webp)
 
 We have 4 items with their respective $v_i$ and $w_i$ values. Our Knapsack has a maximum capacity of $W = 10$.
 

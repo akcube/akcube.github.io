@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-14 04:15:50+0530
-doc: 2024-05-29 06:31:55+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: How to Analyze Algorithms? Proving a Lower Bound for Comparison Based Sorting
-topics:
-- Algorithm-Analysis
 ---
 # Analysis
 Before we can attempt to solve problems, we must answer 3 important questions about the algorithm

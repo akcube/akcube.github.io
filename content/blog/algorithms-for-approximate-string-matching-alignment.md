@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-12-06 23:01:42+0530
-doc: 2024-05-30 09:51:10+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-science-bioinformatics
 title: Algorithms for Approximate String Matching - Alignment
-topics:
-- Bio-Informatics
-- Algorithm-Analysis
 ---
 # Preface & References
 I document topics I've discovered and my exploration of these topics while following the course, [Algorithms for DNA Sequencing, by John Hopkins University](https://www.coursera.org/learn/dna-sequencing) on [Coursera](https://www.coursera.org/). The course is taken by two instructors [Ben Langmead](https://scholar.google.com/citations?user=2JMaTKsAAAAJ&hl=en) and [Jacob Pritt](https://www.coursera.org/instructor/jacobpritt).
@@ -29,8 +29,7 @@ Local alignment is similar, but instead of searching for the match score between
 
 $$F(0, j) = 0$$
 
-![local-alignment](/images/local-alignment.png)
-
+![local-alignment](/images/local-alignment.webp)
 
 This lets us solve the local alignment problem in the same time complexity as global alignment.
 
@@ -38,13 +37,11 @@ This lets us solve the local alignment problem in the same time complexity as gl
 
 For edit distance, the scoring is pretty much just $\pm1$ for all operations. For DNA sequences however, take the example of the human genome:
 
-![human-genome-scoring](/images/human-genome-scoring.png)
-
+![human-genome-scoring](/images/human-genome-scoring.webp)
 
 Simply listing the possibilities reveals that there are twice as many different types of transversion as there are different types of transitions. We may thus assume that transversions will occur twice as frequently as transitions. However, it turns out that transversions are only slightly more common than transitions when we look at the replacements that separate the genomes of two unrelated individuals. So, contrary to what we may think, it is the opposite way around. Therefore, we should penalize transgressions more severely than transitions in our penalty system. Further, indels are less frequent than substitutions. So we might want to penalize indels more than substitutions. So we modify our scoring matrix to reflect these real world statistics in practice.
 
-![penalty-matrix](/images/penalty-matrix.png)
-
+![penalty-matrix](/images/penalty-matrix.webp)
 
 # Combining Both Approximate and Exact Matching
 
@@ -52,8 +49,7 @@ It seems like approximate matching is the solution we've been waiting for and a 
 
 If we simply ran local alignment between each of the short reads (which we usually have a billion or so off) and the human genome (which is also a billion characters in length), the computational task is infeasible for even today's most powerful compute nodes to solve quickly. Therefore we have to come up with a match of both approximate and exact matching algorithms to solve the overall problem quicker. Exact matching ([Booyer-Moore & Knuth-Morris-Pratt for Exact Matching](/blog/booyer-moore-knuth-morris-pratt-for-exact-matching)) is useful in pinpointing a few specific locations where we can then go and run approximate matching algorithms on. Consider the following figure:
 
-![exact_approximate_matching](/images/exact_approximate_matching.png)
-
+![exact_approximate_matching](/images/exact_approximate_matching.webp)
 
 We begin by querying the k-mer index table for a query which allows us to **rapidly** home in on small set of candidate needles which are the only places in the entire sequence we really need to run our powerful but slower approximate matching algorithms on. 
 

@@ -1,13 +1,12 @@
 ---
 author: Kishore Kumar
 date: 2024-09-09 15:57:44+0530
-doc: 2024-09-09 15:55:51+0530
+doc: 2025-04-04 11:28:38+0530
+tags:
+- domain-cs-ai-ml-machine-learning
+- domain-cs-systems-databases
 title: OtterTune - Automatic Database Management System Tuning Through Large-Scale
   Machine Learning
-topics:
-- Paper-Reading
-- Database-Systems
-- Machine-Learning
 ---
 # Abstract
 Tuning a MySQL node (well) can be a challenging task for most DBAs, primarily because the variables that control the performance of the node are all inter-dependent on each other. A simple version of this problem might be dealing with the branch predictor in a processor. For strided accesses branch prediction might do a great job, but it might be counterproductive in a workload that has completely random accesses as it will fetch several useless lines into cache causing some thrashing. Add dependent variables like fixing a good "cache size" for a workload and we're immediately forced to try every combination of values to pick the "optimal" values for a workload since we cannot solve them independently.
@@ -25,8 +24,7 @@ Processing & analyzing large amounts of data is crucial in the "big data" era we
 ## Too Much To Tune
 Modern database management systems are notorious for having a bazillion parameters that can be "tuned" to better fit the user's runtime environment and workload. 
 
-![Pasted image 20240906170105](/images/pasted-image-20240906170105.png)
-
+![pasted-image-20240906170105](/images/pasted-image-20240906170105.webp)
 - [Why Machine Learning for Automatically Optimizing Databases Doesn't Work by Andy Pavlo - JOTB23](https://www.youtube.com/@Jonthebeach)
 
 In the past 20 years alone, MySQL has grown from having some 30 knobs or so to 700+ now. That's simply far too many parameters for any single human or even group of humans to optimize. You might be able to classify some parameters as useless (name of output file, port, etc.) but a lot of other parameters may be inter-related to each other and affect performance significantly. The optimal configuration cannot be reached by distributing and solving independently. And solving it individually is beyond what humans can reason about.
@@ -38,8 +36,7 @@ The authors claim that most of the previous attempts either suffered from vendor
 ## Expensive Humans, Cheap Machines
 This is the classic problem of some designs being optimized for cost-savings in the old days when human labour was cheap and computers were extremely expensive to acquire. Nowadays, especially with the advent of the Cloud, getting access to expensive hardware has become much cheaper. In contrast, the supply of DBAs who are capable of making any decent progress in tuning the complex DBMSs we have today have dwindled, consequently also making them extremely expensive labour for companies. 
 
-![Pasted image 20240906194040](/images/pasted-image-20240906194040.png)
-
+![pasted-image-20240906194040](/images/pasted-image-20240906194040.webp)
 - [U.S. BUREAU OF LABOR STATISTICS](https://www.bls.gov/oes/current/oes151242.htm)
 ## Tuning Is A Difficult Problem
 
@@ -47,8 +44,7 @@ This is the classic problem of some designs being optimized for cost-savings in 
 #### Standard ML Problem?
 Knobs cannot be tuned independent of each other. A subsets of knobs may end up changing the effect of a different subset. This was the figure they obtained just plotting Log file size vs Buffer pool size. In reality we're trying to find a global optimum for an $n$-dimensional function (where $n$ is the number of knobs). This alone would be a classic machine learning problem.
 
-![Pasted image 20240906202812](/images/pasted-image-20240906202812.png)
-
+![pasted-image-20240906202812](/images/pasted-image-20240906202812.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 #### Not Really
 However, it's not that simple. For one, this $n$ dimensional function is fixed only for a very specific workload and for a specific system configuration that it runs on. If the workload or configuration changes, the function changes. This makes using "past" data for optimization very difficult. Further, we also cannot afford to run the workload with varying configurations many times since the costs will easily shoot through the roof. The function is also not perfectly constant between multiple replays of the same workload but should be close enough.
@@ -56,8 +52,7 @@ However, it's not that simple. For one, this $n$ dimensional function is fixed o
 Continuing the previous section, non-reusability of data is by far the hardest problem here. If we could just use the data we have across hundreds of databases, we can just collect a lot of data and then easily optimize things. But even for a fixed instance & database combination, a change in the workload can drastically change the function we are trying to optimize. This means for each database, instance & workload combination, we have to run an expensive data collection & tuning process.
 # OtterTune 
 
-![Pasted image 20240907115234](/images/pasted-image-20240907115234.png)
-
+![pasted-image-20240907115234](/images/pasted-image-20240907115234.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 
 In short, you can divide the architecture into two halves. The client-side controller interacting with the runtime database and the server-side tuning manager which handles data collection, and the recommender systems. The server-side tuning manager has a repository of data from previous tuning-sessions as well. The goal is to make the database **self-driving**, as Andy Pavlo puts it. You want a database that is capable of automatically tuning itself when required. 
@@ -76,8 +71,7 @@ In short,
 
 ## The Architecture
 
-![Pasted image 20240907141744](/images/pasted-image-20240907141744.png)
-
+![pasted-image-20240907141744](/images/pasted-image-20240907141744.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 
 OtterTune works in three broad steps.
@@ -144,8 +138,7 @@ Factor analysis recognizes that we have an input of $m$ columns and tries to fin
 ##### $k$-Means Clustering
 Now, let's suppose that the size of the factor set generated was exactly $s = 2$. If we plotted the two factors against each other now, each factor would be a data point in 2d space that we could run $k$-means on to identify *similar* metrics. With this, we can significantly reduce the number of metrics we want to use in our final optimization ML algorithm to reduce search space. 
 
-![Pasted image 20240907164426](/images/pasted-image-20240907164426.png)
-
+![pasted-image-20240907164426](/images/pasted-image-20240907164426.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 
 An interesting consequence of this clustering is that a lot of the useless metrics like output file name, etc. get mapped to the same cluster since their values don't really depend on the configuration in any way whatsoever. The paper suggest providing some hints to the model to discard clusters containing parameters that we know for sure are useless. 
@@ -195,16 +188,13 @@ OtterTune uses a regression technique called [Gaussian Process Regression](/blog
 
 There are infinitely many functions that can fit your data. Gaussian processes offer an elegant solution to this problem by assigning a probability to each of these functions. 
 
-![Pasted image 20240909143736](/images/pasted-image-20240909143736.png)
-
+![pasted-image-20240909143736](/images/pasted-image-20240909143736.webp)
 *The distribution without any points to fit on*
 
-![Pasted image 20240909143836](/images/pasted-image-20240909143836.png)
-
+![pasted-image-20240909143836](/images/pasted-image-20240909143836.webp)
 *The distribution given two data points*
 
-![Pasted image 20240909143909](/images/pasted-image-20240909143909.png)
-
+![pasted-image-20240909143909](/images/pasted-image-20240909143909.webp)
 *The distribution once all known points are given*
 
 You'll also notice that at locations where multiple data points are present, the distribution is very narrow, signifying high confidence. On the other hand, near the horizontal ends you'll see the distribution widen, signifying lower confidence, which is what we want to see.
@@ -236,15 +226,13 @@ The output of the GP is the function, in this case a $m$ dimensional surface, th
 ### OtterTune vs iTuned
 Refer to the paper to obtain a more comprehensive overview of the test-suite and results. In short, the major contribution OtterTune brought is the ability to re-use previously seen workloads to tune new unseen workloads. And as such, they compare the performance of OtterTune with, [iTuned](https://users.cs.duke.edu/~shivnath/papers/ituned.pdf) a similar automatic DBMS tuning software that uses GPs. However, instead of starting from previously seen data, iTuned uses a stochastic sampling technique called Latin Hypercube Sampling to generate an initial set of 10 DBMS configurations that are executed at the start of the tuning session. Optimizing for the 99th percentile latency metric, they obtain the following results:
 
-![Pasted image 20240909153031](/images/pasted-image-20240909153031.png)
-
+![pasted-image-20240909153031](/images/pasted-image-20240909153031.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 
 In general, we observe that OtterTune is able to converge to it's optimal configuration much faster than iTuned. It also outperforms it by a significant margin on OLTP workloads. In contrast, you'll notice that the gap is nowhere near as pronounced in OLAP workloads. It even seems to lose to iTuned on the OLAP workload. The authors claim that this difference is mainly due to the fact that the OLAB database, Vector exposes much less values for tuning and is less permissive on what values are allowed to be set too. This makes tuning Vector a much simpler problem than MySQL or Postgress, limiting the room for improvement. 
 ### OtterTune vs DBAs & Other Usual Tuning Strategies
 
-![Pasted image 20240909154811](/images/pasted-image-20240909154811.png)
-
+![pasted-image-20240909154811](/images/pasted-image-20240909154811.webp)
 - [Automatic Database Management System Tuning Through Large-Scale Machine Learning](https://db.cs.cmu.edu/papers/2017/p1009-van-aken.pdf)
 # Conclusion
 > We presented a technique for tuning DBMS knob configurations by reusing training data gathered from previous tuning sessions. Our approach uses a combination of supervised and unsupervised machine learning methods to (1) select the most impactful knobs, (2) map previously unseen database workloads to known workloads, and (3) recommend knob settings. Our results show that OtterTune produces configurations that achieve up to 94% lower latency compared to their default settings or configurations generated by other tuning advisors. We also show that OtterTune generates configurations in under 60 min that are comparable to ones created by human experts.

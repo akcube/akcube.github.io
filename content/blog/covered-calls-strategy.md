@@ -1,17 +1,16 @@
 ---
 author: Kishore Kumar
 date: 2024-05-15 08:10:14+0530
-doc: 2024-05-29 15:02:23+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-quantitative
 title: Covered Calls Strategy
-topics:
-- Quantitative-Finance
 ---
 # Introduction
 The covered call strategy is an options trading strategy ([Derivatives - Options](/blog/derivatives-options)) in which an investor holds a long position in an underlying asset and simultaneously writes (sells) call options on that same asset. This strategy is employed by investors seeking to generate income from the premium received by selling the call options, while also benefiting from potential stock price appreciation up to the strike price of the call option.
 
 # How It Works
-![Pasted image 20240507114807](/images/pasted-image-20240507114807.png)
-
+![pasted-image-20240507114807](/images/pasted-image-20240507114807.webp)
 A call option is a contract that gives the buyer the right, but not the obligation, to purchase a specified quantity of an underlying asset at a predetermined strike price within a specific period. In the covered call strategy, the investor owns the underlying asset (e.g., shares of a stock) and writes (sells) call options on those shares. 
 
 **Example:** For instance, consider an investor holding 100 shares of a stock currently trading at ₹400 per share (market value). The investor can sell a call option with a strike price of ₹420 and an option premium of ₹4 per share (₹400 total premium). The call option expires in 30 days.
@@ -36,3 +35,10 @@ The premiums received from selling call options are generally considered short-t
 If the stock price fluctuates significantly, even if it remains flat over the long term, the covered call strategy may result in a gradual reduction in the number of shares held due to the exercise of call options. This can lead to realizing losses, despite the overall position being flat.
 ## Risk-Adjusted Return Considerations
 While some people argue that covered call strategies may offer superior risk-adjusted returns, meaning higher returns per unit of risk taken, this claim is subject to debate and may depend on the specific market conditions and underlying assets involved.
+
+---
+
+## Related Reading
+
+- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)
+- [What is the Stock Market?](/blog/what-is-the-stock-market)

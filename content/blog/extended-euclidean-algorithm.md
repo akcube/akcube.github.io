@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-10-22 07:51:22+0530
-doc: 2024-05-29 10:18:21+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-math-number-theory
 title: Extended Euclidean Algorithm
-topics:
-- Algorithm-Analysis
-- Number-Theory
 ---
 # An efficient algorithm to find GCD
 

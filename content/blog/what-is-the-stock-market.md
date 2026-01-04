@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-03-06 00:04:25+0530
-doc: 2024-05-29 14:34:43+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-economics
 title: What Is the Stock Market?
-topics:
-- Economics
 ---
 # Origins
 ## Why Stock Market - A Toy Example
@@ -39,3 +39,12 @@ Soon, the Dutch East India Company took this concept to the next level. Instead 
 2. [Explained | The Stock Market | FULL EPISODE | Netflix](https://www.youtube.com/watch?v=ZCFkWDdmXG8&t=4s)
 3. [Wikipedia - Euronext Amsterdam](https://en.wikipedia.org/wiki/Euronext_Amsterdam)
 4. [How The Economic Machine Works by Ray Dalio](https://www.youtube.com/watch?v=PHe0bXAIuk0)
+
+
+---
+
+## Related Reading
+
+- [Derivatives - Options](/blog/derivatives-options)
+- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)
+- [Stock Multiples](/blog/stock-multiples)

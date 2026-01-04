@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-12-10 06:37:08+0530
-doc: 2024-05-30 09:58:16+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-science-bioinformatics
 title: Shortest Common Superstring & De Brujin Graphs
-topics:
-- Bio-Informatics
-- Algorithm-Analysis
 ---
 # Preface & References
 I document topics I've discovered and my exploration of these topics while following the course, [Algorithms for DNA Sequencing, by John Hopkins University](https://www.coursera.org/learn/dna-sequencing) on [Coursera](https://www.coursera.org/). The course is taken by two instructors [Ben Langmead](https://scholar.google.com/citations?user=2JMaTKsAAAAJ&hl=en) and [Jacob Pritt](https://www.coursera.org/instructor/jacobpritt).
@@ -33,8 +33,7 @@ This is probably the most **frustrating** problem in genome assembly and what ma
 
 Consider the following example,
 
-![greedy-repeat-fail](/images/greedy-repeat-fail.png)
-
+![greedy-repeat-fail](/images/greedy-repeat-fail.webp)
 
 Our greedy solution gave us a shorter sequence than the original genome, this is due to the presence of overlapping reads from a repeating portion of our genome which is **extremely hard** to unambigiously solve. The primary problem here is that we are aware of its existence due to the pieced together multiple reads but we are not sure about the **frequency** of these repeats.
 
@@ -44,30 +43,25 @@ De Bruijn graphs are a mathematical construct that is often used in the field of
 
 It has exactly one node per *distinct* k-mer and one edge per *each* k-mer.
 
-![euler-walk-in-de-brujin-graph](/images/euler-walk-in-de-brujin-graph.png)
-
+![euler-walk-in-de-brujin-graph](/images/euler-walk-in-de-brujin-graph.webp)
 
 However, we have still not dealt with the problem of repeats. For example, if the graph contains multiple cycles, then it may not be possible to find an Eulerian walk that correctly reconstructs the original genome sequence, as the path may not be able to distinguish between the different cycles. Additionally, if the graph contains errors or missing k-mers, then an Eulerian walk may not be able to correctly reconstruct the original genome. This is all mainly caused due to the presence of repeats in the original genome. 
 
-![debrujin-fail](/images/debrujin-fail.png)
-
+![debrujin-fail](/images/debrujin-fail.webp)
 
 The issue in the above example occurs primarily due to the repeating term *AB*. This gives us multiple reshuffles of the sequence and we cannot deterministically figure out which reconstruction is correct. 
 
 ## Fixing What We Can
 
-![prune-useless-edges](/images/prune-useless-edges.png)
-
+![prune-useless-edges](/images/prune-useless-edges.webp)
 
 We often have edges like these showing up in the De Brujin graph where the existence of the blue edges nullify any information we might gain from the green edge. We can prune these from the graph.
 
-![dbg-mp-fail](/images/dbg-mp-fail.png)
-
+![dbg-mp-fail](/images/dbg-mp-fail.webp)
 
 Maternal / Paternal chromosomes can have one different base in a read causing cycles like these to form. We can attempt to prune these from the graph as well. 
 
-![independent-solving](/images/independent-solving.png)
-
+![independent-solving](/images/independent-solving.webp)
 
 Because repeats **always** cause ambiguity, we can attempt to break up the graph into parts and solve only the deterministic chunks first and mark the chunks with repeats as *ambiguous*. In fact, this is how most assemblers work in practice nowadays. Excluding small genomes, it is very difficult to get accurate reconstructions of a complete genome. Even the Human Genome, the most widely studied genome on the planet still has many gaps in it today due to the uncertainties caused by repeats in the genome.
 

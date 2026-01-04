@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-03-09 12:21:56+0530
-doc: 2024-05-29 14:39:35+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-economics
 title: How the Economic Machine Works by Ray Dalio
-topics:
-- Economics
 ---
 This is going to be my written understanding of Ray Dalio's absolutely beautiful 30 minute animated video to answer the question, "Hoe does the economy really work?" To any reader, watch the original video first. It's one of the best presented educational videos on the internet in my opinion. 
 
@@ -18,13 +18,11 @@ Ray describes the economy as a simple machine, a machine that many people don't 
 ## Forces That Drive the Economy
 According to Ray, there are three primary forces that drive the economy. **Productivity growth**, the **short-term debt cycle** and the **long-term debt cycle** .
 
-![Pasted image 20240307000515](/images/pasted-image-20240307000515.png)
-
+![pasted-image-20240307000515](/images/pasted-image-20240307000515.webp)
 
 His template, focuses on only layering these three forces together, and observing the effect it has on **transactions** and how that in turn affects the economy. 
 
-![Pasted image 20240307000718](/images/pasted-image-20240307000718.png)
-
+![pasted-image-20240307000718](/images/pasted-image-20240307000718.webp)
 
 ### Transactions
 To start modelling the economy, we should first understand what we're talking about when we say the word 'economy.' 
@@ -73,8 +71,7 @@ When any two people engage in this agreement, with a borrower promising to repay
 ## Debt
 Credit goes by many names. Debt is like the twin-brother of credit. As soon as credit is created, so is debt. Let's say a lender $A$ loans Rs. $x$ to a borrower $B$. Immediately, credit and debt are created. The lender receives a credit **asset** of value Rs. $x$ + $I$ , where $I$ is the interest to be paid, and the borrower receives a debt **liability** of value Rs. $x+I$.
 
-![Pasted image 20240307042628](/images/pasted-image-20240307042628.png)
-
+![pasted-image-20240307042628](/images/pasted-image-20240307042628.webp)
 ### How Is Credit Destroyed?
 In the future, when the borrower repays the loan, plus the interest amount, he completes the transaction and both the asset (credit) and liability (debt) associated with that loan disappear. 
 ## Common Misconceptions
@@ -88,23 +85,19 @@ You can probably figure out everything from scratch as long as you keep in mind 
 > **One person's spending is another person's income.** Every dollar you spend, someone else earns. And every dollar you earn, someone else has spent. So when you spend more, someone else earns more. When someone's income rises, it makes lenders more willing to lend him money because now he's more worthy of credit. ...
 > So increased income allows increased borrowing, which allows increased spending. And since one person's spending is another person's income, this leads to more increased borrowing and so on.  (Remember, the opposite also holds true). 
 
-![Pasted image 20240307134703](/images/pasted-image-20240307134703.png)
-
+![pasted-image-20240307134703](/images/pasted-image-20240307134703.webp)
 ## Productivity Growth
 Remember, in a transaction, we get income (money) for whatever goods / services / financial assets we offer in return. The price we can put on the sold quantity depends on the quality and usefulness of the quantity. Over a period of time, humans learn, humans innovate and humans evolve. In essence, over a period of time, an experienced professional is able to do quality work in a shorter period of time. Or a startup founder who has studied the market and worked on a solution for years is able to use that experience to develop new goods that solve difficult problems. We see further by standing on the giants of yesterday. Those that are hardworking and inventive increase their productivity and living standards faster over a long period of time. Productivity growth is stable, strong, predictable and grows slowly. Because it doesn't fluctuate much, it is **not a big driver of economic swings**.
 
-![Pasted image 20240307235115](/images/pasted-image-20240307235115.png)
-
+![pasted-image-20240307235115](/images/pasted-image-20240307235115.webp)
 ## Short-Term Debt Cycle
 Debt on the other hand, is far more short-term focused and occurs in cycles. When you take up debt, it allows you to **consume more than you produce**. And when you are paying back debt, you are forced to **consume less than you produce**. Debt swings, according to Dalio, occur in two big cycles. Short-term debt cycles occur $\approx 5-8$ years. These swings are primarily caused based on how much credit there is active in the economy. 
 
-![Pasted image 20240308043010](/images/pasted-image-20240308043010.png)
-
+![pasted-image-20240308043010](/images/pasted-image-20240308043010.webp)
 
 Let's see how it works. These 'cycles', as described by Ray, occur because of our **human nature** to borrow money. Borrowing money is essentially just a way to manage buying power over a period of time.  To spend more than you make today, you borrow from your future self. Essentially you create a time in the future when you need to spend less than you make in order to pay it back. One reason why you would do this is to smooth-en your buying power over time. Remember that in the future, your income increases because you're more productive and you are likely to make more money. So it makes sense to you to borrow more from your future self as you know your future self will be likely making a lot more money. And getting access to more money early is a lot more profitable because if you're able to invest it well, you can generate a lot of money from it due to the simple [POWER OF COMPOUND INTEREST](/blog/power-of-compound-interest). 
 
-![Pasted image 20240308043345](/images/pasted-image-20240308043345.png)
-
+![pasted-image-20240308043345](/images/pasted-image-20240308043345.webp)
 
 The very act of borrowing, creates a very **mechanical** and **predictable** series of events that will happen in the future. If you borrow now, you **must** pay it back later. This is just as true as it for an individual, as it is for the economy as a whole. This series of events will always occur in a cycle. 
 ### Is Credit Always Good?
@@ -115,8 +108,7 @@ Not really. If you borrowed credit just to spend more on liabilities and you do 
 ### Super-Charging the Economy
 When interest rates are low, a lot of people are encouraged to borrow, and this has the effect of supercharging incomes in an economy. This is how it works, let's say an individual $A$ earns $100,000\$$ a year and has no debt. He is credit worthy enough to borrow $10,000\$$. Now, let's say he spends all his money. His spending is now $110,000\$$ instead of just $100,000\$$. And applying the single most important principle used to describe this whole machine, _since one person's spending is another person's income_, somebody else makes $110,000\$$. This makes them credit worthy to borrow $11,000\$$. Then they spend $121, 000\$$ (instead of just $100,000\$$), and again since their spending is somebody else's income... this process self-reinforces itself and causes living standards and income to rise for everyone!
 
-![Pasted image 20240308170223](/images/pasted-image-20240308170223.png)
-
+![pasted-image-20240308170223](/images/pasted-image-20240308170223.webp)
 
 Since a lot of the money flowing in the economy is actually _credit_ (money that would've otherwise **not** been involved in transactions), it encourages people to borrow since they are credit worthy to borrow more money due to their increased income (which was a result of others spending borrowed money) and become a self-reinforcing pattern. This pattern, like discussed before, will be a cycle. And if the cycle goes up, it eventually must come down. 
 ### Phase 1 - Economic Expansion
@@ -130,8 +122,7 @@ The short-term debt cycle is primarily controlled by the central bank. When ther
 ## Long-Term Debt Cycle
 However, in practice, we will often see that the bottom and top of each cycle finish with more growth than the previous cycle **and more debt**. 
 
-![Pasted image 20240308172045](/images/pasted-image-20240308172045.png)
-
+![pasted-image-20240308172045](/images/pasted-image-20240308172045.webp)
 
 This occurs primarily due to **human nature / greed**. We as humans have an inclination to borrow and spend more instead of paying back debt. Humans push it too far. Paying back debt is boring and painful, spending more than you earn gives you more gratifying experiences. But this mountain of debt can't keep growing forever, we eventually reach a point where debts grow faster than incomes and this creates the **long-term** debt cycle. 
 

@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-24 22:13:39+0530
-doc: 2024-05-29 06:43:14+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Activity Selection & Huffman Encoding
-topics:
-- Algorithm-Analysis
 ---
 # Greedy Algorithms
 
@@ -36,8 +36,7 @@ The naïve solution would be to brute force over all $n!$ different permutations
 
 Does this satisfy our two properties? The answer is... no. Notice that by picking the shortest interval activity, we cannot restate the problem for a smaller input the same way. We do not have optimum substructure. Consider the below case.
 
-![greedy-1](/images/greedy-1.png)
-
+![greedy-1](/images/greedy-1.webp)
 
 Greedily we would pick the middle activity, but this removes two activities for the next step. This problem has no optimum substructure. The optimal solution would be to pick both the large intervals.
 
@@ -47,8 +46,7 @@ Greedily we would pick the middle activity, but this removes two activities for 
 
 That approach follows neither property. Consider this case,
 
-![greedy-2](/images/greedy-2.png)
-
+![greedy-2](/images/greedy-2.webp)
 
 We are neither picking a locally optimum choice nor maintaining an optimum substructure. The greedy solution gives 1 whereas the answer is clearly, 3.
 
@@ -143,8 +141,7 @@ Shannon discovered that the fundamental lower bound on $L$ is given as $L \geq H
 
 Consider the case where the letters `A`, `B`, `C`, `D` occur in our data with a frequency of $0.25$ each. We can divide the decoding process into a simple decision tree as follows,
 
-![huffman-1](/images/huffman-1.png)
-
+![huffman-1](/images/huffman-1.webp)
 
 ### Representing the encoding as binary trees
 
@@ -170,8 +167,7 @@ We want lesser used symbols to have longer encodings. If the above was not true,
 
 We can write $L = \sum_{i=1}^{n} p_i.d_i$ where $d_i$ is the depth of the $ith$ node in the tree. Note that this quantity $L$ is actually the same as the sum of the probabilities of every node except the root node in our tree. Consider the following example, notice that in the expanded view, the probability of each symbol gets included as many times as its depth in the tree.
 
-![huffman-2](/images/huffman-2.png)
-
+![huffman-2](/images/huffman-2.webp)
 
 Remember that our goal is to minimize L. Let our symbols have probabilities/frequency $p_1, p_2, \dots, p_k$ each and let us assume $p_1\leq p_2\leq\dots \leq p_k$. Using our optimal greedy choice, we can choose the bottommost nodes as $p_1+p_2$ and then restate the equation as follows.
 
@@ -192,3 +188,11 @@ The following video was referenced while making this diary and is the source of 
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [Huffman Codes: An Information Theory Perspective - Reducible](https://youtu.be/B3y0RsVCyrw?si=5kFqRPa_XsGxpqBr)
+
+---
+
+## Related Reading
+
+- [More Greedy Algorithms! Kruskal's & Disjoint Set Union](/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union)
+- [Set Cover & Approximation Algorithms](/blog/set-cover-approximation-algorithms)
+- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)

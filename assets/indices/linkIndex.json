@@ -45,6 +45,23 @@
           "text": "Introduction to Complexity Theory"
         }
       ],
+      "/blog/activity-selection-huffman-encoding": [
+        {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+          "text": "More Greedy Algorithms! Kruskal's \u0026 Disjoint Set Union"
+        },
+        {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/set-cover-approximation-algorithms",
+          "text": "Set Cover \u0026 Approximation Algorithms"
+        },
+        {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        }
+      ],
       "/blog/algorithms-for-approximate-string-matching-alignment": [
         {
           "source": "/blog/algorithms-for-approximate-string-matching-alignment",
@@ -130,6 +147,16 @@
           "source": "/blog/chain-matrix-multiplication",
           "target": "/blog/levenshtein-edit-distance",
           "text": "Levenshtein Edit Distance"
+        },
+        {
+          "source": "/blog/chain-matrix-multiplication",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
+          "source": "/blog/chain-matrix-multiplication",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
         }
       ],
       "/blog/covered-calls-strategy": [
@@ -137,6 +164,16 @@
           "source": "/blog/covered-calls-strategy",
           "target": "/blog/derivatives-options",
           "text": "Derivatives - Options"
+        },
+        {
+          "source": "/blog/covered-calls-strategy",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
+        },
+        {
+          "source": "/blog/covered-calls-strategy",
+          "target": "/blog/what-is-the-stock-market",
+          "text": "What is the Stock Market?"
         }
       ],
       "/blog/de-novo-assembly-overlap-graphs": [
@@ -163,6 +200,16 @@
           "source": "/blog/derivatives-options",
           "target": "/blog/what-is-the-stock-market",
           "text": "What is the Stock Market?"
+        },
+        {
+          "source": "/blog/derivatives-options",
+          "target": "/blog/covered-calls-strategy",
+          "text": "Covered Calls Strategy"
+        },
+        {
+          "source": "/blog/derivatives-options",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
         }
       ],
       "/blog/dna-sequencing": [
@@ -197,6 +244,21 @@
           "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
           "target": "/blog/complexity-theory-reductions",
           "text": "Complexity Theory - Reductions"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/levenshtein-edit-distance",
+          "text": "Levenshtein Edit Distance"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/chain-matrix-multiplication",
+          "text": "Chain Matrix Multiplication"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
         }
       ],
       "/blog/finite-and-infinite-sums": [
@@ -221,11 +283,6 @@
           "source": "/blog/flynn-s-taxonomy",
           "target": "/blog/vectorization-analyzing-loop-dependencies",
           "text": "Vectorization \u0026 Analyzing Loop Dependencies"
-        },
-        {
-          "source": "/blog/flynn-s-taxonomy",
-          "target": "/https//en.wikipedia.org/wiki/MapReducehttps//en.wikipedia.org/wiki/MapReduce",
-          "text": "Map Reduce"
         }
       ],
       "/blog/how-the-economic-machine-works-by-ray-dalio": [
@@ -262,6 +319,11 @@
           "source": "/blog/in-search-of-an-understandable-consensus-algorithm-extended-version-raft",
           "target": "/blog/the-google-file-system",
           "text": "The Google File System"
+        },
+        {
+          "source": "/blog/in-search-of-an-understandable-consensus-algorithm-extended-version-raft",
+          "target": "/blog/tidb-architecture",
+          "text": "TiDB - Architecture"
         }
       ],
       "/blog/introduction-to-complexity-theory": [
@@ -293,6 +355,16 @@
           "source": "/blog/levenshtein-edit-distance",
           "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
           "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
+          "source": "/blog/levenshtein-edit-distance",
+          "target": "/blog/chain-matrix-multiplication",
+          "text": "Chain Matrix Multiplication"
+        },
+        {
+          "source": "/blog/levenshtein-edit-distance",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
         }
       ],
       "/blog/log-structured-merge-tree-lsm-trees": [
@@ -351,6 +423,16 @@
           "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
           "target": "/blog/activity-selection-huffman-encoding",
           "text": "Activity Selection \u0026 Huffman Encoding"
+        },
+        {
+          "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+          "target": "/blog/set-cover-approximation-algorithms",
+          "text": "Set Cover \u0026 Approximation Algorithms"
+        },
+        {
+          "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
         }
       ],
       "/blog/multi-agent-systems-harnessing-collective-intelligence-a-survey": [
@@ -427,6 +509,11 @@
           "source": "/blog/set-cover-approximation-algorithms",
           "target": "/blog/activity-selection-huffman-encoding",
           "text": "Activity Selection \u0026 Huffman Encoding"
+        },
+        {
+          "source": "/blog/set-cover-approximation-algorithms",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
         }
       ],
       "/blog/shortest-common-superstring-de-brujin-graphs": [
@@ -576,6 +663,21 @@
           "source": "/blog/what-is-the-stock-market",
           "target": "/blog/how-the-economic-machine-works-by-ray-dalio",
           "text": "How the Economic Machine Works by Ray Dalio"
+        },
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/derivatives-options",
+          "text": "Derivatives - Options"
+        },
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
+        },
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/stock-multiples",
+          "text": "Stock Multiples"
         }
       ],
       "/blog/wilson-s-theorem-fermat-s-little-theorem-euler-s-totient-function": [
@@ -594,7 +696,22 @@
     "backlinks": {
       "/blog/a-deep-dive-into-the-knapsack-problem": [
         {
+          "source": "/blog/chain-matrix-multiplication",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
+        },
+        {
           "source": "/blog/knapsack-using-branch-and-bounding",
+          "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+          "text": "A Deep Dive into the Knapsack Problem"
+        },
+        {
+          "source": "/blog/levenshtein-edit-distance",
           "target": "/blog/a-deep-dive-into-the-knapsack-problem",
           "text": "A Deep Dive into the Knapsack Problem"
         },
@@ -743,6 +860,16 @@
           "source": "/blog/a-deep-dive-into-the-knapsack-problem",
           "target": "/blog/chain-matrix-multiplication",
           "text": "Chain Matrix Multiplication"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/chain-matrix-multiplication",
+          "text": "Chain Matrix Multiplication"
+        },
+        {
+          "source": "/blog/levenshtein-edit-distance",
+          "target": "/blog/chain-matrix-multiplication",
+          "text": "Chain Matrix Multiplication"
         }
       ],
       "/blog/church-turing-hypothesis": [
@@ -767,6 +894,13 @@
           "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
           "target": "/blog/complexity-theory-reductions",
           "text": "Complexity Theory - Reductions"
+        }
+      ],
+      "/blog/covered-calls-strategy": [
+        {
+          "source": "/blog/derivatives-options",
+          "target": "/blog/covered-calls-strategy",
+          "text": "Covered Calls Strategy"
         }
       ],
       "/blog/de-novo-assembly-overlap-graphs": [
@@ -798,6 +932,11 @@
           "source": "/blog/the-economics-of-foreign-exchange-forex",
           "target": "/blog/derivatives-options",
           "text": "Derivatives - Options"
+        },
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/derivatives-options",
+          "text": "Derivatives - Options"
         }
       ],
       "/blog/dna-sequencing": [
@@ -814,9 +953,46 @@
           "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
         },
         {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
+          "source": "/blog/chain-matrix-multiplication",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
           "source": "/blog/levenshtein-edit-distance",
           "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
           "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
+          "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        },
+        {
+          "source": "/blog/set-cover-approximation-algorithms",
+          "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+        }
+      ],
+      "/blog/efficient-market-hypothesis": [
+        {
+          "source": "/blog/covered-calls-strategy",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
+        },
+        {
+          "source": "/blog/derivatives-options",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
+        },
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/efficient-market-hypothesis",
+          "text": "Efficient-Market-Hypothesis"
         }
       ],
       "/blog/extended-euclidean-algorithm": [
@@ -926,6 +1102,11 @@
           "source": "/blog/chain-matrix-multiplication",
           "target": "/blog/levenshtein-edit-distance",
           "text": "Levenshtein Edit Distance"
+        },
+        {
+          "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/levenshtein-edit-distance",
+          "text": "Levenshtein Edit Distance"
         }
       ],
       "/blog/linearity-of-expectation": [
@@ -943,6 +1124,11 @@
         }
       ],
       "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union": [
+        {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+          "text": "More Greedy Algorithms! Kruskal's \u0026 Disjoint Set Union"
+        },
         {
           "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
           "target": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
@@ -1072,7 +1258,17 @@
       ],
       "/blog/set-cover-approximation-algorithms": [
         {
+          "source": "/blog/activity-selection-huffman-encoding",
+          "target": "/blog/set-cover-approximation-algorithms",
+          "text": "Set Cover \u0026 Approximation Algorithms"
+        },
+        {
           "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+          "target": "/blog/set-cover-approximation-algorithms",
+          "text": "Set Cover \u0026 Approximation Algorithms"
+        },
+        {
+          "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
           "target": "/blog/set-cover-approximation-algorithms",
           "text": "Set Cover \u0026 Approximation Algorithms"
         }
@@ -1089,6 +1285,13 @@
           "source": "/blog/new-and-delete",
           "target": "/blog/smart-pointers",
           "text": "Smart Pointers"
+        }
+      ],
+      "/blog/stock-multiples": [
+        {
+          "source": "/blog/what-is-the-stock-market",
+          "target": "/blog/stock-multiples",
+          "text": "Stock Multiples"
         }
       ],
       "/blog/templates-in-c": [
@@ -1138,6 +1341,13 @@
           "text": "TiDB - A Raft-based HTAP Database"
         }
       ],
+      "/blog/tidb-architecture": [
+        {
+          "source": "/blog/in-search-of-an-understandable-consensus-algorithm-extended-version-raft",
+          "target": "/blog/tidb-architecture",
+          "text": "TiDB - Architecture"
+        }
+      ],
       "/blog/vectorization-analyzing-loop-dependencies": [
         {
           "source": "/blog/flynn-s-taxonomy",
@@ -1170,6 +1380,11 @@
         }
       ],
       "/blog/what-is-the-stock-market": [
+        {
+          "source": "/blog/covered-calls-strategy",
+          "target": "/blog/what-is-the-stock-market",
+          "text": "What is the Stock Market?"
+        },
         {
           "source": "/blog/derivatives-options",
           "target": "/blog/what-is-the-stock-market",
@@ -1206,13 +1421,6 @@
           "source": "/blog/randomization-primality-testing-algorithms",
           "target": "/blog/wilson-s-theorem-fermat-s-little-theorem-euler-s-totient-function",
           "text": "Wilson's Theorem, Fermat's Little Theorem \u0026 Euler's Totient Function"
-        }
-      ],
-      "/https//en.wikipedia.org/wiki/MapReducehttps//en.wikipedia.org/wiki/MapReduce": [
-        {
-          "source": "/blog/flynn-s-taxonomy",
-          "target": "/https//en.wikipedia.org/wiki/MapReducehttps//en.wikipedia.org/wiki/MapReduce",
-          "text": "Map Reduce"
         }
       ]
     }
@@ -1257,6 +1465,21 @@
       "source": "/blog/a-deep-dive-into-the-knapsack-problem",
       "target": "/blog/introduction-to-complexity-theory",
       "text": "Introduction to Complexity Theory"
+    },
+    {
+      "source": "/blog/activity-selection-huffman-encoding",
+      "target": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+      "text": "More Greedy Algorithms! Kruskal's \u0026 Disjoint Set Union"
+    },
+    {
+      "source": "/blog/activity-selection-huffman-encoding",
+      "target": "/blog/set-cover-approximation-algorithms",
+      "text": "Set Cover \u0026 Approximation Algorithms"
+    },
+    {
+      "source": "/blog/activity-selection-huffman-encoding",
+      "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
     },
     {
       "source": "/blog/algorithms-for-approximate-string-matching-alignment",
@@ -1334,9 +1557,29 @@
       "text": "Levenshtein Edit Distance"
     },
     {
+      "source": "/blog/chain-matrix-multiplication",
+      "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+    },
+    {
+      "source": "/blog/chain-matrix-multiplication",
+      "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+      "text": "A Deep Dive into the Knapsack Problem"
+    },
+    {
       "source": "/blog/covered-calls-strategy",
       "target": "/blog/derivatives-options",
       "text": "Derivatives - Options"
+    },
+    {
+      "source": "/blog/covered-calls-strategy",
+      "target": "/blog/efficient-market-hypothesis",
+      "text": "Efficient-Market-Hypothesis"
+    },
+    {
+      "source": "/blog/covered-calls-strategy",
+      "target": "/blog/what-is-the-stock-market",
+      "text": "What is the Stock Market?"
     },
     {
       "source": "/blog/de-novo-assembly-overlap-graphs",
@@ -1357,6 +1600,16 @@
       "source": "/blog/derivatives-options",
       "target": "/blog/what-is-the-stock-market",
       "text": "What is the Stock Market?"
+    },
+    {
+      "source": "/blog/derivatives-options",
+      "target": "/blog/covered-calls-strategy",
+      "text": "Covered Calls Strategy"
+    },
+    {
+      "source": "/blog/derivatives-options",
+      "target": "/blog/efficient-market-hypothesis",
+      "text": "Efficient-Market-Hypothesis"
     },
     {
       "source": "/blog/dna-sequencing",
@@ -1389,6 +1642,21 @@
       "text": "Complexity Theory - Reductions"
     },
     {
+      "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "target": "/blog/levenshtein-edit-distance",
+      "text": "Levenshtein Edit Distance"
+    },
+    {
+      "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "target": "/blog/chain-matrix-multiplication",
+      "text": "Chain Matrix Multiplication"
+    },
+    {
+      "source": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+      "text": "A Deep Dive into the Knapsack Problem"
+    },
+    {
       "source": "/blog/finite-and-infinite-sums",
       "target": "/blog/riemann-series-rearrangement",
       "text": "Riemann Series Rearrangement"
@@ -1407,11 +1675,6 @@
       "source": "/blog/flynn-s-taxonomy",
       "target": "/blog/vectorization-analyzing-loop-dependencies",
       "text": "Vectorization \u0026 Analyzing Loop Dependencies"
-    },
-    {
-      "source": "/blog/flynn-s-taxonomy",
-      "target": "/https//en.wikipedia.org/wiki/MapReducehttps//en.wikipedia.org/wiki/MapReduce",
-      "text": "Map Reduce"
     },
     {
       "source": "/blog/how-the-economic-machine-works-by-ray-dalio",
@@ -1444,6 +1707,11 @@
       "text": "The Google File System"
     },
     {
+      "source": "/blog/in-search-of-an-understandable-consensus-algorithm-extended-version-raft",
+      "target": "/blog/tidb-architecture",
+      "text": "TiDB - Architecture"
+    },
+    {
       "source": "/blog/introduction-to-complexity-theory",
       "target": "/blog/defining-computational-problems",
       "text": "Defining Computational Problems"
@@ -1467,6 +1735,16 @@
       "source": "/blog/levenshtein-edit-distance",
       "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
       "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
+    },
+    {
+      "source": "/blog/levenshtein-edit-distance",
+      "target": "/blog/chain-matrix-multiplication",
+      "text": "Chain Matrix Multiplication"
+    },
+    {
+      "source": "/blog/levenshtein-edit-distance",
+      "target": "/blog/a-deep-dive-into-the-knapsack-problem",
+      "text": "A Deep Dive into the Knapsack Problem"
     },
     {
       "source": "/blog/log-structured-merge-tree-lsm-trees",
@@ -1517,6 +1795,16 @@
       "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
       "target": "/blog/activity-selection-huffman-encoding",
       "text": "Activity Selection \u0026 Huffman Encoding"
+    },
+    {
+      "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+      "target": "/blog/set-cover-approximation-algorithms",
+      "text": "Set Cover \u0026 Approximation Algorithms"
+    },
+    {
+      "source": "/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union",
+      "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
     },
     {
       "source": "/blog/multi-agent-systems-harnessing-collective-intelligence-a-survey",
@@ -1577,6 +1865,11 @@
       "source": "/blog/set-cover-approximation-algorithms",
       "target": "/blog/activity-selection-huffman-encoding",
       "text": "Activity Selection \u0026 Huffman Encoding"
+    },
+    {
+      "source": "/blog/set-cover-approximation-algorithms",
+      "target": "/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn",
+      "text": "DP as DAGs,  Shortest path on DAGs \u0026 LIS in O(nlogn)"
     },
     {
       "source": "/blog/shortest-common-superstring-de-brujin-graphs",
@@ -1702,6 +1995,21 @@
       "source": "/blog/what-is-the-stock-market",
       "target": "/blog/how-the-economic-machine-works-by-ray-dalio",
       "text": "How the Economic Machine Works by Ray Dalio"
+    },
+    {
+      "source": "/blog/what-is-the-stock-market",
+      "target": "/blog/derivatives-options",
+      "text": "Derivatives - Options"
+    },
+    {
+      "source": "/blog/what-is-the-stock-market",
+      "target": "/blog/efficient-market-hypothesis",
+      "text": "Efficient-Market-Hypothesis"
+    },
+    {
+      "source": "/blog/what-is-the-stock-market",
+      "target": "/blog/stock-multiples",
+      "text": "Stock Multiples"
     },
     {
       "source": "/blog/wilson-s-theorem-fermat-s-little-theorem-euler-s-totient-function",

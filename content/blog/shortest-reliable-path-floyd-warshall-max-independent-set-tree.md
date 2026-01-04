@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-19 03:14:18+0530
-doc: 2024-05-29 09:33:05+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Shortest Reliable Path, Floyd Warshall & Max-Independent Set (Tree)
-topics:
-- Algorithm-Analysis
 ---
 Last time we discussed [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem). Today, we'll look at three more interesting problems with cool Dynamic Programming solutions.
 # Shortest Reliable Path
@@ -87,8 +87,7 @@ Let's think about what this additional bookkeeping is doing. By enforcing this c
 
 However, Dijkstra skips over all the nodes already visited. This is essential in keeping the complexity down. Consider this case.
 
-![srp-1](/images/srp-1.png)
-
+![srp-1](/images/srp-1.webp)
 
 We will not be able to update the third node from the left do distance 3 once it has already been processed for reachability using 2 edges. Hence we will have to eliminate this skipping and force the algorithm to process new vertices again.
 
@@ -122,8 +121,7 @@ If these subproblems have been solved, then when computing the shortest distance
 
 To answer this, we check what the shortest path from $i \to k$ is and $k \to j$ is using $k-1$ intermediate nodes. If the sum of these distances is lesser than the min computed so far, we can include node $k$. Notice that we are simply including 1 node. Therefore our computation for the DP state will be correct.
 
-![fw-1](/images/fw-1.png)
-
+![fw-1](/images/fw-1.webp)
 
 This is a visual representation of the sub-problem we're attempting to solve.
 
@@ -159,8 +157,7 @@ The problem we're trying to solve here is as follows, _"Given a tree G, find the
 
 From the definition of "independent set", we can easily conclude that the set $S$ must be a bipartite subset of $G$. However, notice that any bipartite coloring won't do. More specifically, a bipartite coloring where we color one node then skip it's children and proceed won't do.
 
-![ist-1](/images/ist-1.png)
-
+![ist-1](/images/ist-1.webp)
 
 This is a simple counter case to that solution. We require both the lumps of vertices and the bottom and the top for the optimal solution. Notice that this hints us towards the sub-problem we require to solve. 
 

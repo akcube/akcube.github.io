@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-11-16 23:16:48+0530
-doc: 2024-05-29 12:16:02+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-complexity
 title: P vs NP
-topics:
-- Complexity-Theory
 ---
 This is one of the most famous unsolved questions in computer science. I mean, seriously, the clay math institute offers a reward of a **million** dollars to the first person that is able to solve this problem. [https://www.claymath.org/millennium-problems/p-vs-np-problem](https://www.claymath.org/millennium-problems/p-vs-np-problem)
 
@@ -28,8 +28,7 @@ Here are a few, _interesting_ answers to these questions.
     
 
 This is a view of the complexity classes as we know it, depending on the result of the $P$ vs $NP$ problem.
-![pnp-x](/images/pnp-x.png)
-
+![pnp-x](/images/pnp-x.webp)
 
 Courtesy: [https://brilliant.org/wiki/complexity-classes/](https://brilliant.org/wiki/complexity-classes/)
 # References

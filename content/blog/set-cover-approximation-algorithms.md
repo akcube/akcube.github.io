@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-29 17:49:38+0530
-doc: 2024-05-29 06:57:08+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Set Cover & Approximation Algorithms
-topics:
-- Algorithm-Analysis
 ---
 # Greedy (cont.)
 
@@ -98,8 +98,7 @@ However, since greedy is not optimal, we can trick it into always giving the wro
 
 Consider this following case,
 
-![set-cover-1](/images/set-cover-1.png)
-
+![set-cover-1](/images/set-cover-1.webp)
 
 Our greedy strategy will end up picking $\{ s_1, s_2, s_3 \}$ while the optimal answer is actually $\{ s_4, s_5 \}$. Notice that this logic for "hacking" the algorithm can be extended to work for any power of 2 $\geq 3$
 
@@ -133,3 +132,9 @@ This **must** mean that the algorithm will terminate after $t=k\ ln(n)$ iteratio
 # References
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
+
+---
+
+## Related Reading
+
+- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)

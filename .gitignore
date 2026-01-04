@@ -4,3 +4,13 @@ public/
 resources/
 .hugo_build.lock
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Publisher runtime artifacts
+data/publish-manifest.json
+data/backlinks.json
+
+package-lock.json

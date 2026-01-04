@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-20 09:43:19+0530
-doc: 2024-05-29 06:36:30+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: The Fast Fourier Transform (FFT)
-topics:
-- Algorithm-Analysis
 ---
 # FFT (Fast Fourier Transform)
 
@@ -76,8 +76,7 @@ The $\frac{n}{2}$ comes from dividing the input to each recurrence in half. We h
 
 To solve this recurrence, let us imagine the recursion tree. The base case for this recursion is when $n=1$. When $n=1$, the answer is the value in the set itself. However, notice that at no point are we **ever** changing the size of the set $X$. The original size of $X$ was $n$, and it remains $n$ at every step of the algorithm. This will span out to be a binary tree of depth $log_2(n)$, with each node doing $O(n)$ computation.
 
-![fft-1](/images/fft-1.png)
-
+![fft-1](/images/fft-1.webp)
 
 At the bottom most level, notice that we still have order $n$ leaves, each of which are doing order $n$ computation. This will sadly give us a time complexity of $O(n \times n) = O(n^2)$.
 
@@ -109,8 +108,7 @@ Notice that we can keep doing this at every step of our recursion, and we would 
 
 This is the key realization to solving the problem of reducing the size of $X$. By choosing our set $X$ as the set of all the $k^{th}$ roots of unity where $k \gt log_2n$, we have effectively managed to half the size of $X$ along with $n$ at **every** step of our algorithm. Our recursion tree now looks more like this
 
-![fft-2](/images/fft-2.png)
-
+![fft-2](/images/fft-2.webp)
 
 By simply computing $A_e(x)$ and $A_o(x)$ at $\frac{n}{2}$ intervals, we can compute the answer at $n$ points. The roots of unity always occur in $\pm$ pairs and evaluate to the **same** value when squared. This means, we can write it as follows.
 

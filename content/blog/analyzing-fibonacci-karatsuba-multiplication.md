@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-09-14 10:13:32+0530
-doc: 2024-05-29 06:31:13+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Analyzing Fibonacci & Karatsuba Multiplication
-topics:
-- Algorithm-Analysis
 ---
 # Fibonacci 
 Let's try analyzing a few different algorithms for computing $F_n$, the $n^{th}$ Fibonacci number

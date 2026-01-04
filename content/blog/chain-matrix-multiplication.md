@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-12 11:37:50+0530
-doc: 2024-05-29 09:14:53+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Chain Matrix Multiplication
-topics:
-- Algorithm-Analysis
 ---
 Previously, we discussed a dynamic programming solution to solve [Levenshtein Edit Distance](/blog/levenshtein-edit-distance). Today, we'll look at another interesting problem.
 # Chain Matrix Multiplication / Parenthesization
@@ -86,8 +86,7 @@ Another nice thing to notice is that this solution is not only applicable to cha
 
 As mentioned before, it is not quite simple to understand the DAG structure for this problem. To get a good idea of what's going on, lets begin by simply drawing the recursion diagram for a small case. Let's say $[1, 4]$.
 
-![chain-matrix-mult-1](/images/chain-matrix-mult-1.png)
-
+![chain-matrix-mult-1](/images/chain-matrix-mult-1.webp)
 
 Notice that the leaves of our tree are all the sub-segments of length 1. Imagine visually pruning all the leaves from our tree. We will now have a new set of leaves.
 
@@ -97,8 +96,7 @@ Notice that these are just the segments of length 2. $[1, 2], [2, 3], [3, 4]$. W
 
 From this, it is easy to realize that we are computing DP states in order of increasing the length of sub-segments. Our DAG would look as follows.
 
-![chain-matrix-mult-2](/images/chain-matrix-mult-2.png)
-
+![chain-matrix-mult-2](/images/chain-matrix-mult-2.webp)
 
 Here, I've attempted to paint the arrows showing the transition from a state of length just 1 below in green, 2 below in yellow, and 3 below in blue.
 
@@ -120,3 +118,10 @@ Last time, we were able to reduce the space complexity of our DP by realizing th
 # References
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
+
+---
+
+## Related Reading
+
+- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)
+- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)

@@ -1,10 +1,12 @@
 ---
 author: Kishore Kumar
 date: 2025-12-04 07:20:47+0530
-doc: 2025-12-04 06:59:44+05:30
+doc: 2025-12-04 06:59:44+0530
+tags:
+- domain-cs-ai-ml-llms
 title: 'Multi-Agent Systems: Harnessing Collective Intelligence - A Survey'
-topics: []
 ---
+
 In my previous post ([Reasoning, Acting, and Learning ; A Survey of Single-Agent LLM Patterns](/blog/reasoning-acting-and-learning-a-survey-of-single-agent-llm-patterns)), I explored strategies to improve the performance of a single agent, using structures like Tree-of-Thoughts to explore complex solution spaces. However, most of these patterns are already internally implemented by frontier labs and there is not as significant a gain to expect from implementing extra compute intensive patterns on top manually. 
 
 This brings us to **Multi-Agent Systems (MAS)**. Instead of a single monolithic agent, we can employ multiple specialized agents collaborating or debating or orchestrating to improve accuracy. Gemini tends to be good at certain tasks, Anthropic in others, etc. We can effectively utilize these ideas in practice using multi-agent architectures. Karpathy's [LLM Council](https://x.com/karpathy/status/1992381094667411768?s=20) is a great example! For more long horizon orchestration, there are two popular architectures which are proposed today, both by Anthropic & OpenAI. 
@@ -12,8 +14,7 @@ This brings us to **Multi-Agent Systems (MAS)**. Instead of a single monolithic 
 [Multi-agent Systems \- LangChain](https://langchain-ai.github.io/langgraph/concepts/multi_agent/) |  [A practical guide to building agents \- OpenA](https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf) | [Building Effective Agents \- Anthropic](https://www.anthropic.com/engineering/building-effective-agents)
 ## Building Multi-Agent Systems
 
-![Pasted image 20251204063547](/images/pasted-image-20251204063547.webp)
-
+![pasted-image-20251204063547](/images/pasted-image-20251204063547.webp)
 
 > “*Regardless of the orchestration pattern, the same principles apply: keep components flexible, composable, and driven by clear, well-structured prompts.”*
 
@@ -76,20 +77,17 @@ This paper attempts to prove that the ‘old’ notion of requiring domain-speci
 
 1. **Self-Generated Chain of Thought (CoT):** Use a simple prompt template to get the GPT-4 models to generate CoT examples for future few-shot example ICL training. Here’s an example prompt:
    
-   ![Pasted image 20251204064029](/images/pasted-image-20251204064029.webp)
-
+   ![pasted-image-20251204064029](/images/pasted-image-20251204064029.webp)
 
 2. **Dynamic Few-Shot Selection:** During test-time, query the vector database by generating the same embedding for the unseen test questions, use k-means or a similar search model to identify the most similar few-shot CoT examples to provide as ICL examples for the model. This is essentially dynamically generating the few-shot examples for the model’s prompt. This entire process is almost completely automated. 
 
 3. **Choice Shuffling Ensemble:** They noticed the models tend to have some bias towards picking options in certain positions. So they used a classic CoT-SC type ensemble approach by asking the model to repeat the CoT prediction process *m* times (with temperature \> 0\) and choose the final answer by scoring the aggregate. Additionally, shuffle the order of the options for each run to further improve the randomness (apart from just temperature \> 0).
    
-   ![Pasted image 20251204064106](/images/pasted-image-20251204064106.webp)
-
+   ![pasted-image-20251204064106](/images/pasted-image-20251204064106.webp)
 
 	The results were pretty convincing
 	
-	![Pasted image 20251204064130](/images/pasted-image-20251204064130.webp)
-
+	![pasted-image-20251204064130](/images/pasted-image-20251204064130.webp)
 
 # Comparing MAD Strategies
 [Should we be going MAD? A Look at Multi-Agent Debate Strategies for LLMs](https://arxiv.org/pdf/2311.17371)
@@ -97,8 +95,7 @@ This paper attempts to prove that the ‘old’ notion of requiring domain-speci
 This paper benchmarks several Multi-Agent Debate (MAD) strategies like Society of Minds, Multi-Persona, etc. against other single-agent prompting techniques like self-consistency, ensemble refinement, and Medprompt across a bunch of Q\&A datasets (medical and reasoning). The main results from the paper are that:
 ## MAD isn’t always better
 
-![Pasted image 20251204064236](/images/pasted-image-20251204064236.webp)
-
+![pasted-image-20251204064236](/images/pasted-image-20251204064236.webp)
 
 Note the top-right corner X in the first diagram. Multi-persona was actually able to score the highest on that particular benchmark simply by tuning the degree to which the angel was asked to disagree with the devil. In short, MAD protocols seem a lot more sensitive to their ‘hyperparameters’ as compared to single-agent strategies. There is also some bias of LLMs towards their own responses in a mult-model multi-agent setup. 
 ## Tuning Can Greatly Affect Results

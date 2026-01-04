@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-11-23 02:10:18+0530
-doc: 2024-05-29 12:29:54+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Network-Flow Algorithms, Ford Fulkerson
-topics:
-- Algorithm-Analysis
 ---
 Let's learn another really cool tool that can be used to solve optimization problems, network flows!
 
@@ -17,8 +17,7 @@ A network flow graph $G = \langle V, E \rangle$ is nothing but a directed graph,
 
 An example of one such graph is given below
 
-![nf-1](/images/nf-1.png)
-
+![nf-1](/images/nf-1.webp)
 
 Here, $S = 1$ and $T = 6$. We will use this same example when discussing further ideas.
 
@@ -37,20 +36,17 @@ To define this more formally, the only primary constraints are as follows:
 
 Here is an example of a valid network flow assignment:
 
-![nf-2](/images/nf-2.png)
-
+![nf-2](/images/nf-2.webp)
 
 We can manually go over every vertex and ensure that the two constraints are obeyed everywhere. Further, notice that the flow of this network $= 3$. (Just sum up the flow going to $T$, i.e., the edges incident on $T$)
 
 An interesting observation is that we appear to have "cyclic flow" within our graph with this particular assignment of flow. Eliminating this does not change the total flow going to $T$, so this is pretty much the same assignment without that cyclic flow within the network:
 
-![nf-3](/images/nf-3.png)
-
+![nf-3](/images/nf-3.webp)
 
 But what about the max flow assignment for this network? is 3 the maximum flow we can achieve? Or can we do better? After a bit of fiddling around, we can notice that we can do better by pushing more flow on the bottom half of this network instead of sending 1 flow up to the top from node 3. Fixing this ends up giving this network:
 
-![nf-4](/images/nf-4.png)
-
+![nf-4](/images/nf-4.webp)
 
 It can be proven that we cannot do better than this for this particular network. The max flow of this network is 4.
 
@@ -126,13 +122,11 @@ The idea behind these edges becomes more apparent when we actually construct the
 
 Consider the old suboptimal max flow network we had.
 
-![nf-5](/images/nf-5.png)
-
+![nf-5](/images/nf-5.webp)
 
 We'll begin by constructing the residual graph for this network. Remember, for each edge in the network, we add an edge with capacity $c_e - f_e$ as long as this quantity is $\gt 0$. And now, to respect the last constraint, we must ensure that we add a back-edge in the opposite direction with value = $f_e$ as long $f_e \gt 0$. This is the **key** idea behind what the residual network hopes to accomplish. Recall back when said one of the reasons the flow problem was very difficult was because it is very difficult to account for having to _reduce_ flow in some edges to increase max flow? This residual network is what helps the algorithm get around this problem. Here is the residual network:
 
-![nf-6](/images/nf-6.png)
-
+![nf-6](/images/nf-6.webp)
 
 Now, the Ford Fulkerson algorithm becomes extremely simple. It simply says, use any graph traversal algorithm such as BFS or DFS to find _an augmenting path_ in this graph, and apply it to the original graph.
 

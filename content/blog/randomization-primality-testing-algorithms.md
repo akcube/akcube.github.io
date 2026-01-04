@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-10-30 14:50:15+0530
-doc: 2024-05-29 12:31:25+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-math-number-theory
 title: Randomization, Primality Testing Algorithms
-topics:
-- Algorithm-Analysis
-- Number-Theory
 ---
 # Randomized Algorithms
 So far, we've discussed a lot of cool algorithms which we can use to solve many different problems. However, all these problems had a polynomial-time solution that we were able to come up with. This is not true for all problems. There are many **hard** problems for which there exists **no known** polynomial-time algorithm. A lot of these problems are quite important and an efficient way to solve them is a must. Without a polynomial-time solution to them, it is not feasible to compute their solutions for large inputs on any known computational device that man has access to.

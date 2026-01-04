@@ -3,12 +3,14 @@ languageCode = 'en-us'
 title = 'Kishore Kumar'
 enableRobotsTXT = true
 theme = 'obsidian-hugo-texify3'
+summaryLength = 70
+hasCJKLanguage = false
 
 [author]
     name = "Kishore Kumar"
 
 [taxonomies]
-  topics = "topics"
+  tags = "tags"
 
 [markup]
 defaultMarkdownHandler = "goldmark"
