@@ -39,12 +39,3 @@ Soon, the Dutch East India Company took this concept to the next level. Instead 
 2. [Explained | The Stock Market | FULL EPISODE | Netflix](https://www.youtube.com/watch?v=ZCFkWDdmXG8&t=4s)
 3. [Wikipedia - Euronext Amsterdam](https://en.wikipedia.org/wiki/Euronext_Amsterdam)
 4. [How The Economic Machine Works by Ray Dalio](https://www.youtube.com/watch?v=PHe0bXAIuk0)
-
-
----
-
-## Related Reading
-
-- [Derivatives - Options](/blog/derivatives-options)
-- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)
-- [Stock Multiples](/blog/stock-multiples)
