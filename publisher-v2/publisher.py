@@ -326,12 +326,13 @@ class Publisher:
             print("\n✨ No orphaned files to clean")
 
     def _clean_orphaned_images(self):
-        """Remove images that are no longer referenced by any published post"""
+        """Remove images that are no longer referenced by any content"""
         import re
 
-        # Collect all referenced images from published posts
+        # Collect all referenced images from ALL content (not just blog)
+        content_dir = self.website_path / 'content'
         referenced_images = set()
-        for md_file in self.dest_dir.glob('*.md'):
+        for md_file in content_dir.glob('**/*.md'):
             content = md_file.read_text(encoding='utf-8')
             # Match ![alt](/images/name.webp) pattern
             matches = re.findall(r'!\[[^\]]*\]\(/images/([^)]+)\)', content)
