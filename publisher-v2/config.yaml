@@ -1,5 +1,5 @@
 # Publisher Configuration
-# This file configures the automatic publishing pipeline from Obsidian vault to Hugo website
+# Automatically publishes evergreen notes from Obsidian vault to Hugo website
 
 # Paths
 vault_path: "/home/akcube/Kishore-Brain"
@@ -26,7 +26,6 @@ filters:
 # Feature Flags
 features:
   enable_related_reading: true
-  generate_category_pages: true
   optimize_images: true
 
 # Image Optimization Settings
@@ -34,52 +33,3 @@ images:
   max_width: 1920
   webp_quality: 85
   png_optimize: true
-
-# Domain to Category Mappings
-# Maps hierarchical tags to Hugo categories and topics
-domain_mappings:
-  "domain/cs/algorithms":
-    category: "Computer Science"
-    subcategories: ["Algorithms"]
-
-  "domain/cs/systems":
-    category: "Computer Science"
-    subcategories: ["Systems"]
-
-  "domain/cs/ai-ml":
-    category: "Computer Science"
-    subcategories: ["AI & Machine Learning"]
-
-  "domain/cs/languages":
-    category: "Computer Science"
-    subcategories: ["Programming Languages"]
-
-  "domain/finance/economics":
-    category: "Finance"
-    subcategories: ["Economics"]
-
-  "domain/finance/quantitative":
-    category: "Finance"
-    subcategories: ["Quantitative Finance"]
-
-  "domain/finance/trading":
-    category: "Finance"
-    subcategories: ["Trading"]
-
-  "domain/math":
-    category: "Mathematics"
-    subcategories: []
-
-  "domain/math/probability-statistics":
-    category: "Mathematics"
-    subcategories: ["Probability & Statistics"]
-
-  "domain/science/bioinformatics":
-    category: "Science"
-    subcategories: ["Bioinformatics"]
-
-# Type to Series Mappings
-type_mappings:
-  "type/zettelkasten": "Zettelkasten"
-  "type/literature-note": "Literature Notes"
-  "type/project": "Projects"
