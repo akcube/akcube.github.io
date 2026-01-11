@@ -7,7 +7,7 @@
 [![Last Commit](https://img.shields.io/github/last-commit/akcube/akcube.github.io)](https://github.com/akcube/akcube.github.io/commits/main)
 [![Repo Size](https://img.shields.io/github/repo-size/akcube/akcube.github.io)](https://github.com/akcube/akcube.github.io)
 
-Personal blog and portfolio site built with Hugo, featuring optimized images and a custom Obsidian-compatible theme.
+Personal blog and portfolio site built with Hugo, featuring automatic publishing from Obsidian vault with hierarchical tags and optimized images.
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ cd ../..
 ### 3. Set up Python environment for publisher
 
 ```bash
-cd publisher
+cd publisher-v2
 python -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
@@ -89,28 +89,24 @@ hugo --minify
 
 Output will be in the `public/` directory.
 
-## Publishing a New Blog Post
+## Publishing from Obsidian Vault
 
 ### Workflow Overview
 
-To publish a blog post from your Obsidian vault:
+The publisher automatically discovers and publishes notes tagged with `status/evergreen` from your Obsidian vault:
 
-1. Run the publisher script to convert Obsidian markdown to Hugo format
+1. Run the publisher to convert Obsidian markdown to Hugo format
 2. Run `hugo-obsidian` to generate link indices for the graph visualization
 3. Review changes locally with `hugo server -D`
 4. Commit and push to deploy
 
-**Quick workflow:**
+### Quick Workflow
 
 ```bash
-# 1. Activate Python environment and publish from Obsidian
-cd publisher
+# 1. Activate Python environment and publish
+cd publisher-v2
 source venv/bin/activate
-python publisher.py \
-  --source ~/Kishore-Brain/Zettelkasten/my-post.md \
-  --dest ../content/blog \
-  --idest ../static/images \
-  --imgdirs ~/Kishore-Brain/Files
+python publisher.py
 cd ..
 
 # 2. Generate link indices for graph
@@ -120,46 +116,109 @@ hugo-obsidian -input=content -output=assets/indices -index -root=.
 hugo server -D
 ```
 
+### What the Publisher Does
+
+- **Auto-discovers** notes with `status/evergreen` tag in `Zettelkasten/`
+- **Converts hierarchical tags** like `domain/cs/algorithms` to URL-safe format (`domain-cs-algorithms`)
+- **Processes wikilinks** (`[[Note Title]]` → `[Note Title](/blog/note-title)`)
+- **Optimizes images** to WebP with PNG fallback
+- **Generates Related Reading** sections from frontmatter
+- **Cleans up orphaned** posts and images no longer in vault
+
+### Dry Run
+
+To see what would be published without making changes:
+
+```bash
+python publisher.py --dry-run
+```
+
+## Obsidian Vault Structure
+
+The publisher expects notes in your vault to follow this structure:
+
+```yaml
+---
+title: "My Note Title"
+tags:
+  - domain/cs/algorithms/analysis   # Hierarchical domain tags
+  - type/zettelkasten               # Note type
+  - status/evergreen                # Required for publishing
+created: 2024-01-15
+related:
+  - "[[Another Note]]"              # Optional related notes
+---
+
+Your note content with [[wikilinks]] and ![[images.png]]...
+```
+
+### Tag System
+
+- **`status/evergreen`** - Required for publishing
+- **`status/seed`** or **`status/sapling`** - Excluded from publishing
+- **`domain/*`** - Converted to display tags (e.g., `domain/cs/algorithms` → `#domain/cs/algorithms`)
+- **`type/*`** - Internal classification, not published
+
 ## Project Structure
 
 ```
 .
-├── content/           # Hugo content
-│   ├── blog/         # Blog posts
+├── content/              # Hugo content
+│   ├── blog/            # Published blog posts (auto-generated)
 │   └── ...
-├── static/           # Static assets
-│   ├── images/       # Optimized blog images (WebP + PNG)
-│   ├── css/          # Custom CSS
-│   └── js/           # Custom JavaScript
-├── layouts/          # Hugo layout overrides
-│   └── _default/
-│       └── _markup/  # Custom markdown rendering (e.g., images)
-├── themes/           # Hugo themes
+├── static/              # Static assets
+│   ├── images/          # Optimized blog images (WebP + PNG)
+│   ├── css/             # Custom CSS
+│   └── js/              # Custom JavaScript
+├── assets/
+│   └── indices/         # Link indices from hugo-obsidian
+├── layouts/             # Hugo layout overrides
+│   ├── _default/
+│   │   ├── list.html    # Blog list with tag display
+│   │   ├── single.html  # Blog post with tags
+│   │   └── _markup/     # Custom markdown rendering
+│   └── tags/            # Tag taxonomy pages
+├── themes/              # Hugo themes
 │   └── obsidian-hugo-texify3/  # Custom theme (git submodule)
-├── publisher/        # Publishing tools
-│   ├── publisher.py              # Main conversion script
-│   ├── optimize_existing_images.py  # Batch optimization script
+├── publisher-v2/        # Publishing tools
+│   ├── publisher.py     # Main publishing script
+│   ├── discovery.py     # Note discovery module
+│   ├── tag_converter.py # Tag processing
+│   ├── link_processor.py # Wikilink/image processing
+│   ├── config.yaml      # Publisher configuration
 │   └── requirements.txt
-├── hugo.toml         # Hugo configuration
-└── package-lock.json # NPM dependencies (theme)
+├── hugo.toml            # Hugo configuration
+└── .gitignore
 ```
 
 ## Image Optimization
 
 All images are automatically optimized during publishing:
-- **Display size**: Max 650px width (preserves natural size for smaller images)
+- **Display size**: Max 1920px width
 - **Format**: WebP with PNG fallback for browser compatibility
 - **Compression**: 85% WebP quality, optimized PNG
 - **Zoom**: Click any image to view full-size with smooth animation
 
-### Optimizing Existing Images
+## Configuration
 
-To batch optimize all images already in `static/images/`:
+Publisher settings are in `publisher-v2/config.yaml`:
 
-```bash
-cd publisher
-source venv/bin/activate
-python optimize_existing_images.py
+```yaml
+vault_path: "/path/to/your/obsidian/vault"
+website_path: "/path/to/hugo/site"
+source_dir: "Zettelkasten"
+dest_dir: "content/blog"
+
+filters:
+  required_tags:
+    - "status/evergreen"
+  excluded_tags:
+    - "status/seed"
+    - "status/sapling"
+
+features:
+  enable_related_reading: true
+  optimize_images: true
 ```
 
 ## License
