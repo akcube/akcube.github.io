@@ -19,14 +19,14 @@ Personal blog and portfolio site built with Hugo, featuring automatic publishing
 
 ## First-Time Setup
 
-### 1. Clone the repository with submodules
+### 1. Clone the repository
 
 ```bash
 git clone --recurse-submodules https://github.com/akcube/akcube.github.io.git
 cd akcube.github.io
 ```
 
-If you already cloned without submodules:
+If you already cloned without `--recurse-submodules`:
 
 ```bash
 git submodule update --init --recursive
@@ -43,12 +43,10 @@ cd ../..
 ### 3. Install the Obsidian Publisher
 
 ```bash
-cd publisher
-pip install -e .
-cd ..
+pip install obsidian-publisher
 ```
 
-This installs the `obsidian-publish` CLI tool.
+This installs the `obsidian-publish` CLI tool. See [obsidian-publisher on PyPI](https://pypi.org/project/obsidian-publisher/).
 
 ### 4. Install hugo-obsidian for link graph generation
 
@@ -186,7 +184,6 @@ Your note content with [[wikilinks]] and ![[images.png]]...
 │   └── tags/            # Tag taxonomy pages
 ├── themes/              # Hugo themes
 │   └── obsidian-hugo-texify3/  # Custom theme (git submodule)
-├── publisher/           # Obsidian Publisher (git submodule)
 ├── publisher-config.yaml # Publisher configuration
 ├── hugo.toml            # Hugo configuration
 └── .gitignore
