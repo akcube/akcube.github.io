@@ -155,11 +155,3 @@ The single row optimized dp code for calculating the Levenshtein distance betwee
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [How do Spell Checkers work? Levenshtein Edit Distance - Creel](https://youtu.be/Cu7Tl7FGigQ?si=pFru3JaBAeKStvtz) (Excellent channel, do check him out. Has a lot of unique amazing content!)
-
-
----
-
-## Related Reading
-
-- [Chain Matrix Multiplication](/blog/chain-matrix-multiplication)
-- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)

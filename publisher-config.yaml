@@ -1,0 +1,52 @@
+# Obsidian Publisher Configuration
+# For publishing Kishore-Brain vault to akcube.github.io
+
+# Path to your Obsidian vault
+vault_path: ~/Kishore-Brain
+
+# Path to your Hugo site
+output_path: ~/akcube.github.io
+
+# Subdirectory within vault to scan for notes
+source_dir: Zettelkasten
+
+# Output directories within the Hugo site
+content_dir: content/blog
+image_dir: static/images
+
+# Directories within vault to search for images
+image_sources:
+  - Files
+  - Zettelkasten
+
+# Tags for filtering notes
+required_tags:
+  - status/evergreen
+excluded_tags:
+  - status/seed
+  - status/sapling
+  - status/draft
+
+# Image optimization settings
+optimize_images: true
+max_image_width: 1920
+webp_quality: 85
+image_path_prefix: /images
+
+# Link transform: absolute links with /blog prefix
+link_transform:
+  type: absolute
+  prefix: /blog
+
+# Tag transform: filter domain tags only and replace / with -
+tag_transform:
+  prefixes:
+    - domain
+  replace_separator:
+    - "/"
+    - "-"
+
+# Hugo frontmatter settings
+frontmatter:
+  hugo: true
+  author: Kishore Kumar

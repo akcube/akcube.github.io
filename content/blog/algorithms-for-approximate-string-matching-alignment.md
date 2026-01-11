@@ -54,4 +54,3 @@ If we simply ran local alignment between each of the short reads (which we usual
 We begin by querying the k-mer index table for a query which allows us to **rapidly** home in on small set of candidate needles which are the only places in the entire sequence we really need to run our powerful but slower approximate matching algorithms on. 
 
 Thus, both concepts work well **together**, kind of making up for each other's shortcomings while still accomplishing their goals. On the one side, the index is highly quick and effective at reducing the number of locations to check, but it completely lacks a natural way to manage mismatches and gaps. However, dynamic programming does handle inconsistencies and gaps rather nicely. But it would be incredibly slow if we simply used dynamic programming.
-

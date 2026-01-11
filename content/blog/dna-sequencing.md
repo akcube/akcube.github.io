@@ -105,4 +105,3 @@ But the primary reason exact matching fails is due to the error(s) inherent in t
 ### Case II
 
 In the case where there exists no already existing snapshot to follow, we will have to tackle the same problem faced by the people working on the original Human Genome Project (HGP). We rely on techniques of de novo assembly to reconstruct the genome string. We will discuss this in more detail towards the end of the course. 
-

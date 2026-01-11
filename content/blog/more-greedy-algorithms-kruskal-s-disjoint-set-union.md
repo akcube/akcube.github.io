@@ -162,10 +162,3 @@ Below are links to `C++` implementations of both the fully equipped Disjoint Set
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [Disjoint Set Union - cp-algorithms](https://cp-algorithms.com/data_structures/disjoint_set_union.html)
-
----
-
-## Related Reading
-
-- [Set Cover & Approximation Algorithms](/blog/set-cover-approximation-algorithms)
-- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)
