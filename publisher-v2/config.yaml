@@ -25,7 +25,6 @@ filters:
 
 # Feature Flags
 features:
-  enable_related_reading: true
   optimize_images: true
 
 # Image Optimization Settings

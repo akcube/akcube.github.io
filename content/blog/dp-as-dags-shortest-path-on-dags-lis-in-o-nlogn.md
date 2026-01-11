@@ -191,11 +191,3 @@ int lis(int arr[], int n) {
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [Huffman Codes: An Information Theory Perspective - Reducible](https://youtu.be/B3y0RsVCyrw?si=5kFqRPa_XsGxpqBr)
-
----
-
-## Related Reading
-
-- [Levenshtein Edit Distance](/blog/levenshtein-edit-distance)
-- [Chain Matrix Multiplication](/blog/chain-matrix-multiplication)
-- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)

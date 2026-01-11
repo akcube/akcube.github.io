@@ -157,11 +157,3 @@ The Indian National Stock Exchange (since July 2018 expiry contracts), uses phys
 4. [Physical Delivery - Investopedia](https://www.investopedia.com/terms/p/physicaldelivery.asp)
 5. [Policy on settlement of compulsory delivery derivative contracts — Update Oct 2019 - Zerodha](https://zerodha.com/z-connect/general/policy-on-settlement-of-compulsory-delivery-derivative-contracts-update-oct-2019)
 6. [Physical delivery of stock F&O & their risks - Zerodha](https://zerodha.com/z-connect/general/physical-delivery-of-stock-fo-their-risks)
-
-
----
-
-## Related Reading
-
-- [Covered Calls Strategy](/blog/covered-calls-strategy)
-- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)

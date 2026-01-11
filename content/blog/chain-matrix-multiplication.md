@@ -118,10 +118,3 @@ Last time, we were able to reduce the space complexity of our DP by realizing th
 # References
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
-
----
-
-## Related Reading
-
-- [DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)
-- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)

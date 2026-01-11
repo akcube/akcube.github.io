@@ -35,10 +35,3 @@ The premiums received from selling call options are generally considered short-t
 If the stock price fluctuates significantly, even if it remains flat over the long term, the covered call strategy may result in a gradual reduction in the number of shares held due to the exercise of call options. This can lead to realizing losses, despite the overall position being flat.
 ## Risk-Adjusted Return Considerations
 While some people argue that covered call strategies may offer superior risk-adjusted returns, meaning higher returns per unit of risk taken, this claim is subject to debate and may depend on the specific market conditions and underlying assets involved.
-
----
-
-## Related Reading
-
-- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)
-- [What is the Stock Market?](/blog/what-is-the-stock-market)

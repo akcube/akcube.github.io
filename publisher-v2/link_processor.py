@@ -14,7 +14,6 @@ class LinkProcessor:
 
     def __init__(self, config: Dict):
         self.config = config
-        self.enable_related = config['features'].get('enable_related_reading', True)
 
     def parameterize_title(self, title: str) -> str:
         """Convert note title to URL-safe slug"""
@@ -120,53 +119,6 @@ class LinkProcessor:
 
         return processed_content, image_deps
 
-    def generate_related_section(self, frontmatter: Dict, note_slug: str, already_linked: Set[str] = None) -> str:
-        """
-        Generate Related Reading section from frontmatter
-
-        Args:
-            frontmatter: Note frontmatter dict
-            note_slug: URL slug of current note (to avoid self-reference)
-            already_linked: Set of note names already linked in content (to avoid duplicates)
-
-        Returns:
-            Markdown string for related section
-        """
-        if not self.enable_related:
-            return ""
-
-        related = frontmatter.get('related', [])
-        if not related:
-            return ""
-
-        if already_linked is None:
-            already_linked = set()
-
-        # Filter out self-references, already-linked notes, and convert to links
-        related_links = []
-        for item in related:
-            # Extract note name from wikilink format
-            note_name = item.strip('[]').split('|')[0]
-            slug = self.parameterize_title(note_name)
-
-            # Skip self-references
-            if slug == note_slug:
-                continue
-
-            # Skip notes already linked in content
-            if note_name in already_linked:
-                continue
-
-            related_links.append(f"- [{note_name}](/blog/{slug})")
-
-        if not related_links:
-            return ""
-
-        section = "\n\n---\n\n## Related Reading\n\n"
-        section += "\n".join(related_links)
-        section += "\n"
-
-        return section
 
 
 def main():
@@ -206,21 +158,6 @@ And another note: [[Deep Dive into Algorithms]].
     print("After processing images:")
     print(processed)
     print(f"\nImage dependencies: {images}")
-    print("\n" + "="*60 + "\n")
-
-    # Test related section
-    frontmatter = {
-        'title': 'Test Note',
-        'related': [
-            '[[Another Note]]',
-            '[[Deep Dive into Algorithms]]',
-            '[[Complex Note Title]]'
-        ]
-    }
-
-    related_section = processor.generate_related_section(frontmatter, 'test-note')
-    print("Generated related section:")
-    print(related_section)
 
 
 if __name__ == '__main__':

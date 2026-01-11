@@ -185,11 +185,6 @@ class Publisher:
             processed_content, referenced_notes = self.link_processor.process_wikilinks(content)
             processed_content, image_deps = self.link_processor.process_images(processed_content)
 
-            # Add related reading section (uses original frontmatter for 'related' field)
-            # Pass referenced_notes to avoid duplicating links already in content
-            if self.config['features']['enable_related_reading']:
-                related_section = self.link_processor.generate_related_section(frontmatter, slug, referenced_notes)
-                processed_content += related_section
 
             # Process and copy images
             self._process_images(image_deps, note_path)
@@ -337,11 +332,12 @@ class Publisher:
             # Match ![alt](/images/name.webp) pattern
             matches = re.findall(r'!\[[^\]]*\]\(/images/([^)]+)\)', content)
             for match in matches:
-                # Add both the referenced file and its base name (for .png fallback)
+                # Add the referenced file
                 referenced_images.add(match)
-                # Also add the .png version if .webp is referenced
-                if match.endswith('.webp'):
-                    referenced_images.add(match.replace('.webp', '.png'))
+                # Also add all related formats (webp, png, jpg) for fallback handling
+                base_name = Path(match).stem
+                for ext in ['.webp', '.png', '.jpg', '.jpeg', '.gif']:
+                    referenced_images.add(f"{base_name}{ext}")
 
         # Get all images in static/images
         existing_images = set()
