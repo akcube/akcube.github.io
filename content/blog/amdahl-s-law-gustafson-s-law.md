@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-03-14 05:25:59+0530
-doc: 2024-05-31 07:05:09+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Amdahl's Law & Gustafson's Law
-topics:
-- High-Performance-Computing
 ---
 # Amdahl's law
 
@@ -22,8 +22,7 @@ Plotting Amdahl’s law for different values of $p$ gives us a graph that looks 
 
 However, this fails to capture the general tendency most programmers have to increase problem size when given access to more computing power. This shortcoming was addressed by Gustafson’s law.
 
-![amdeded-1](/images/amdeded-1.png)
-
+![amdeded-1](/images/amdeded-1.webp)
 
 # Gustafson’s Law
 
@@ -39,8 +38,7 @@ When the problem and system scale, the serial part (statistically) does not scal
 
 > The impact of Gustafson's law was to shift research goals to select or reformulate problems so that solving a larger problem in the same amount of time would be possible. In a way, the law redefines efficiency, due to the possibility that limitations imposed by the sequential part of a program may be countered by increasing the total amount of computation.
 
-![gstf-1](/images/gstf-1.png)
-
+![gstf-1](/images/gstf-1.webp)
 
 We'll discuss some cooler ways to extend these ideas in the case of task parallelism in [Brent's Theorem & Task Level Parallelism](/blog/brent-s-theorem-task-level-parallelism). 
 # References

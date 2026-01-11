@@ -1,17 +1,16 @@
 ---
 author: Kishore Kumar
 date: 2025-06-17 17:13:18+0530
-doc: 2025-06-17 16:48:06+05:30
-title: Building A Type-Safe Tool Framework For Llms In Scala
-topics:
-- LLMs
-- Programming-Language-Theory
+doc: 2025-06-17 16:48:06+0530
+tags:
+- domain-cs-ai-ml-llms
+- domain-cs-languages-theory
+title: Building a Type-Safe Tool Framework for LLMs in Scala
 ---
 # Tool Calling
 I came across a fun problem at work today where I wanted to define a clean, idiomatic way to define functions in Scala and auto-generate the function schema for these functions to pass to LLM APIs. For some context, LLMs are incredibly powerful at reasoning through and generating text, but to really have them interact with the environment, they use external tool calling. OpenAI calls this [Function Calling](https://platform.openai.com/docs/guides/function-calling?api-mode=chat) and Anthropic calls it [Tool Use](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview#next-steps). This image from OpenAI best summarizes the idea:
 
-![Pasted image 20250616173651](/images/pasted-image-20250616173651.png)
-
+![pasted-image-20250616173651](/images/pasted-image-20250616173651.webp)
 
 You as a developer pass in function schemas to let the LLM know that it has access to call `xyz` function. The schema may look like this:
 
@@ -208,7 +207,7 @@ object TemperatureUnit extends Enumeration {
 }
 
 case class WeatherArgs(
-    @Parameter(description = "The city and state, e.g., San Francisco, CA")
+    @Parameter(description = "The city and state, e.g., Bangalore, IN")
     location: String,
     @Parameter(description = "The unit for the temperature")
     unit: Option[TemperatureUnit.Value] = None
@@ -513,7 +512,7 @@ object TemperatureUnit extends Enumeration {
 }
 
 case class WeatherArgs(
-    @Parameter(description = "The city and state, e.g., San Francisco, CA")
+    @Parameter(description = "The city and state, e.g., Bangalore, IN")
     location: String,
     @Parameter(description = "The unit for the temperature")
     unit: Option[TemperatureUnit.Value] = None
@@ -582,7 +581,7 @@ readAnnotation[WeatherTool]
 // Tool: name = get_current_weather, description = Get the current weather in a given location
 
 readAnnotation[WeatherArgs]
-// Parameter: location -> The city and state, e.g., San Francisco, CA
+// Parameter: location -> The city and state, e.g., Bangalore, IN
 // Parameter: unit -> The unit for the temperature
 ```
 
@@ -738,7 +737,7 @@ makeLlmCall(messages, schemas) // <- Make the LLM calls
 
 // Execute tool calls from the LLM
 val result = registry.execute("get_current_weather", 
-  """{"location": "Bangalore, India", "unit": "CELSIUS"}""")
+  """{"location": "Bangalore, IN", "unit": "CELSIUS"}""")
 makeLlmCall(messages ++ result, schemas) // <- Or whatever ...
 ```
 

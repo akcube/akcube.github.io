@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2024-03-12 13:53:43+0530
-doc: 2024-05-29 14:44:28+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-economics
+- domain-finance-quantitative
 title: The Black-Scholes-Merton Equation
-topics:
-- Economics
-- Quantitative-Finance
 ---
 This single equation spawned multi-trillion dollar industries and transformed everyone's approach to risk.
 $$
@@ -21,10 +21,8 @@ As mentioned previously, the difficulty in pricing options is primarily due to i
 
 An important property of random walks is that over time, the expected outcomes of a random walk take up the shape of a normal distribution. 
 
-![Pasted image 20240311040835](/images/pasted-image-20240311040835.png)
-
-![Pasted image 20240311040740](/images/pasted-image-20240311040740.png)
-
+![pasted-image-20240311040835](/images/pasted-image-20240311040835.webp)
+![pasted-image-20240311040740](/images/pasted-image-20240311040740.webp)
 
 Essentially, over a short period of time, there's not much influence on the stock price by random-walk steps to allow it to reach extreme deviations from the stock's current price. But over a period of time, the probability of it reaching more extreme prices increases, but the majority of the expected stock price is still close to the stock's current price. This may not be very consistent with our observation of the general trend of the market to increase over a long period of time, but back then, there wasn't a lot of data available and this is how Bachelier modeled it. So after a short time, the stock price could only move up or down a little, but after more time, a wider range of prices is possible. He modeled the expected future price of a stock by a normal distribution, centered on the current price which spreads out over time. 
 
@@ -32,20 +30,17 @@ Essentially, over a short period of time, there's not much influence on the stoc
 
 Bachelier's crowing achievement, was that he had finally figured out a mathematical way to price an option by applying his random walk theory. 
 
-![Pasted image 20240311042335](/images/pasted-image-20240311042335.png)
-
+![pasted-image-20240311042335](/images/pasted-image-20240311042335.webp)
 
 - The probability that the option buyer makes profit is the probability that the **stock price increases by more than the price paid for the option**. We call this the **stock price at exercise**. Otherwise the buyer would just let the option expire.  This is the green shaded area.
 
-![Pasted image 20240311042301](/images/pasted-image-20240311042301.png)
-
+![pasted-image-20240311042301](/images/pasted-image-20240311042301.webp)
 
 - The probability that the option seller makes profit is the probability that the **stock price stays low enough that the buyer doesn't earn more than they paid for it**. Note that this is sufficient, because even if the stock price has increased from the strike price, but not by enough to increase past an amount that allows the buyer to exercise the option, the premium payed for by the buyer is enough to give the seller more profit than what would be obtained if he didn't sell the option. This is the red shaded area.
 
 Note that you can influence the region of probabilities simply by changing the premium (price) of the option. Increase the premium, and the stock price required for the option buyer to exercise the option increases. Pushing the probability region where he makes a profit further toward the edges. You can calculate the expected return of buying / selling an option simply by multiplying the profit / loss each individual stands to gain / lose by the probability of each outcome. Note that each probability here is just a function of the price of the option. Bachelier argued that a fair price for an option is what makes the expected return for buyers and sellers equal. 
 
-![Pasted image 20240311042939](/images/pasted-image-20240311042939.png)
-
+![pasted-image-20240311042939](/images/pasted-image-20240311042939.webp)
 
 >When Bachelier finished his thesis, he had beaten Einstein to inventing the random walk and solved the problem that had eluded options traders for hundreds of years. But no one noticed. The physicists were uninterested and traders weren't ready. The key thing missing was a way to make a ton of money.
 
@@ -153,8 +148,7 @@ I'll explain these properties in more details below. Let's call them the axioms 
 1. **Brownian Motion has independent increments.** 
 	Say we have a time value $r$, $s$ and $t$. We have some Brownian motion associated with each of these time values. The time from $s \to t$ is an increment. So is the time from $r \to s$. We're essentially saying that the increment from $s \to t$ is **totally** independent of other time periods, not even the previous $r \to s$ time period. In short, this axiom essentially says that whatever happens in any given time period is **totally random** and does not depend on what happens in any other time period. 
 	
-	![Pasted image 20240312084016](/images/pasted-image-20240312084016.png)
-
+	![pasted-image-20240312084016](/images/pasted-image-20240312084016.webp)
 2. **Brownian Motion has stationary increments.**
 	It's sort of related to the previous axiom. But what it essentially says that the distirbution in the time between $s \to t$ only depends on the time values $t$ and $s$ and nothing else. 
 3. **Brownian Motion has Normal Distribution.** 
@@ -176,8 +170,7 @@ A **symmetric** random walk is a mathematical model that describes a path consis
 Let $S_n$ denote the position of the walker after $n$ steps. Then, a symmetric random walk can be defined recursively as: $$ X_n = X_{n-1} + Z_n$$
 Here, $Z_n$ are independent and identically distributed random variables taking values $+1$ or $-1$ with equal probability, i.e., $P(Z_n = 1) = P(Z_n = -1) = \frac{1}{2}$.
 
-![Pasted image 20240312091108](/images/pasted-image-20240312091108.png)
-
+![pasted-image-20240312091108](/images/pasted-image-20240312091108.webp)
 - [Eight different random walks - Wikipedia](https://en.m.wikipedia.org/wiki/File:Random_Walk_example.svg)
 
 Effectively, when we consider the discrete case, we call it a random walk. But as we keep reducing our time-steps, that is, $\Delta t \to 0$, it's the same as Brownian motion. The summation formula is the mean by definition, so we can write $Z_k = \pm\frac{t}{n}$, where $n$ is the number of time steps. For convenience, let us write $Z_k = \pm \sqrt \frac{t}{n}$. 
@@ -210,8 +203,7 @@ Remember that in Bachelier's Thesis, he modeled share prices using a standard no
 
 We sort of expect share prices to grow in an exponential manner. We mathematically write this as $S_t = S_0e^{\alpha t}$. Just the formula to denote standard exponential growth. But we know that share prices follow Brownian motion (random walk), and the price keeps constantly fluctuating. Effectively, we need to introduce a parameter in this equation to account for the Brownian motion. So to take this into account, we can do this by modifying the model slightly to $S_t = S_0 e^{\alpha t + \beta B_t}$. The term $\beta B_t$ accounts for the Brownian motion. $\beta$ is a constant, which is very difficult to measure for a stock. The term is essentially supposed to be a measure of volatility. You can see that with higher $\beta$, you have more contribution from the Brownian motion term and hence have more random volatility. 
 
-![Pasted image 20240312094517](/images/pasted-image-20240312094517.png)
-
+![pasted-image-20240312094517](/images/pasted-image-20240312094517.webp)
 
 If we play around with the formula a bit, we can do the following:
 $$
@@ -225,8 +217,7 @@ $$
 \end{align}
 $$
 This is what is known as log-normal. In other words, the ratio of the share prices at time $t$ to the share price at the beginning is a log-normal distribution. The log part essentially just skews the curve. 
-![Pasted image 20240312095342](/images/pasted-image-20240312095342.png)
-
+![pasted-image-20240312095342](/images/pasted-image-20240312095342.webp)
 - [Log-Normal Distribution: Definition, Uses, and How To Calculate - Investopedia](https://www.investopedia.com/terms/l/log-normal-distribution.asp)
 # Phase 2 - The Black-Scholes-Merton Equation
 Thorpe wasn't satisfied with Bachelier's model for pricing options. For one thing, stock prices aren't entirely random. They can increase over time if the business is doing well or fall if it isn't. Bachelier's model ignores this. So Thorpe came up with a more accurate model for pricing options, which took this drift into account. He used his model to gain an edge in the market and make a lot of money. Black-Scholes and Merton later independently came up with a way to price future contracts that would then revolutionize the trading industry forever. Their equation, like Thorpe's, was an improved version of Bachelier's model. 

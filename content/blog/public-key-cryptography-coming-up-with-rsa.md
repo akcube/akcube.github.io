@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-10-26 21:28:45+0530
-doc: 2024-05-29 12:31:02+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-math-number-theory
 title: Public Key Cryptography, Coming Up With RSA
-topics:
-- Algorithm-Analysis
-- Number-Theory
 ---
 # Mathematical operations across number systems
 
@@ -15,8 +15,7 @@ In fact, humans didn't always use the decimal number system. Back in the day, co
 
 Eventually, this lead to the birth of roman numerals. But even this wasn't great. It was very difficult to add and multiply numbers. Comparisons were not easy either. Over the evolution of number systems, at some point, we decided to settle on decimal because it provided a convenient representation to add and compare numbers in. Multiplication is still slow but not as bad as it was with Roman or the Tally systems.
 
-![pkc-1](/images/pkc-1.png)
-
+![pkc-1](/images/pkc-1.webp)
 
 A rough comparison of the different systems of representation.
 
@@ -71,11 +70,9 @@ _However,_ multiplying the factors to get the original number is **easy**.
 
 I found [this visualization](https://www.khanacademy.org/computer-programming/time-complexity-exploration/1466763719) quite nice to understand the idea from.
 
-![pkc-2](/images/pkc-2.png)
+![pkc-2](/images/pkc-2.webp)
 
-
-![pkc-3](/images/pkc-3.png)
-
+![pkc-3](/images/pkc-3.webp)
 
 For smaller inputs, integer prime factorization is quite fast. But with an increasing number of bits in the input, the algorithm shows its exponential complexity. It becomes pretty much unfeasible for any computational device that we have today to solve the problem in a reasonable amount of time. Notice that multiplication, however, remains quite fast.
 

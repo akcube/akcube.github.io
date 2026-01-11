@@ -1,11 +1,17 @@
 ---
 author: Kishore Kumar
 date: 2024-02-10 04:12:11+0530
-doc: 2024-05-30 08:14:36+0530
+doc: 2024-02-08 06:06:48+0530
+tags:
+- domain-cs-languages-cpp
 title: Smart Pointers
-topics:
-- Cpp
 ---
+
+Resources referred to:
+1. [SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr) - The Cherno](https://www.youtube.com/@TheCherno)
+2. [Back to Basics: Smart Pointers and RAII - Inbal Levi - CppCon 2021](https://www.youtube.com/@CppCon)
+3. [Back to Basics: C++ Smart Pointers - David Olsen - CppCon 2022](https://www.youtube.com/@CppCon)
+
 Before reading this section, I recommend reading the previous section on [`new` and `delete`](/blog/new-and-delete) to get a better idea of the problem(s) we have with memory allocation and manipulation and how we're trying to fix them. We figured out how to workaround / solve the uninitialized memory problem, but we still have to deal with the issue of memory leaks and dangling pointers.
 # Preface
 
@@ -13,8 +19,7 @@ As programmers, when working in a large code base, it is often difficult to manu
 
 Java and other more "modern" languages have the idea of keeping [garbage collectors](/blog/garbage-collectors). Its primary purpose is to automatically manage memory by identifying and reclaiming memory that is no longer needed or accessible by the program, thus preventing memory leaks and ensuring efficient memory usage. However, the existence of a garbage collector means that the program can only be run on a system on a runtime. For Java, this would be the JVM. This introduces a performance overhead because the garbage collector is a tool that is actively working in the background to identify unreachable objects and freeing them. Being C++ nerds, we don't want performance bottlenecks. 
 
-![Pasted image 20230909082901](/images/pasted-image-20230909082901.png)
-
+![pasted-image-20230909082901](/images/pasted-image-20230909082901.webp)
 source: [Back to Basics: Smart Pointers and RAII - Inbal Levi - CppCon 2021](https://www.youtube.com/@CppCon)
 
 Instead, the goal for C++ is to introduce an "API" of sorts that programmers can use to manage their memory right. Smart pointers are a cool interface provided by the C++ standard library to leverage the power of runtime stack allocation to manage memory efficiently by automating the process of calling `new` and `delete`. In essence, smart pointers are just simple wrappers around raw pointers.
@@ -25,7 +30,7 @@ The way C++ tries to solve the automatic memory management problem is by introdu
 - `std::unique_ptr` => Represents a "single owner" model. Memory managed by an `std::unique_ptr` can only "be owned by" by that one instance of an unique pointer. It cannot be owned (copied) by multiple unique pointer instances. The only way to *change* ownership is to **move** the ownership to a different instance of an unique pointer. Original pointer releases, new pointer acquires. 
 - `std::shared_ptr` => This builds on the unique pointer by now allowing a resource to be shared / "owned" by multiple `std::shared_ptr` instances. Multiple shared pointers can now share and copy the ownership rights over a shared pointer. The memory being managed is freed only when *every last* owner of the shared pointer has gone out of scope.
 - `std::weak_ptr` => This is a weaker version of the shared pointer. Weak pointers can copy / gain weak ownership over a shared pointer. This means that it does have *strong* ownership rights. If the strong owners go out of scope, the weak pointer will be invalidated. In essence, it does not hold any power over when the pointer may be invalidated / cleaned up.
-## `std::unique_ptr`
+# `std::unique_ptr`
 
 An `unique_ptr` is perhaps the simplest type of a smart pointer. It's a scoped object, which just means that when the pointer goes out of scope, it gets destroyed. Unique pointers are called unique pointers because you **cannot copy** an unique pointer. Why? Because all an unique pointer really is, is just a `class` wrapper around your raw pointer. If it was copied, we would now have **2** instances of this *manager class*. When they go out of scope, we call the destructor twice, the second one attempting to free a `nullptr`.
 
@@ -58,7 +63,6 @@ std::unique_ptr<Entity> obj = new Entity;
 > `conversion from ‘Entity*’ to non-scalar type ‘std::unique_ptr<Entity>’ requested`
 
 <hr>
-
 ### `std::make_unique`
 
 The 'recommended' way to initialize an unique pointer in C++ is using `std::make_unique<T>`. The primary reason this is recommended is because of **exception safety.** If the constructor happens to throw an exception we'll now not end up with a memory leak or dangling pointer. `make_unique` is basically a way to shorten writing:
@@ -159,7 +163,7 @@ private:
 };
 ```
 
-## `std::shared_ptr`
+# `std::shared_ptr`
 
 Like previously mentioned, a `std::shared_ptr` is an unique pointer that allows 'sharing' ownership. This means that shared pointers can be copied and assigned. 
 
@@ -182,7 +186,7 @@ std::shared_ptr<Entity> outer;
 You will notice, that we were now able to use the copy-assignment operator with our shared pointer object. And further, even though the inner shared pointer is out of scope, the destructor is called only after the outer shared pointer (which received ownership via the copy-assignment operator) goes out of scope.
 
 <hr>
-### `std::make_shared`
+## `std::make_shared`
 
 Apart from the same reasons listed for `std::make_unique`, there are more reasons to use `std::make_shared` instead of `std::shared_ptr<Entity> inner(new Entity())`. The reason somewhat comes down to the implementation and overhead associated with shared pointers.
 
@@ -203,7 +207,7 @@ However, with `std::make_shared`, it can actually construct them **together**, e
 
 <hr>
 
-## `std::weak_ptr`
+# `std::weak_ptr`
 
 `std::weak_ptr` is the final member of our little group of smart pointers which completes C++'s ownership ideology. A `std::weak_ptr` can copy ownership from a `std::shared_ptr`, except this ownership is *weak*. You can imagine it as a shared pointer which when copying, does **not** increase the reference count of the original shared pointer. Due to this, it is possible the weak pointer is still in scope but because all the *strong* owners of the managed memory have gone out of scope, the memory has been freed and the weak pointer is now in an **invalidated** state.
 
@@ -241,7 +245,3 @@ std::cout << "Outer weak_ptr expired: " << outer.expired() << std::endl;
 ```
 
 The above code block shows the working of the two pointers succinctly. The weak pointer does not increase the `use_count` of the shared pointer. And as soon as the shared pointer exits the inner scope, the memory is freed and our shared pointer now points to invalidated memory, as shown in the output of `outer.expired()`.
-# References
-1. [SMART POINTERS in C++ (std::unique_ptr, std::shared_ptr, std::weak_ptr) - The Cherno](https://www.youtube.com/@TheCherno)
-2. [Back to Basics: Smart Pointers and RAII - Inbal Levi - CppCon 2021](https://www.youtube.com/@CppCon)
-3. [Back to Basics: C++ Smart Pointers - David Olsen - CppCon 2022](https://www.youtube.com/@CppCon)

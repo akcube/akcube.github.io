@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-08-03 17:13:30+0530
-doc: 2024-05-29 06:19:09+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-cs-algorithms-complexity
 title: Are There Computational Problems That Computers Cannot Solve?
-topics:
-- Algorithm-Analysis
-- Complexity-Theory
 ---
 Are there computational problems that computers cannot solve? How do we find the answer to this question? Turns out there's a very simple way to answer this question, even without defining what an "algorithm" is ([Church-Turing Hypothesis](/blog/church-turing-hypothesis)).
 
@@ -39,8 +39,7 @@ $$ f(x)= \begin{cases} 1 \ \forall \ x \in S \\ 0 \ \forall \ x \notin S \\
 
 Now let us calculate $f(x)$ for every such language and write it in the form of a table
 
-![cantor-diagonalization-table](/images/cantor-diagonalization-table.png)
-
+![cantor-diagonalization-table](/images/cantor-diagonalization-table.webp)
 
 Let us assume that we have enumerated an infinite number of such languages. Now we will use diagonalization to prove that there will always exist some language $L_x$ that does not belong to our set.
 

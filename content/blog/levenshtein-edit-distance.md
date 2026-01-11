@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-06 21:12:36+0530
-doc: 2024-05-29 09:07:47+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Levenshtein Edit Distance
-topics:
-- Algorithm-Analysis
 ---
 Previously, we looked at a few famous dynamic programming problems ([DP as DAGs,  Shortest path on DAGs & LIS in O(nlogn)](/blog/dp-as-dags-shortest-path-on-dags-lis-in-o-nlogn)). Today we'll be looking at a pretty common problem that we have our computers solve for us, almost every single day. **Spellchecking**. Our computers are great at suggesting good auto-correct solutions for us whenever we misspell something. But to recommend one choice over the others, there must be some measure of ranking them. The problem is as follows:
 # The problem
@@ -81,8 +81,7 @@ For computing the answer at every point, we either have the base case or we have
 
 1. We can perform one of three operations. Substitute, insert, or delete. In essence, given two suffixes we have exactly three operations that we can use to transform the first character of $X$ to the first character of $Y$. Replace $X[i] \to Y[j]$. Insert $Y[j]$. Delete $X[i]$.
 
-![edit-dist-1](/images/edit-dist-1.png)
-
+![edit-dist-1](/images/edit-dist-1.webp)
 
 Since we already have a recursive expression of the algorithm, we already know the recurrence.
 
@@ -96,8 +95,7 @@ $$
 
 For example, the highlighted yellow cell represents the edit distance between `LITY` and `ARITY`. Further, notice that each of the three highlighted boxes around it corresponds to an **edit operation.** This observation is key to figuring out the topological ordering of our problems.
 
-![edit-dist-2](/images/edit-dist-2.png)
-
+![edit-dist-2](/images/edit-dist-2.webp)
 
 1. The `Substituion` box means we swap "L" with "A" and move to state $(i+1, j+1)$.
 2. The `Insertion` box means we insert "A" and move to state $(i, j+1)$
@@ -115,8 +113,7 @@ Further, notice that in the real dp table we would have an extra row and column 
 
 **Note**: This is the image from the lecture slides and shows the path for the approach using prefixes. For the suffix-based state transformation used by me, simply reverse the direction of each edge in the graph and the problem remains the same.
 
-![edit-dist-3](/images/edit-dist-3.png)
-
+![edit-dist-3](/images/edit-dist-3.webp)
 
 1. Now to solve the problem :) Notice that the runtime of the algorithm is $O(|X|.|Y|)$
 
@@ -158,3 +155,11 @@ The single row optimized dp code for calculating the Levenshtein distance betwee
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [How do Spell Checkers work? Levenshtein Edit Distance - Creel](https://youtu.be/Cu7Tl7FGigQ?si=pFru3JaBAeKStvtz) (Excellent channel, do check him out. Has a lot of unique amazing content!)
+
+
+---
+
+## Related Reading
+
+- [Chain Matrix Multiplication](/blog/chain-matrix-multiplication)
+- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)

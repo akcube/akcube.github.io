@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-23 19:10:57+0530
-doc: 2024-05-29 12:02:47+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-math-number-theory
 title: Wilson's Theorem, Fermat's Little Theorem & Euler's Totient Function
-topics:
-- Number-Theory
 ---
 Last time, we covered the [Extended Euclidean Algorithm](/blog/extended-euclidean-algorithm). Now, we'll delve into some cooler number theory. 
 # Wilson's Theorem

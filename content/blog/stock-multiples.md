@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-05-14 21:56:34+0530
-doc: 2024-05-29 14:57:17+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-quantitative
 title: Stock Multiples
-topics:
-- Quantitative-Finance
 ---
 When deciding how to invest in stocks, we all know that it's best to "buy low and sell high", but when is a stock price *low*? And when is it considered *high*? Are there more quantifiable ways to measure these qualitative terms? Stock multiples try to solve this problem by helping traders figure out how much you pay for a stock's underlying business and if this price has changed over time. Essentially, a stock multiple is a ratio that compares the current stock price to some *fundamental* quantity of the stock's underlying business. In general, the higher the multiple, the more expensive the stock is considered to be. The idea can be more intuitively explained via the following example:
 >In shopping for Pork, Beef, or Chicken it's difficult to compare the total prices since the quantity you get is different for each cut. But if we look at the *price per pound*, you can easily figure out which cut is the best bang for your buck. Multiple's work in a similar way, allowing us to compare the price of a stock to the underlying fundamentals you get with the purchase - [Stock Multiples: How to Tell When a Stock is Cheap/Expensive - The Plain Bagel](https://www.youtube.com/watch?v=21STUhQ-iP0)
@@ -18,8 +18,7 @@ Note that in this example, we used the *previous* year's earnings. But this migh
 Now, let's say we have decided to use one of the P/E measures and compute the value to be $x$. What can we infer about a stock's price based on this value? Using just $x$, we can't say much. This is because P/E is a relative measure. It does not make sense by itself. But we *can* compare the stock's current P/E to it's historical P/E values, or even with the stocks of other companies in the same sector. 
 ## Historical Comparison
 >
->![Pasted image 20240507113833](/images/pasted-image-20240507113833.png)
-
+>![pasted-image-20240507113833](/images/pasted-image-20240507113833.webp)
 >
 >If the company's earnings are expected to increase, but the price of the stock has fallen, it would mean that the multiple has contracted, and investors don't value the profitability of the firm as much as they used to. Alternatively, if earnings are falling but the price has risen, the multiple has expanded, meaning people are paying more for less profit. We could also compare the P/E multiple to the stock's long-term average to see whether the margin is larger or smaller than normal. If the stock's ten-year average P/E is 15 times, for example, we can assume that the stock's multiple is temporarily cheaper than normal and may want to buy if we pick up the stock in the multiple later expands back to its long-term average. Then we could earn a return even if the company's earnings are flat. A key assumption here is that a multiple is expected to revert to its mean over time, and while that doesn't always hold true, investors sometimes look for extreme variations from the mean, with many believing that short-term volatility in the stock, which could be caused by a bad press release or negative near-term headwind, will eventually subside, causing the multiple to return to its normal level. - [Stock Multiples: How to Tell When a Stock is Cheap/Expensive - The Plain Bagel](https://www.youtube.com/watch?v=21STUhQ-iP0)
 ## Industry Comparison

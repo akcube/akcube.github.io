@@ -1,11 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-11-19 07:28:27+0530
-doc: 2024-05-29 12:22:05+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: Knapsack Using Branch and Bounding
-topics:
-- Algorithm-Analysis
-- Discrete-Optimization
 ---
 # Branch & Bound
 When trying to solve problems in general, (especially optimization problems) it's always a good idea to formulate a mathematical definition of the problem. To formulate it in mathematical terms, we assign each item in the knapsack a _decision variable $x_i \in \{0, 1\}$._ Now, each item in the knapsack also has some weight $w_i$ and value $v_i$ associated with it. Let's say our knapsack capacity is denoted by $W$.
@@ -24,8 +23,7 @@ Now we have a formal definition of the function we want to maximize under some c
 
 Now, one way to solve the knapsack problem would be to perform an "exhaustive" search on the decision variables. This would mean checking every possible combination of values that our decision variables could take. Visualized as a tree, it would look like this:
 
-![bnb-1](/images/bnb-1.png)
-
+![bnb-1](/images/bnb-1.webp)
 
 Here, we compute the answer by **branching** over all possible combinations. This is, of course, $O(2^n)$. Increasing input size by one would literally mean doubling the amount of computation done.
 
@@ -39,8 +37,7 @@ As we've mentioned before, **relaxation** is the key to optimization. The origin
 
 So, what constraints can we try to "relax" in the knapsack problem? The only constraint there is the weight of the Knapsack. So let's start by relaxing it to let us have an **infinite** knapsack. A picture is worth a thousand words, so let me just show you what the search would like with this relaxation.
 
-![bnb-2](/images/bnb-2.png)
-
+![bnb-2](/images/bnb-2.webp)
 
 Let's try to see what we did here. First, we begin by letting root have $W = 10$ space and have $V = 0$ as it is completely unfilled. This is the $(0, 0, 0)$ state. The **estimate** here is our relaxation. Assuming infinite space, we see that the **most optimistic** value we can reach from here is $\$128$ if we include all the items. Remember, the _relaxation_ is for calculating this _estimate_.
 
@@ -54,8 +51,7 @@ Let's think about how we would normally solve the Knapsack problem **if we were 
 
 This is the **optimal** solution for this version of the knapsack problem. But what about when we apply this relaxation to the original exhaustive search model instead of the infinite bag relaxation?
 
-![bnb-3](/images/bnb-3.png)
-
+![bnb-3](/images/bnb-3.webp)
 
 Notice how much better we've managed to optimize the exhaustive search. The right child of the parent node is cut off at $\$77$ and does not search further, because our "estimated" cost is lesser than the highest value we have found so far ($\$80)$.
 

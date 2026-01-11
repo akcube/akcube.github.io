@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-05-13 11:29:40+0530
-doc: 2024-05-29 14:54:49+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-quantitative
 title: Technical Analysis
-topics:
-- Quantitative-Finance
 ---
 # Systematic vs Discretionary Trading
 Trading strategies can be classified into two broad categories:
@@ -33,8 +33,7 @@ Technical analysis is the study of price movement.
 - **Emphasis on Price:** Contrary to fundamental analysis, which considers external factors such as news and economic indicators, technical analysis prioritizes price action. The price reflects all available information, making it a reliable indicator of market sentiment and future price movements. Stems from [THE EFFICIENT MARKET HYPOTHESIS](/blog/the-efficient-market-hypothesis). Slightly paradoxical. 
 ## Trends
 
-   ![Pasted image 20240311214037](/images/pasted-image-20240311214037.png)
-
+   ![pasted-image-20240311214037](/images/pasted-image-20240311214037.webp)
    
 - **Uptrend →** Higher lows
 - **Downtrend →** Lower highs
@@ -44,8 +43,7 @@ Technical analysis is the study of price movement.
 ## Candlestick Charts
 The solid body of the candlestick represents the price range between the open and close of that day’s trading. When the real body is filled in black / red then the close was lower than the open. When it is not filled in / filled in green then the close was higher than the open. The two “wicks” on either end represent the **highest / lowest** price at which the stock was traded for on that day.
 
-![Pasted image 20240311214150](/images/pasted-image-20240311214150.png)
-
+![pasted-image-20240311214150](/images/pasted-image-20240311214150.webp)
 
 ### Time-Frames
 Choosing different time-frames can greatly alter the granularity at which data is visualized and can show varying trends. Shorter time-frames, like hourly or even minute-by-minute charts, provide detailed insights into intraday price fluctuations. Conversely, longer time-frames, such as weekly or monthly charts, smooth out noise and highlight broader trends, making them useful for identifying significant market movements and potential long-term patterns. Patterns in larger scale time-frames are often an indication that there is a lot of money behind it. This is interesting because when a lot of money is invested, it is very likely to be backed by big institutional investment. In weekly time-frames, the open is the open of the market on Monday morning and close is the close on Friday end.
@@ -71,15 +69,13 @@ Moving averages are very useful visual indicators to identify the general trend 
 #### Price vs Ma
 If the price is consistently and currently above the moving average line, then you can consider it an uptrend and should look for buying opportunities. On the other hand, if the price is consistently below, then it's a downtrend and you should look for exit opportunities. 
 
-![Pasted image 20240506185056](/images/pasted-image-20240506185056.png)
-
+![pasted-image-20240506185056](/images/pasted-image-20240506185056.webp)
 
 As can be seen with the sideways ranging markets, it's important to wait for a consistent showing of price above or below the trend line before categorizing a stock to be in an upward or downward trend. 
 #### Using Two Moving Averages
 We can also use 2 MA's to identify trends. For example, the 20 MA is a short term moving average which gives you the short term trend of the market. And the 200 MA is a long term moving average which gives you the long term trend of the market. If we just used the 20 MA, the few times the price negatively crossed the 20 MA might have been identified as possible sell opportunities. But comparing it with the 200 MA, we can tell that the price is still in an overall uptrend and hence conclude that selling in those short term dip periods is risky. 
 
-![Pasted image 20240506190104](/images/pasted-image-20240506190104.png)
-
+![pasted-image-20240506190104](/images/pasted-image-20240506190104.webp)
 
 *"Using two moving averages will not provide you with better trades. But it will help you avoid bad trades."*
 
@@ -87,21 +83,18 @@ When working with moving averages, it is very important to understand that movin
 ### Use Case #2: Identifying Trend Reversals
 This idea is extremely similar to the idea of using two moving averages. Say we use the 50 MA and 200 MA, we always want a smaller and a larger MA. The cross over points of these lines could often signify potential trend reversals in the market. This is one of the most commonly used / beginners 'learn-indicators' introduction to the stock market. In practice, do not place trades at these reversals, but use these signals along with other factors to make better trade decisions. 
 
-![Pasted image 20240506191205](/images/pasted-image-20240506191205.png)
-
+![pasted-image-20240506191205](/images/pasted-image-20240506191205.webp)
 
 ### Use Case #3: Identifying Dynamic Support and Resistance
 When talking about support and resistance, we usually talk about a fixed price level at which we expect the price to reverse and bounce back and forth between. However, these 'fixed' levels are often not fixed, especially in trending markets. 
 
-![Pasted image 20240506192308](/images/pasted-image-20240506192308.png)
-
+![pasted-image-20240506192308](/images/pasted-image-20240506192308.webp)
 
 In these situations it makes a lot of sense to also use the moving average lines as a dynamic moving set of support and resistance points. You can then (in an uptrend) choose to buy close to the MA line. Similarly in a downtrend, you can identify selling opportunities when the stock price is close to the MA line. 
 ### Conclusion
 In short, this indicator works relatively well only in trending markets. It is hence imperative to use it only in markets that you can clearly classify as trending. Some pros include that the indicator is very simple and easy to build or incorporate into strategies. There are clear entry OR exit points. Primary disadvantage is requiring to be able to identify a market as being trending or sideways ranging. Further, you also don't have any easy way to identify target take profits using just this indicator. Another possible pro with this indicator is that in practice, you are likely to misclassify several entry / exit points and take several short term minor losses, but the few times when the trend following strategy works, you are likely to enter in long term investments that generate a lot of profit. 
 
->![Pasted image 20240506193412](/images/pasted-image-20240506193412.png)
-
+>![pasted-image-20240506193412](/images/pasted-image-20240506193412.webp)
 >- [11. Moving averages - Zerodha Varsity](https://www.youtube.com/watch?v=810jmf7drFw)
 
 The moving average shines best when trading on less-volatile stocks like the NIFTY and other index / large-cap stocks on large time-frames (weekly / monthly).  
@@ -131,8 +124,7 @@ For a 20-day moving average with $s = 2$, the factor $\alpha$ would be around $0
 
 >In the figure below, the number of periods used in each average is 15, but the EMA responds more quickly to the changing prices than the SMA. The EMA has a higher value when the price is rising than the SMA and it falls faster than the SMA when the price is declining. This responsiveness to price changes is the main reason why some traders prefer to use the EMA over the SMA.
 >
->![Pasted image 20240507020420](/images/pasted-image-20240507020420.png)
-
+>![pasted-image-20240507020420](/images/pasted-image-20240507020420.webp)
 >
 >- [Moving Average (MA): Purpose, Uses, Formula, and Examples](https://www.investopedia.com/terms/m/movingaverage.asp)
 ### Conclusion
@@ -148,16 +140,14 @@ This signal line assists in identifying potential buy or sell signals and to con
 
 > The MACD lines, however, do not have concrete overbought/oversold levels like the RSI and other oscillator studies. Rather, they function on a relative basis. An investor or trader should focus on the level and direction of the MACD/signal lines compared with preceding price movements in the security at hand, as shown below. 
 > 
-> ![Pasted image 20240507023344](/images/pasted-image-20240507023344.png)
-
+> ![pasted-image-20240507023344](/images/pasted-image-20240507023344.webp)
 > 
 > MACD measures the relationship between two EMAs, while the RSI measures price change to recent price highs and lows. Both measure momentum in a market, but because they measure different factors, they sometimes give contrary results. The RSI may show a reading above 70 (overbought) for a sustained period, indicating a market is overextended to the buy side of recent prices. In contrast, the MACD indicates that the market is still increasing in buying momentum. Either indicator may signal an upcoming trend change by showing divergence from price (price continues higher while the indicator turns lower, or vice versa).
 > - [What Is MACD? - Investopedia](https://www.investopedia.com/terms/m/macd.asp)
 ### Use Case #1: Crossover Strategy
 The most common use of this indicator it to identify buy / sell signals using the crossover of the MACD and Signal lines. Let's first try to understand what the MACD terms signify. If the MACD value is positive, it implies that the short-term average (12-day EMA) is above the long-term average (26-day EMA). As discussed in the explanations of EMA and MA above, this implies that in the short term, there is an upward momentum in the price and signals a likely uptrend. Similarly, negative MACD values signal likely downward momentum. Now, we can use the MACD line as a sort of indicator of short term price trends. Combining this with the signal line, if we see the 9-day EMA of the MACD crossover with the MACD line, when the MACD is also below the 0-line, it implies that the trend until now was a downtrend (since MACD was below 0), and the crossover with the signal line (which is the EMA of the MACD) implies that there was sudden reversal and upward momentum. Hence it is a very useful indicator to identify swing trading opportunities in the short-term. This is also a very popular strategy.
 
-![Pasted image 20240507022648](/images/pasted-image-20240507022648.png)
-
+![pasted-image-20240507022648](/images/pasted-image-20240507022648.webp)
 
 The green line on top of the price movement chart is the 50-day MA, the yellow line is the 200-day MA and at the bottom, the blue line is the MACD indicator and the orange line is the signal line. The histogram represents the difference between the signal and the MACD, serving as a measure of strength of the trend. It is also centered on the 0 line. 
 ### Use Case #2: Confirming Trend Strength 
@@ -165,8 +155,7 @@ You can also use the difference / gap between the MACD line and the signal line 
 ### Use Case #3: Macd Divergence
 >When MACD forms highs or lows that exceed the corresponding highs and lows on the price, it is called a divergence. A bullish divergence appears when MACD forms two rising lows that correspond with two falling lows on the price. This is a valid bullish signal when the long-term trend is still positive. Some traders will look for bullish divergences even when the long-term trend is negative because they can signal a change in the trend, although this technique is less reliable.
 >
->![Pasted image 20240507024424](/images/pasted-image-20240507024424.png)
-
+>![pasted-image-20240507024424](/images/pasted-image-20240507024424.webp)
 >
 >When MACD forms a series of two falling highs that correspond with two rising highs on the price, a bearish divergence has been formed. A bearish divergence that appears during a long-term bearish trend is considered confirmation that the trend is likely to continue. Some traders will watch for bearish divergences during long-term bullish trends because they can signal weakness in the trend. However, it is not as reliable as a bearish divergence during a bearish trend.
 >- [What Is MACD? - Investopedia](https://www.investopedia.com/terms/m/macd.asp)
@@ -197,8 +186,7 @@ RSI_{\text{step one}} = 100 - \Big[ \frac{100}{1 + \frac{\text{Average Gain}}{\t
 
 Let's start by clearing a common misconception. The RSI crossing a value of 70 does imply that it is overbought, but that does not imply that it cannot stay overbought for long periods of time. The below image is a clear example of this:
 
-![Pasted image 20240507055535](/images/pasted-image-20240507055535.png)
-
+![pasted-image-20240507055535](/images/pasted-image-20240507055535.webp)
 
 Similarly, it can also remain oversold for long periods of time. The RSI is a *momentum indicator*. So if it is overbought, that implies that the momentum is to the upside. It should not be used as a *reversal indicator*. 
 ### Use Case #1: Trend Strength
@@ -207,8 +195,7 @@ During trends, the RSI should frequently stay near the upper band of 70. Similar
 >An RSI divergence occurs when price moves in the opposite direction of the RSI. In other words, a chart might display a change in momentum before a corresponding change in price. A bullish divergence occurs when the RSI displays an oversold reading followed by a higher low that appears with lower lows in the price. This may indicate rising bullish momentum, and a break above oversold territory could be used to trigger a new long position. A bearish divergence occurs when the RSI creates an overbought reading followed by a lower high that appears with higher highs on the price.
 >As you can see in the following chart, a bullish divergence was identified when the RSI formed higher lows as the price formed lower lows. This was a valid signal, but divergences can be rare when a stock is in a stable long-term trend. Using flexible oversold or overbought readings will help identify more potential signals.
 >
->![Pasted image 20240507060616](/images/pasted-image-20240507060616.png)
-
+>![pasted-image-20240507060616](/images/pasted-image-20240507060616.webp)
 >
 >- [Relative Strength Index (RSI) Indicator Explained With Formula - Investopedia](https://www.investopedia.com/terms/r/rsi.asp)
 ### Conclusion
@@ -222,8 +209,7 @@ Euclidean distance is commonly used as the default distance metric for NN-based 
 
 Below is a side-by-side comparison of how neighborhoods of similar historical points appear in three-dimensional Euclidean Space and Lorentzian Space:
 
-![Pasted image 20240507100741](/images/pasted-image-20240507100741.png)
-
+![pasted-image-20240507100741](/images/pasted-image-20240507100741.webp)
 
 This figure demonstrates how Lorentzian space can better accommodate the warping of price-time since the Lorentzian distance function compresses the Euclidean neighborhood in such a way that the new neighborhood distribution in Lorentzian space tends to cluster around each of the major feature axes in addition to the origin itself. This means that, even though some nearest neighbors will be the same regardless of the distance metric used, Lorentzian space will also allow for the consideration of historical points that would otherwise never be considered with a Euclidean distance metric.  
   

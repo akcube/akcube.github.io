@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-03-16 19:03:13+0530
-doc: 2024-05-31 07:08:22+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Theoretical Metrics for Benchmarking
-topics:
-- High-Performance-Computing
 ---
 # Benchmarking a system
 

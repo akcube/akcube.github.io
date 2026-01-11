@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-12-07 08:10:49+0530
-doc: 2024-05-30 09:58:13+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-science-bioinformatics
 title: De-Novo Assembly & Overlap Graphs
-topics:
-- Bio-Informatics
 ---
 # Preface & References
 I document topics I've discovered and my exploration of these topics while following the course, [Algorithms for DNA Sequencing, by John Hopkins University](https://www.coursera.org/learn/dna-sequencing) on [Coursera](https://www.coursera.org/). The course is taken by two instructors [Ben Langmead](https://scholar.google.com/citations?user=2JMaTKsAAAAJ&hl=en) and [Jacob Pritt](https://www.coursera.org/instructor/jacobpritt).
@@ -22,8 +22,7 @@ To slowly build up to the solution, let us first understand the key ideas involv
 
 To solve this problem, let us begin by working back from the final solution. 
 
-!![coverage](/images/coverage.png)
-
+!![coverage](/images/coverage.webp)
 
 Let's suppose we did know the positions of the short reads in the original sequence. We then define the term **coverage** as the number of overlapping reads for each character $c$ of the main genome. We can then simply define a term **average coverage** as the coverage we can expect for each character of the sequence given the length of the sequence, length of each read and the total number of short reads we have of the sequence. 
 
@@ -47,6 +46,5 @@ Let the nodes of the graphs represent the reads we have obtained of the genome. 
 
 Now, not all overlaps are equally important. For example, an overlap of size $1$ can be very frequently occurring and doesn't provide much evidence of it occurring due to it being consequent overlapping reads in the genome. Hence, we can build overlap graphs where an edge $e$ exists between an ordered pair of nodes $(u, v)$, only when the overlap between them exceeds some constant value. Consider the following overlap graph for overlaps of size $\geq 4$
 
-![overlap-graph](/images/overlap-graph.png)
-
+![overlap-graph](/images/overlap-graph.webp)
 

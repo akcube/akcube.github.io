@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-03-26 14:36:48+0530
-doc: 2024-05-31 07:09:22+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Flynn's Taxonomy
-topics:
-- High-Performance-Computing
 ---
 # Flynn’s Taxonomy
 
@@ -17,8 +17,7 @@ It’s basically a categorization of different forms of parallel computing archi
 
 ## SIMD
 
-![simd-1](/images/simd-1.png)
-
+![simd-1](/images/simd-1.webp)
 
 The idea here is to basically take multiple scalar instructions operating on adjacent pieces of memory and combine them into a single vector instruction which can apply the scalar operation element to element in a single instruction. In general SIMD operations have higher latency than their scalar counterparts but in exchange we get insane throughput. More on this in [Vectorization & Analyzing Loop Dependencies](/blog/vectorization-analyzing-loop-dependencies).
 
@@ -27,6 +26,6 @@ The idea here is to basically take multiple scalar instructions operating on adj
 
 ## SPMD
 
-SPMD → Single program multiple data. Distributed computing sort of works on this idea. Tasks are split up and run simultaneously on multiple processors with different input in order to obtain results faster. **Note that the two are not mutually exclusive.** [Map Reduce]([https://en.wikipedia.org/wiki/MapReduce](https://en.wikipedia.org/wiki/MapReduce)).
+SPMD → Single program multiple data. Distributed computing sort of works on this idea. Tasks are split up and run simultaneously on multiple processors with different input in order to obtain results faster. **Note that the two are not mutually exclusive.** [Map Reduce](https://en.wikipedia.org/wiki/MapReduce).
 # References
 These notes are quite old, and I wasn't rigorously collecting references back then. If any of the content used above belongs to you or someone you know, please let me know, and I'll attribute it accordingly.

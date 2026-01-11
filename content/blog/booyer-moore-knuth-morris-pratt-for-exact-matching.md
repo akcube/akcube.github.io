@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-12-02 21:12:44+0530
-doc: 2024-05-30 09:28:36+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-science-bioinformatics
 title: Booyer-Moore & Knuth-Morris-Pratt for Exact Matching
-topics:
-- Bio-Informatics
-- Algorithm-Analysis
 ---
 # Preface & References
 I document topics I've discovered and my exploration of these topics while following the course, [Algorithms for DNA Sequencing, by John Hopkins University](https://www.coursera.org/learn/dna-sequencing) on [Coursera](https://www.coursera.org/). The course is taken by two instructors [Ben Langmead](https://scholar.google.com/citations?user=2JMaTKsAAAAJ&hl=en) and [Jacob Pritt](https://www.coursera.org/instructor/jacobpritt).
@@ -21,8 +21,7 @@ The naive algorithm is trivial and simply scans the main text $S$ for the patter
 
 $$T = aaaaa$$ $$S = aaaaaaaaaaaaaaa \dots$$
 
-![Pasted image 20240530083916](/images/pasted-image-20240530083916.png)
-
+![pasted-image-20240530083916](/images/pasted-image-20240530083916.webp)
 
 ## Boyer-Moore Pattern Matching
 
@@ -30,15 +29,13 @@ Boyer Moore algorithm starts matching from the last character of the pattern. It
 
 -   **Bad Character Rule:** If we do some character comparisons, and we find a mismatch, we will skip all alignment checks until one of two things happens. Either the mismatch becomes a match, or the pattern $T$ moves all the way past the mismatched text character.
 
-    ![bad-character-rule](/images/bad-character-rule.png)
-
+    ![bad-character-rule](/images/bad-character-rule.webp)
 
     ***Explanation:*** *Our mismatching character is \"C\". We then search $T$ for the last occurrence of \"C\". Then we will shift $T$ by $3$ such that \"C\" is aligned between $S$ and $T$*
 
 -   **Good Suffix Rule:** Let $t$ represent the longest common suffix matched by our pattern $T$ with the portion of $S$ we are checking for a match with. We can now skip all comparisons until either there are no mismatches between $S$ and $t$ or $S$ moves past $t$. This can be done relatively fast with some pre-processing.
 
-    ![good-suffix-rule](/images/good-suffix-rule.png)
-
+    ![good-suffix-rule](/images/good-suffix-rule.webp)
 	
     ***Explanation:*** *We have a sub-string $t$ of $T$ matched with pattern $S$ (in green) before a mismatch. We then find an occurrence of $t$ in $S$. After finding this, we jump checks to align $t$ in $S$ with $t$ in $T$.*
 
@@ -85,8 +82,7 @@ The naive way to compute this array is to simply iterate on each prefix starting
 
 The final algorithm looks something like this:
 
-![Pasted image 20240530091949](/images/pasted-image-20240530091949.png)
-
+![pasted-image-20240530091949](/images/pasted-image-20240530091949.webp)
 
 ### Efficient Pattern Matching
 
@@ -126,8 +122,7 @@ Now as for how we quickly search for a k-mer in this pre-processes data, we have
 
 Notice that one of the main bottlenecks here is the number of k-mers we have to store in our pre-processed data structure. Since the k-mers have a lot of overlap, one idea might be to reduce the number of k-mers we have to store in half by storing only those k-mers which start at odd indices. A consequence of this however, is that now our match success rate is only $50\%$. However, we can get back to a $100\%$ success rate by realizing that all we have to do is query indices which cover the entire field $\mod \ 2$ around the query index $q_i$. 
 
-![kmer-index-variants](/images/kmer-index-variants.png)
-
+![kmer-index-variants](/images/kmer-index-variants.webp)
 
 For example, if we store only $\frac{1}{3}^{rd}$ the number of k-mers, one way to do it would be to store every kmer which starts at a position $0 \ \mod \ 3$. Now we just query indices around $q_i$ which give us the entire field $Z_3$ when taking indices $\mod \ 3$. Now we just check for existence of prefixes and suffixes as required for the required types of kmers and verify existence of the actual query string. 
 

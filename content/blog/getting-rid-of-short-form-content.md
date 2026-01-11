@@ -3,8 +3,6 @@ author: Kishore Kumar
 date: 2024-06-25 14:25:53+0530
 doc: 2024-06-05 05:06:01+0530
 title: Getting Rid of Short-Form Content
-topics:
-- Miscellaneous
 ---
 Social media platforms are universally competing to capture all our time and attention by spamming us with brain-rot short form content... and it's working. And unlike other forms of addiction, it's not even true that we get dopamine hits from consuming short form content. More often than not, we don't even realize the amount of time that was passed consuming tidbits of random brain rot. YouTube for example randomly starts on the shorts page and users don't even realize they're scrolling through shorts until much later. Below we'll quickly outline a few software fixes we can implement at the moment to try to purge short form content from our life. Needless to say, if you're an iOS user, please chuck your phone. 
 # Instagram Reels

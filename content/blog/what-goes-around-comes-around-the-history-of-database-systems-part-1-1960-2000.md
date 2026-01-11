@@ -1,12 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2024-08-19 11:56:18+0530
-doc: 2024-08-19 11:07:51+05:30
-title: '"What Goes Around Comes Around" - The History Of Database Systems - Part 1
+doc: 2024-08-19 11:07:51+0530
+tags:
+- domain-cs-systems-databases
+title: '"What Goes Around Comes Around" - The History of Database Systems - Part 1
   (1960 - 2000)'
-topics:
-- Database-Systems
-- Paper-Reading
 ---
 # Abstract
 This will be my first blog post / set of notes taken for a paper I've read. The paper titled, [What Goes Around Comes Around](https://people.cs.umass.edu/~yanlei/courses/CS691LL-f06/papers/SH05.pdf) was written by [Michael Stonebraker](https://scholar.google.com/citations?user=nXYv4nEAAAAJ&hl=en) (Turing Award Winner and the man behind the POSTGRES (and INGRES) database(s)) and [Joseph Hellerstein](https://scholar.google.com/citations?user=uFJi3IUAAAAJ&hl=en) (Has a casual h-index of 105). Usually, the abstract of the paper provides an excellent summary, and this one is no exception.
@@ -69,15 +68,13 @@ IMS was a DBMS product released by IBM around 1968. It was one of the earlies DB
 #### Hierarchical Data Model
 IMS was also the first DBMS to use a *hierarchical data model*. Every record type, except the root had a single parent record type. In other words, you had to define the record types such that they formed a directed tree. This is how we'd have to represent our supplier-parts table using this mode:
 
-![Pasted image 20240819045449](/images/pasted-image-20240819045449.png)
-
+![pasted-image-20240819045449](/images/pasted-image-20240819045449.webp)
 - [What Goes Around Comes Around](https://people.cs.umass.edu/~yanlei/courses/CS691LL-f06/papers/SH05.pdf)
 
 Either `Supplier` as the parent to `Part` or vice-versa. While it was an interesting take, it had some fundamental issues:
 
 1. **Difficult to Eliminate Redundant Information**: In the first schema, for every supplier who supplies a part, we'd have to repeat part information. Essentially, let's say we had 2 vendors selling the same product for different prices, we'd need to have multiple records of the same `pname`. Now if we wanted to change the name of the part, we'd need to update **every** duplicated `pname` field. This can lead to inconsistency issues when updated may fail midway etc.
-	![Pasted image 20240819050043](/images/pasted-image-20240819050043.png)
-
+	![pasted-image-20240819050043](/images/pasted-image-20240819050043.webp)
 	- [CMU SCS 15-721 (Spring 2023) :: History of Databases](https://15721.courses.cs.cmu.edu/spring2023/slides/01-history.pdf)
 2. **Corner Case Issues**: In a strict hierarchy, we cannot have a supplier who does not supply anything and vice versa since the `parts` record is a part of a `Supplier` record.
 3. **Record-at-a-time**: IMS ordered records by a **hierarchical sequence key (HSK)**. In short, it's basically records ordered in DFS order of the record-type tree. You could use it's DML language (DL/1) to fetch the next record or fetch the next record within parent. You could do interesting tree / sub-tree type traversals but it was still record-at-a-time. Optimization of queries was completely left to the programmer. 
@@ -89,11 +86,9 @@ Either `Supplier` as the parent to `Part` or vice-versa. While it was an interes
 5. **Limited Logical Independence**: Because DL/1 was not defined on the physical data layer, IMS supported limited logical independence. If we modified record types, they'd essentially be some subtrees in the logical database record tree. A DL/1 program can just use the logical database definition it was originally written for by allowing the logical database to exclude the subtrees that contain redefined record types. 
 6. **Response to fix data redundancy failed**: The response to fixing the redundancy issue was to allow for the following:
 	Physical storage:
-	![Pasted image 20240819052120](/images/pasted-image-20240819052120.png)
-
+	![pasted-image-20240819052120](/images/pasted-image-20240819052120.webp)
 	Logical storage:
-	![Pasted image 20240819052143](/images/pasted-image-20240819052143.png)
-
+	![pasted-image-20240819052143](/images/pasted-image-20240819052143.webp)
 	It allowed to "graft" two tree-structured physical databases into a logical data base (with many restrictions). Essentially, since `Part` and `Supply` are two *separate* physical tables themselves, there is no repeated information. However, computing the logical grafted block likely would involve joining the two tables for queries on the `Supplier` logical database. 
 	This introduced a lot of undesirable computational and design complexity.
 	
@@ -108,8 +103,7 @@ Remember Charles Bachman? The man behind IDS? He didn't stop there. COBOL progra
 
 The natural next thought from IMS was to move from a tree like structure to a general graph network structure. Here's how we'd represent the Supplier-Parts table in CODASYL.
 
-![Pasted image 20240819055108](/images/pasted-image-20240819055108.png)
-
+![pasted-image-20240819055108](/images/pasted-image-20240819055108.webp)
 
 Notice that in this DAG, the directed edges have names. In CODASYL, these directed edges represent **sets**. It indicates that for each record instance of the owner record type (the tail of the arrow) there is a relationship with zero or more record instances of the child record type (the head of the arrow). It represents 1-n relationships between owner and children. 
 

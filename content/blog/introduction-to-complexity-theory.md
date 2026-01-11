@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-11-16 22:46:22+0530
-doc: 2024-05-29 12:15:31+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-complexity
 title: Introduction to Complexity Theory
-topics:
-- Complexity-Theory
 ---
 # Introduction to Complexity Theory
 
@@ -110,8 +110,7 @@ There are a couple of different definitions used to define the class $NP$.
 
 One of these definitions says, NP is the set of problems that can be solved in polynomial time by a **nondeterministic** Turing machine. Notice that the keyword here is **nondeterministic.** What this essentially means that at every "step" in the computation, the machine _always_ picks the right path. Let's say a Turing machine had states similar to the below picture. A non-deterministic machine would accept any input string that has **at least one accepting run** in its model. It is "lucky" in the sense that it is always capable of picking the right choice and moving to the right state which guarantees ending at a **YES** result as long as such a run exists in its model.
 
-![pnp-1](/images/pnp-1.png)
-
+![pnp-1](/images/pnp-1.webp)
 
 The second definition for $NP$ calls it the set of decision problems for which the problem instances, where the answer is "yes", have proofs verifiable in polynomial time by a deterministic Turing machine. To understand this, we must understand verification vs decision.
 

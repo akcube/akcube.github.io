@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-04-09 01:27:15+0530
-doc: 2024-05-31 07:11:49+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Parallelism With OMP
-topics:
-- High-Performance-Computing
 ---
 We learnt a bit about vectorization in [Vectorization & Analyzing Loop Dependencies](/blog/vectorization-analyzing-loop-dependencies), we'll now try to add more parallelism to our programs by leveraging more hardware features (multiple processing units / cores). 
 # Processes vs Threads
@@ -137,8 +137,7 @@ Each thread is given $\frac{N}{staticsize}$ work to do and it is split up in a r
 
 When we use `dynamic`, the work division looks like this:
 
-![omp-1](/images/omp-1.png)
-
+![omp-1](/images/omp-1.webp)
 
 If we’re working with data in a manner where preserving thread locality is crucial dynamic is a terrible choice, but
 
@@ -146,8 +145,7 @@ If we’re working with data in a manner where preserving thread locality is cru
 
 As mentioned before, OMP does **not** make your code magically thread safe.
 
-![omp-2](/images/omp-2.png)
-
+![omp-2](/images/omp-2.webp)
 
 This will not work as expected. To make specific lines of code execute atomically we can add the pragma `#pragma omp atomic` to instruct OMP that the next instruction must be executed atomically. To instruct OMP that an entire block of code must be executed atomically we can use the pragma `#pragma omp critical` on a code block.
 
@@ -170,8 +168,7 @@ for(int i=0; i<n; i++)
 
 ## Execution model
 
-![omp-3](/images/omp-3.png)
-
+![omp-3](/images/omp-3.webp)
 
 In general, this is how OMP handles the parallel execution of code. However, OMP is pretty advanced and we can do `async` tasks as well using the `task` pragma. Instead of having to deal with an implicit barrier at every join after a `fork`, we can continue execution and only `wait` (`#pragma omp taskwait`) when we really need to wait for a dependency to finish computing.
 

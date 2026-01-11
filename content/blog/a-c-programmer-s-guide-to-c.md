@@ -1,11 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-06-07 08:22:34+0530
-doc: 2024-06-07 08:22:24+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-languages-cpp
 title: A C Programmer's Guide to C++
-topics:
-- Cpp
-- Competitive-Programming
 ---
 Let's quickly go over some useful `stdlib` provided data structures and algorithms that come in handy in Competitive Programming.
 # Input / Output Streams (`cin`, `cout`)
@@ -206,8 +205,7 @@ So what's the catch? It's "constant", in quotes. In practice, most `std::deque` 
 
 > A deque is somewhat recursively defined: internally it maintains a double-ended queue of _chunks_ of fixed size. Each chunk is a vector, and the queue (“map” in the graphic below) of chunks itself is also a vector.
 >
->![Pasted image 20240607063753](/images/pasted-image-20240607063753.png)
-
+>![pasted-image-20240607063753](/images/pasted-image-20240607063753.webp)
 >There’s a great analysis of the performance characteristics and how it compares to the `vector` over at [CodeProject](https://www.codeproject.com/Articles/5425/An-In-Depth-Study-of-the-STL-Deque-Container).
 >
 >The GCC standard library implementation internally uses a `T**` to represent the map. Each data block is a `T*` which is allocated with some fixed size `__deque_buf_size` (which depends on `sizeof(T)`).

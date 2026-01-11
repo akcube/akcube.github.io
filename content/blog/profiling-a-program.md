@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-03-14 23:10:17+0530
-doc: 2024-05-31 06:58:47+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-systems-high-performance-computing
 title: Profiling a Program
-topics:
-- High-Performance-Computing
 ---
 # Profiling Programs
 
@@ -112,8 +112,7 @@ For context, compiling the instrumented `-pg` program and executing it with no o
 
 `callgrind` works by emulating a CPU and getting samples of the program execution at different points in time. This slows down the program overall but slows down all parts by relatively the same amount so the final ratios/percentages it returns are fairly accurate and not skewed by any external overheads. We can use tools like `kcachegrind` to present the output of `callgrind` in a very visually pleasing manner. `kcachegrind` provides us with all the information that `gprof` does and more. We also get to see a line-by-line analysis of the source code showing what percentage of time a particular instruction/line of code is executed.
 
-![kcachegrind-1](/images/kcachegrind-1.png)
-
+![kcachegrind-1](/images/kcachegrind-1.webp)
 
 ## `perf`
 
@@ -163,8 +162,7 @@ A lot of profiling software look at the correct data, they take samples of the c
 
 Let the cloud here represent the bottleneck,
 
-![dundundun-1](/images/dundundun-1.png)
-
+![dundundun-1](/images/dundundun-1.webp)
 
 The measurement in the profile tells us what function took up a major chunk of the time but it fails to give a clear understanding of _why?_ and it is this information that we are trying to hang on to. Without knowing the “why?” it’s as good as an educated guess when trying to identify the hotspots. When sampling call stacks, we get a detailed picture of the sequence of events leading up to something and get a much better idea of _why_ something might be eating up a lot of time and what specifically to address.
 

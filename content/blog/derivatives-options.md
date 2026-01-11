@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2024-03-07 19:09:58+0530
-doc: 2024-05-29 14:33:04+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-economics
+- domain-finance-quantitative
 title: Derivatives - Options
-topics:
-- Economics
-- Quantitative-Finance
 ---
 In [What is the Stock Market?](/blog/what-is-the-stock-market), we learnt about what a stock market is, what stocks (or shares) of companies are and why people trade for them on the stock market. We use the blanket term **Equities** to refer to the company stocks traded on the stock market. 
 
@@ -36,8 +36,7 @@ So, if after a year the price of RIL shoots up to ₹1300, you can use your opti
 
 However, if the share price tanks to ₹700 in a year, you simply let the option expire, losing only the ₹100 you paid for it.
 ## PnL ANALYSIS
-![Pasted image 20240310192917](/images/pasted-image-20240310192917.png)
-
+![pasted-image-20240310192917](/images/pasted-image-20240310192917.webp)
 - **If the stock price falls below the strike price, you lose the option premium.** (In this case, you lose ₹100)
 - **But if the price climbs higher than the strike price, you earn the difference minus the option cost.** (Here, you make a profit of ₹200)
 
@@ -134,8 +133,7 @@ The Indian National Stock Exchange (since July 2018 expiry contracts), uses phys
 >
 >This is what happened to Hindalco shares on 30th Dec:
 >
->![Pasted image 20240312051304](/images/pasted-image-20240312051304.png)
-
+>![pasted-image-20240312051304](/images/pasted-image-20240312051304.webp)
 >
 >The stock was above Rs 450 for most of the expiry day and even a few days prior to it. Since it was out of money, no additional physical margins would have been charged, and everyone holding this strike would have assumed that it would expire out of the money. In all likelihood, everyone who held this put option would have written off the trade as a loss and assumed that the maximum loss would be limited to the premium paid. 
 >
@@ -159,3 +157,11 @@ The Indian National Stock Exchange (since July 2018 expiry contracts), uses phys
 4. [Physical Delivery - Investopedia](https://www.investopedia.com/terms/p/physicaldelivery.asp)
 5. [Policy on settlement of compulsory delivery derivative contracts — Update Oct 2019 - Zerodha](https://zerodha.com/z-connect/general/policy-on-settlement-of-compulsory-delivery-derivative-contracts-update-oct-2019)
 6. [Physical delivery of stock F&O & their risks - Zerodha](https://zerodha.com/z-connect/general/physical-delivery-of-stock-fo-their-risks)
+
+
+---
+
+## Related Reading
+
+- [Covered Calls Strategy](/blog/covered-calls-strategy)
+- [Efficient-Market-Hypothesis](/blog/efficient-market-hypothesis)

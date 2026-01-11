@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2020-12-04 08:42:49+0530
-doc: 2024-05-30 10:20:10+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-math-analysis
 title: Finite and Infinite Sums
-topics:
-- Real-Analysis
 ---
 # Finite and Infinite Sums
 

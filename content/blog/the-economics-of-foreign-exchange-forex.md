@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2024-03-16 08:13:41+0530
-doc: 2024-05-29 14:47:19+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-finance-economics
 title: The Economics of Foreign Exchange (Forex)
-topics:
-- Economics
 ---
 # History
 ## Globalization

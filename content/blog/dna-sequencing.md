@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-12-01 08:03:46+0530
-doc: 2024-05-30 09:34:43+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-science-bioinformatics
 title: DNA Sequencing
-topics:
-- Bio-Informatics
 ---
 # Preface & References
 I document topics I've discovered and my exploration of these topics while following the course, [Algorithms for DNA Sequencing, by John Hopkins University](https://www.coursera.org/learn/dna-sequencing) on [Coursera](https://www.coursera.org/). The course is taken by two instructors [Ben Langmead](https://scholar.google.com/citations?user=2JMaTKsAAAAJ&hl=en) and [Jacob Pritt](https://www.coursera.org/instructor/jacobpritt).
@@ -22,8 +22,7 @@ Algorithms play a key role in this field. Take for example, the effort to sequen
 
 First generation DNA sequencing was a method invented by Fred Sagner and was also known as "Chain termination" sequencing. It was quite labour intensive but over the years improved and many tasks were automated. The HGP (Human Genome Project) used 100s of first generation DNA sequencers to sequence the human genome. However, what we're more interested in is what happened to the cost-per-genome ratio right after the end of the Human Genome Project towards the beginning of the 2000s. 
 
-![cpg-1](/images/cpg-1.png)
-
+![cpg-1](/images/cpg-1.webp)
 Source: [Sequencing Human Genome Cost - NIH](https://genome.gov/sequencingcosts)
 
 As we can see, something important happened around the year 2007. This is the year when a new kind of sequencing technology started to be used in life science labs around the world. This technology was called 'next' generation sequencing or 'second' generation sequencing. But the name that probably describes it best is 'massively-parallel' sequencing. Add to this improvements in technology, speed, etc. and there was massive technological and algorithmic improvements in this field since then. 
@@ -34,8 +33,7 @@ As we can see, something important happened around the year 2007. This is the ye
 
 We are pretty familiar with the double-helix structure of DNA. If we un-ravel this helix and just pick one of the two 'rails', then this strand of the original DNA sequence is split into four sub-sequences made up of the bases A, C, G, or T so that four point sets may be created based on the position of each nucleotide in the original DNA sequence in order to fully use the global information of the DNA sequence. This means that we can represent DNA sequences in the form of a long string containing just the characters 'A', 'C', 'G' and 'T'. 
 
-![dna-as-a-string](/images/dna-as-a-string.png)
-
+![dna-as-a-string](/images/dna-as-a-string.webp)
 
 This has further implications that any read of the DNA sequence simply translates to sub-strings in the original DNA string. This essentially allows us to use the massive literature and work that we have done in the field of string algorithms in the field of DNA sequencing. 
 
@@ -63,21 +61,16 @@ Reads refer to random sub-strings picked from a DNA sequence. One human chromoso
 
 The following is a visual depiction of the same.
 
-![mpds-1](/images/mpds-1.png)
-
-![mpds-2](/images/mpds-2.png)
-
-![mpds-3](/images/mpds-3.png)
-
-![mpds-4](/images/mpds-4.png)
-
+![mpds-1](/images/mpds-1.webp)
+![mpds-2](/images/mpds-2.webp)
+![mpds-3](/images/mpds-3.webp)
+![mpds-4](/images/mpds-4.webp)
 
 ## Sequencing Errors and Base Quality
 
 The process described above is largely accurate, but a minor detail we skimped out on is that before the sequencing begins, we amplify each template strand with multiple copies in a cluster. This allows the camera to more easily spot the glowing color of each cluster as just one strand is not enough to accurately distinguish the color. However, there is a hidden problem here. Say during one of the build cycles one of the bases in the solution is unterminated. This would cause the polymerase to go ahead and place the next base as well on top of what should've been this cycle's base. Now because this is a cluster, the majority color would still likely dominate. However, notice that once a base is out of cycle, it will always remain out of cycle. This means that with more and more cycles, the rate of error gets higher and higher. 
 
-![mpds-e](/images/mpds-e.png)
-
+![mpds-e](/images/mpds-e.webp)
 
 To counter this, we developed software called the 'base caller' which analyzer the images and tries to attach a confidence score to how confident it is about the base for each cluster in each cycle. The value reported is called the 'base quality.'
 

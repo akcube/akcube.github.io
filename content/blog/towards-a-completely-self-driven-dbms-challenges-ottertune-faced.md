@@ -1,10 +1,13 @@
 ---
 author: Kishore Kumar
 date: 2024-09-09 21:01:28+0530
-doc: 2024-09-09 21:00:14+0530
-title: Towards A Completely Self-Driven Dbms - Challenges OtterTune Faced
-topics: []
+doc: 2025-04-04 11:28:38+0530
+tags:
+- domain-cs-ai-ml-machine-learning
+- domain-cs-systems-databases
+title: Towards a Completely Self-Driven DBMS - Challenges OtterTune Faced
 ---
+
 # Abstract
 This blog / set of notes is not based on a paper, but rather a set of talks given by the founders of OtterTune, describing their vision for the product and the challenges they had faced moving the OtterTune project from Academia to a sellable product. Not surprisingly, a lot of real-life problems surfaced when the product started being run in production environments. The goal of this blog is to explore Andy's vision for a completely self-driving database, the challenges they faced with OtterTune, how they were forced to introduce a significant amount of manual work in their automatic pipeline to make things work, and maybe some thoughts on how we can try to get around that.
 The talks I am referring to are:
@@ -49,8 +52,7 @@ Even if the company had identical staging & production environments, the two dat
 - Existing built-in slow query log methods do not capture transaction boundaries.
 
 One of the best solutions to this problem identified so far was how Oracle did it.
-![Pasted image 20240909180058](/images/pasted-image-20240909180058.png)
-
+![pasted-image-20240909180058](/images/pasted-image-20240909180058.webp)
 - [Why Machine Learning for Automatically Optimizing Databases Doesn't Work by Andy Pavlo - JOTB23](https://www.youtube.com/watch?v=-p0fX1rsoxY)
 
 By having two identical instance replicas of the database and a proxy at the application level which mirrors the traffic to both the databases, you have a very reliable and identical measure of the workload that the production database has to process. 
@@ -93,10 +95,8 @@ Instead of starting with only the closest workload that was mapped in the worklo
 
 In short. They had to give up on the **completely automatic** solution in favor of quickly resolving customer issues by leveraging domain knowledge & integrating it with their product to provide a seamless experience to their customer.
 # OtterTune: Performance Improvements & Success
-![Pasted image 20240909202741](/images/pasted-image-20240909202741.png)
-
-![Pasted image 20240909202809](/images/pasted-image-20240909202809.png)
-
+![pasted-image-20240909202741](/images/pasted-image-20240909202741.webp)
+![pasted-image-20240909202809](/images/pasted-image-20240909202809.webp)
 - [OtterTune: AI-Powered Database Optimization as a Service! (Dana Van Aken)](https://www.youtube.com/watch?v=glBoRyShD7E)
 Given that $61\%$ of their customer did attempt to tune the database, OtterTune was able to get significant performance improvements. Further, Andy claims that a decent number of the databases at the bottom of the scatter plot are dead databases which just did not have enough queries being bed to it to notice any performance increase since they were dormant for the majority of the time anyway. Dana does mention that some of them were likely very well Tuned databases too. 
 # OtterTune: Field Studies
@@ -106,14 +106,12 @@ The bank had 1000 Postgres instances they wanted optimized. But when they actual
 They came back saying they're a primarily Oracle DB which had been manually tuned by their expert DBAs. Minimal work had to be done by the OtterTune folk on the driver & data transformation side, but all the ML algorithms used remained the same. This is what they meant when they wanted this service to be truly plug and play on-top of any DBMS provider. This is even considering that the bank wanted to optimize something called "Oracle DB Time" which is an arbitrary user-defined metric for OtterTune, but due to how the ML algorithms were defined, it could seamlessly be supported.
 
 The shared disk had crazy variance. Had to manually be handled.
-![Pasted image 20240909205118](/images/pasted-image-20240909205118.png)
-
+![pasted-image-20240909205118](/images/pasted-image-20240909205118.webp)
 - [Andy Pavlo - OtterTune: Using Machine Learning to Automatically Optimize Database Configurations](https://www.youtube.com/watch?v=fVZTnqgXSyw)
 
 **Results:** They managed to get Oracle's resource consumption down by $50\%$. 
 
-![Pasted image 20240909205220](/images/pasted-image-20240909205220.png)
-
+![pasted-image-20240909205220](/images/pasted-image-20240909205220.webp)
 
 **Lesson Learned - Experts Make Mistakes:** The DBAs had tuned the DBMS before upgrading from Oracle v11 to v12. They did not check the configuration after the upgrade. This is why automation is very useful to catch these changes & correct them.
 **Lesson Learned - Dealing With Bad Configurations:** With little prior data, algorithms may choose bad configurations that may cause:
@@ -125,8 +123,7 @@ They had a very read-heavy workload & wanted to tune their read-replicas. They c
 
 **Results**:
 
-![Pasted image 20240909205912](/images/pasted-image-20240909205912.png)
-
+![pasted-image-20240909205912](/images/pasted-image-20240909205912.webp)
 **Lesson Learned - External Factors:** Provide DBAs with control on what is the minimum and maximum value range they are comfortable with the value being. 
 # Open Problems
 ## Workload Synthesis
@@ -138,8 +135,7 @@ How do we speed up the model to collect fewer samples & converge faster? Can we 
 
 Student suggests checking out transfer learning for instance optimization that can cast these workloads into large vectors which apparently works reasonably well for workload mapping. Andy says hardware and instance differences are an issue but the paper is for a fixed instance anyway? But Dana does say that they do not use the average difference of metrics method used for workload characterization in the paper in the production model. We do need more data, whether from the `EXPLAIN` plans or similar to improve workload characterization. 
 ## Stopping / Starting Criteria
-![Pasted image 20240909203024](/images/pasted-image-20240909203024.png)
-
+![pasted-image-20240909203024](/images/pasted-image-20240909203024.webp)
 - [OtterTune: AI-Powered Database Optimization as a Service! (Dana Van Aken)](https://www.youtube.com/watch?v=glBoRyShD7E)
 ## Application Development Integration
 A suggestion is to integrate with CI/CD, GitHub, etc. to identify PR changes to indexes etc. and catch these errors early on in the pipeline way before it makes it all the way to production.

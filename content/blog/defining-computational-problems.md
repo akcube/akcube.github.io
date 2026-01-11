@@ -1,11 +1,11 @@
 ---
 author: Kishore Kumar
 date: 2022-08-03 10:02:06+0530
-doc: 2024-05-29 06:16:14+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
+- domain-cs-algorithms-complexity
 title: Defining Computational Problems
-topics:
-- Algorithm-Analysis
-- Complexity-Theory
 ---
 # Introduction
 To study & analyze algorithms, we must have a solid foundational theory for what algorithms are. We often define algorithms as a series of steps that must be followed to solve a problem. This raises a few basic questions that we must answer concretely.

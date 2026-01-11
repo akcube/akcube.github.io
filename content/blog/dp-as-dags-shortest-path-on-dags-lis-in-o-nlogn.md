@@ -1,10 +1,10 @@
 ---
 author: Kishore Kumar
 date: 2022-10-01 01:31:35+0530
-doc: 2024-05-29 07:01:11+0530
+doc: 2025-05-18 17:07:02+0530
+tags:
+- domain-cs-algorithms-analysis
 title: DP as DAGs,  Shortest Path on DAGs & LIS in O(nlogn)
-topics:
-- Algorithm-Analysis
 ---
 Over the past few notes, we learned about developing efficient strategies to solving computational problems by using the greedy idea ([Set Cover & Approximation Algorithms](/blog/set-cover-approximation-algorithms), [More Greedy Algorithms! Kruskal's & Disjoint Set Union](/blog/more-greedy-algorithms-kruskal-s-disjoint-set-union), [Activity Selection & Huffman Encoding](/blog/activity-selection-huffman-encoding)). The greedy idea focuses on choosing the most optimum solution at a local stage and reducing what's left to a subproblem with the same structure. This is great when problems have a locally optimum solution and have optimal substructure properties. But what do we do when this is not the case? What to do when greedy does not work?
 # Dynamic Programming
@@ -21,8 +21,7 @@ We mentioned that DP relies on a problem having a recursive solution. That is, i
 
 Note that if we attempted to visualize this recursive method of solving as a graph, with some solutions dependent on the solution of its subproblems, we can **never** have a cycle. The presence of a cycle would imply that a problem depends on its subproblem and the subproblem depends on its parent. Computing this would lead to an infinite cycle.
 
-![dp-1](/images/dp-1.png)
-
+![dp-1](/images/dp-1.webp)
 
 Say we wish to compute $a_1$. For the problem structure depicted on the left, it is **impossible** to compute it recursively as we would be in an infinite cycle. The problem on the right however can be solved by independently computing the solution for $a_2, a_3$ and then computing $a_1$.
 
@@ -34,15 +33,13 @@ Consider the famous Fibonacci problem. We can recursively state $F_n = F_{n-1}+F
 
 Let's try to visualize the recursion tree for $F_4$ (which is also a DAG)
 
-![dp-2](/images/dp-2.png)
-
+![dp-2](/images/dp-2.webp)
 
 Notice that we are computing $F_2$ multiple times. (Assume $F_0$ and $F_1$ are known constants).
 
 We can eliminate this overlap by computing it **just** once. This allows us to model the DAG as follows,
 
-![dp-3](/images/dp-3.png)
-
+![dp-3](/images/dp-3.webp)
 
 By using the once computed $F_2$ to compute $F_3$, notice that we managed to eliminate an entire subtree of recursion. **This** is the core idea behind DP. By saving the states of previous computations, we are effectively able to eliminate recomputation for **all** overlapping subproblems, thus considerably reducing the complexity of our solution.
 
@@ -100,8 +97,7 @@ Let's take an example.
 
 Let the list $arr$ be $[10, 22, 9, 33, 21, 50, 41, 60, 80]$. One possible solution to this list is as given below.
 
-![dp-4](/images/dp-4.png)
-
+![dp-4](/images/dp-4.webp)
 
 So how do we solve this problem?
 
@@ -117,8 +113,7 @@ There exists a directed edge from the element at position $i$ to another element
 
 Let's consider the implications of such a construction. What does it **mean** to find the LIS of some given array? Especially after this transformation.
 
-![dp-5](/images/dp-5.png)
-
+![dp-5](/images/dp-5.webp)
 
 Notice that there is **no difference** between the longest path on a DAG problem and finding the LIS of an array after we have performed this transformation to the array. In such a DAG, every "path" is a sequence of increasing numbers. We wish to find the longest such sequence. This, in turn, translates to simply finding the longest such path on the graph.
 
@@ -196,3 +191,11 @@ int lis(int arr[], int n) {
 These notes are old and I did not rigorously horde references back then. If some part of this content is your's or you know where it's from then do reach out to me and I'll update it. 
 1. Professor [Kannan Srinathan's](https://www.iiit.ac.in/people/faculty/srinathan/) course on Algorithm Analysis & Design in IIIT-H
 2. [Huffman Codes: An Information Theory Perspective - Reducible](https://youtu.be/B3y0RsVCyrw?si=5kFqRPa_XsGxpqBr)
+
+---
+
+## Related Reading
+
+- [Levenshtein Edit Distance](/blog/levenshtein-edit-distance)
+- [Chain Matrix Multiplication](/blog/chain-matrix-multiplication)
+- [A Deep Dive into the Knapsack Problem](/blog/a-deep-dive-into-the-knapsack-problem)
