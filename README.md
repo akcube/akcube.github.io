@@ -13,7 +13,7 @@ Personal blog and portfolio site built with Hugo, featuring automatic publishing
 
 - **Hugo Extended** v0.124.1+ (required for SCSS processing)
 - **Go** 1.19+ (required for `hugo-obsidian` tool)
-- **Python** 3.8+
+- **Python** 3.10+
 - **Node.js** 18+ and npm
 - **Git**
 
@@ -40,15 +40,15 @@ npm install
 cd ../..
 ```
 
-### 3. Set up Python environment for publisher
+### 3. Install the Obsidian Publisher
 
 ```bash
-cd publisher-v2
-python -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+cd publisher
+pip install -e .
 cd ..
 ```
+
+This installs the `obsidian-publish` CLI tool.
 
 ### 4. Install hugo-obsidian for link graph generation
 
@@ -103,11 +103,8 @@ The publisher automatically discovers and publishes notes tagged with `status/ev
 ### Quick Workflow
 
 ```bash
-# 1. Activate Python environment and publish
-cd publisher-v2
-source venv/bin/activate
-python publisher.py
-cd ..
+# 1. Publish from vault
+obsidian-publish republish -c publisher-config.yaml
 
 # 2. Generate link indices for graph
 hugo-obsidian -input=content -output=assets/indices -index -root=.
@@ -122,15 +119,27 @@ hugo server -D
 - **Converts hierarchical tags** like `domain/cs/algorithms` to URL-safe format (`domain-cs-algorithms`)
 - **Processes wikilinks** (`[[Note Title]]` → `[Note Title](/blog/note-title)`)
 - **Optimizes images** to WebP with PNG fallback
-- **Generates Related Reading** sections from frontmatter
-- **Cleans up orphaned** posts and images no longer in vault
+- **Cleans up orphaned** images no longer referenced
 
 ### Dry Run
 
 To see what would be published without making changes:
 
 ```bash
-python publisher.py --dry-run
+obsidian-publish republish -c publisher-config.yaml --dry-run
+```
+
+### Other Commands
+
+```bash
+# Publish a specific note
+obsidian-publish add "My Note Title" -c publisher-config.yaml
+
+# Remove a published note
+obsidian-publish delete "My Note Title" -c publisher-config.yaml
+
+# List all publishable notes
+obsidian-publish list-notes -c publisher-config.yaml
 ```
 
 ## Obsidian Vault Structure
@@ -145,8 +154,6 @@ tags:
   - type/zettelkasten               # Note type
   - status/evergreen                # Required for publishing
 created: 2024-01-15
-related:
-  - "[[Another Note]]"              # Optional related notes
 ---
 
 Your note content with [[wikilinks]] and ![[images.png]]...
@@ -156,8 +163,7 @@ Your note content with [[wikilinks]] and ![[images.png]]...
 
 - **`status/evergreen`** - Required for publishing
 - **`status/seed`** or **`status/sapling`** - Excluded from publishing
-- **`domain/*`** - Converted to display tags (e.g., `domain/cs/algorithms` → `#domain/cs/algorithms`)
-- **`type/*`** - Internal classification, not published
+- **`domain/*`** - Converted to display tags (e.g., `domain/cs/algorithms` → `domain-cs-algorithms`)
 
 ## Project Structure
 
@@ -180,13 +186,8 @@ Your note content with [[wikilinks]] and ![[images.png]]...
 │   └── tags/            # Tag taxonomy pages
 ├── themes/              # Hugo themes
 │   └── obsidian-hugo-texify3/  # Custom theme (git submodule)
-├── publisher-v2/        # Publishing tools
-│   ├── publisher.py     # Main publishing script
-│   ├── discovery.py     # Note discovery module
-│   ├── tag_converter.py # Tag processing
-│   ├── link_processor.py # Wikilink/image processing
-│   ├── config.yaml      # Publisher configuration
-│   └── requirements.txt
+├── publisher/           # Obsidian Publisher (git submodule)
+├── publisher-config.yaml # Publisher configuration
 ├── hugo.toml            # Hugo configuration
 └── .gitignore
 ```
@@ -201,24 +202,58 @@ All images are automatically optimized during publishing:
 
 ## Configuration
 
-Publisher settings are in `publisher-v2/config.yaml`:
+Publisher settings are in `publisher-config.yaml`:
 
 ```yaml
-vault_path: "/path/to/your/obsidian/vault"
-website_path: "/path/to/hugo/site"
-source_dir: "Zettelkasten"
-dest_dir: "content/blog"
+# Path to your Obsidian vault
+vault_path: ~/Kishore-Brain
 
-filters:
-  required_tags:
-    - "status/evergreen"
-  excluded_tags:
-    - "status/seed"
-    - "status/sapling"
+# Path to your Hugo site
+output_path: ~/akcube.github.io
 
-features:
-  enable_related_reading: true
-  optimize_images: true
+# Subdirectory within vault to scan for notes
+source_dir: Zettelkasten
+
+# Output directories within the Hugo site
+content_dir: content/blog
+image_dir: static/images
+
+# Directories within vault to search for images
+image_sources:
+  - Files
+  - Zettelkasten
+
+# Tags for filtering notes
+required_tags:
+  - status/evergreen
+excluded_tags:
+  - status/seed
+  - status/sapling
+  - status/draft
+
+# Image optimization settings
+optimize_images: true
+max_image_width: 1920
+webp_quality: 85
+image_path_prefix: /images
+
+# Link transform: absolute links with /blog prefix
+link_transform:
+  type: absolute
+  prefix: /blog
+
+# Tag transform: filter domain tags only and replace / with -
+tag_transform:
+  prefixes:
+    - domain
+  replace_separator:
+    - "/"
+    - "-"
+
+# Hugo frontmatter settings
+frontmatter:
+  hugo: true
+  author: Kishore Kumar
 ```
 
 ## License
