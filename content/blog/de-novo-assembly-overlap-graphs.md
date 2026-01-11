@@ -47,4 +47,3 @@ Let the nodes of the graphs represent the reads we have obtained of the genome. 
 Now, not all overlaps are equally important. For example, an overlap of size $1$ can be very frequently occurring and doesn't provide much evidence of it occurring due to it being consequent overlapping reads in the genome. Hence, we can build overlap graphs where an edge $e$ exists between an ordered pair of nodes $(u, v)$, only when the overlap between them exceeds some constant value. Consider the following overlap graph for overlaps of size $\geq 4$
 
 ![overlap-graph](/images/overlap-graph.webp)
-

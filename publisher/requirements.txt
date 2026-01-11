@@ -1,9 +1,0 @@
-gitdb==4.0.11
-GitPython==3.1.43
-inflection==0.5.1
-Pillow>=10.0.0
-pytz==2024.1
-PyYAML==6.0.1
-Send2Trash==1.8.3
-smmap==5.0.1
-titlecase==2.4.1
