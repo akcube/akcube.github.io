@@ -53,13 +53,36 @@
   </div>
 
   {{ if .Params.tags }}
-  <div>
-    {{ range .Params.tags }}
-      {{ $displayTag := replace . "-" "/" }}
-      <a class="link tag" href='/tags/{{ . }}/'>#{{ $displayTag }}</a>
-    {{ end }}
-    <br></br>
+  <!-- Mobile tags toggle button (visible only on mobile) -->
+  <button class="tags-toggle" onclick="toggleTagsPanel()" aria-label="Toggle tags panel">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7.0498 7.0498H7.0598M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12ZM7.5498 7.0498C7.5498 7.32594 7.32594 7.5498 7.0498 7.5498C6.77366 7.5498 6.5498 7.32594 6.5498 7.0498C6.5498 6.77366 6.77366 6.5498 7.0498 6.5498C7.32594 6.5498 7.5498 6.77366 7.5498 7.0498Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 8V16M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+    <span>Tags</span>
+  </button>
+
+  <!-- Tags container - inline on desktop, slide-in panel on mobile -->
+  <div class="tags-container">
+    <div class="tags-panel">
+      <div class="tags-panel-header">
+        <span>Tags</span>
+        <button class="tags-close" onclick="toggleTagsPanel()" aria-label="Close tags panel">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="tags-list">
+        {{ range .Params.tags }}
+          {{ $displayTag := replace . "-" "/" }}
+          <a class="link tag" href='/tags/{{ . }}/'>#{{ $displayTag }}</a>
+        {{ end }}
+      </div>
+    </div>
   </div>
+  <!-- Overlay for mobile panel -->
+  <div class="tags-overlay" onclick="toggleTagsPanel()"></div>
   {{ end }}
 
   <!-- Obsidian Graph Viewer -->
