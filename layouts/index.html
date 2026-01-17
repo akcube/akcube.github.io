@@ -109,6 +109,20 @@
 {{ end }}
 
 {{ define "main" }}
+<!-- Hidden checkbox for mobile sidebar toggle (CSS-only) -->
+<input type="checkbox" id="sidebar-toggle" class="sidebar-checkbox" aria-hidden="true">
+
+<!-- Mobile toggle button (visible only on mobile) -->
+<label for="sidebar-toggle" class="sidebar-toggle-btn" aria-label="Toggle tags sidebar">
+    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+        <path d="M7.5,6A1.5,1.5,0,1,0,9,7.5,1.5,1.5,0,0,0,7.5,6Zm13.62,4.71L12.71,2.29A1,1,0,0,0,12,2H3A1,1,0,0,0,2,3v9a1,1,0,0,0,.29.71l8.42,8.41a3,3,0,0,0,4.24,0L21.12,15a3,3,0,0,0,0-4.24Zm-1.41,2.82h0l-6.18,6.17a1,1,0,0,1-1.41,0L4,11.59V4h7.59l8.12,8.12a1,1,0,0,1,.29.71A1,1,0,0,1,19.71,13.53Z"/>
+    </svg>
+    <span>Tags</span>
+</label>
+
+<!-- Overlay for closing sidebar on mobile -->
+<label for="sidebar-toggle" class="sidebar-overlay" aria-hidden="true"></label>
+
 <main class="grid-container">
     <div id="content" class="index">
         {{ with .Site.GetPage "_index.md" }}
@@ -125,7 +139,12 @@
 
     <div class="sidebar">
         {{ if .Site.Taxonomies.tags }}
-        <p></p>
+        <!-- Mobile close button (visible only on mobile) -->
+        <label for="sidebar-toggle" class="sidebar-close-btn" aria-label="Close tags sidebar">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </label>
         <div class="taxonomy-header">
             <span class="icon taxonomy-icon">
                 <svg width="1em" height="1em" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
