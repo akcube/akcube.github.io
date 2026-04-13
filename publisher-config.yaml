@@ -2,10 +2,10 @@
 # For publishing Kishore-Brain vault to akcube.github.io
 
 # Path to your Obsidian vault
-vault_path: ~/Kishore-Brain
+vault_path: ~/Personal/Kishore-Brain
 
 # Path to your Hugo site
-output_path: ~/akcube.github.io
+output_path: ~/Personal/akcube.github.io
 
 # Subdirectory within vault to scan for notes
 source_dir: Zettelkasten
